@@ -6,10 +6,7 @@ const mayerCatch = ['m!p computer blue', 'who the fuck is bb king', 'idk lmao he
 const funCatch = ['ZzzZZzZzzZzZzz...'];
 const narratorCatch = ['gimme coins pls'];
 const ryanCatch = ['^^roulette wife for the day', 'interesting'];
-const rafiCatch= ['omg he is sooooooo hot i cant', 'is he the Pokemon Legend?!?!', 'mate >>>>> coffee', 'legends say he hasnt lost a single match in plato'];
-//   list.members.cache.array().forEach(member => {
-//       catchphrases.set(member.Id, ['who dat lol']);
-
+const rafiCatch= ['🧉', 'omg he is sooooooo hot i cant', 'is he the Pokemon Legend?!?!', 'mate >>>>> coffee', 'legends say he hasnt lost a single match in plato'];
 
 module.exports = {
     name: 'quote',
@@ -32,7 +29,34 @@ module.exports = {
         catchphrases.set('389046536480227328', simaCatch);
         
         //check if the args[0] is equal to either sima, aysan, fun, ard, rafi, ryan
-        
+        switch(args[0]){
+            case 'fun':
+                message.reply(funCatch[Math.floor(Math.random() * funCatch.length)]);
+                return;
+            case 'rafi':
+                message.reply(rafiCatch[Math.floor(Math.random() * rafiCatch.length)]);
+                return;
+            case 'ryan':
+                message.reply(ryanCatch[Math.floor(Math.random() * ryanCatch.length)]);
+                return;
+            case 'aysan':
+                message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
+                return;
+            case 'ice':
+                message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
+                return;
+            case 'icesun':
+                message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
+                return;
+            case 'mayer':
+                message.reply(mayerCatch[Math.floor(Math.random() * mayerCatch.length)]);
+                return;
+            case 'ard':
+                message.reply(ardCatch[Math.floor(Math.random() * ardCatch.length)]);
+                return;
+            default:
+                break;
+        }
         //transform the args[0] into an id
         const memberData = guild.members.cache.find(member => member.user.username === args[0]);
         if(!memberData){
@@ -41,9 +65,7 @@ module.exports = {
         }
 
         
-        console.log(memberData);
-        const quote = catchphrases.get(memberData.id); //should return an array containing the catchphrases
-        console.log(quote);
+        const quote = catchphrases.get(memberData.id); //should return an array containing the catchphrases        
         const randomIndex = Math.floor(Math.random() * quote.length);
         const item = quote[randomIndex];
         message.reply(item);
