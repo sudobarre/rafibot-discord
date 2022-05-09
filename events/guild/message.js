@@ -9,9 +9,9 @@ module.exports = (client, Discord, message) => {
 		inspire.execute(client, message);
 	}
 	if(!message.content.startsWith(prefix)){
-		if(message.author.id === '228837379165650946' || message.author.id === '389046536480227328' || message.author.id === '900735891448946698'){ //if its sima
+		if((message.author.id === '228837379165650946' || message.author.id === '389046536480227328' || message.author.id === '900735891448946698') && (Math.random() < 0.1)){ //if its sima
 		message.channel.send('die');
-		}else if(message.author.role === 'bots'){ //if its a music bot then nah
+		}else if(message.author.role === 'bots' && !(message.author.id == '184405311681986560' || message.author.id == '547905866255433758' || message.author.id == '489076647727857685' || message.author.id == '282859044593598464')){ //if its a music bot then nah
 			message.channel.send('stfu bot');
 		}
 	}

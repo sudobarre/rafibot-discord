@@ -1,6 +1,6 @@
 
-const simaCatch = ['DIE', 'die', 'ugh', 'booo', 'jump off a bridge', 'break your fingers', 'sabir', 'this mf', 'changes profile pic every 5 minutes'];
-const aysanCatch = ['pat pat', 'aww', 'bush', 'm!p tamino habibi', 'hey guys i just invited this dude that i talked to just once he seems nice and totally not homophobe hihi', 'cooooool', 'today i will study', 'pija', 'your lips my lips apocalypse'];
+const simaCatch = ['DIE', 'die', 'ugh', 'booo👎', 'jump off a bridge', 'break your fingers', 'sabir', 'this mf', 'changes profile pic every 5 minutes'];
+const aysanCatch = [';;p la vie en rose emily watts', 'pat pat', 'aww', 'bush', 'm!p tamino habibi', 'hey guys i just invited this dude that i talked to just once he seems nice and totally not homophobe hihi', 'cooooool', 'today i will study', 'pija', 'your lips my lips apocalypse'];
 const ardCatch = ['game?', 'hello', 'hi', 'i just watched this new anime that totally looks like hentai but its not i swear', 'that fucking racoon', 'fucking winklit'];
 const mayerCatch = ['m!p computer blue', 'who the fuck is bb king', 'idk lmao he never talks'];
 const funCatch = ['ZzzZZzZzzZzZzz...'];
@@ -53,6 +53,9 @@ module.exports = {
                 return;
             case 'ard':
                 message.reply(ardCatch[Math.floor(Math.random() * ardCatch.length)]);
+                return;
+            case 'sima':
+                message.reply(simaCatch[Math.floor(Math.random() * simaCatch.length)]);
                 return;
             default:
                 break;
