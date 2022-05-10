@@ -1,8 +1,9 @@
 module.exports = {
     name: 'vote',
     description: 'cast an anonymous vote!',
+    once : true,
     async execute(client, message, args, Discord){
-        const channel = '971480144747323404'; // 923664327427375164' for nothingham 
+        const channel = '923664327427375164'; // 923664327427375164' for nothingham 
         const thumbsUp = '👍';
         const thumbsDown = '👎';
         const embed = new Discord.MessageEmbed()
