@@ -14,6 +14,7 @@ module.exports = {
                 {name: 'inspire', value: 'Feeling down? let RafiBot motivate you!' },
                 {name: 'quote [member tag]', value: 'Returns a random famous catchphrase from the member tag passed or in some cases and with very special people with just their nicknames.' },
                 {name: 'vote', value: 'Simple voting message with the proper emoji reactions added' },
+                {name: 'drink', value:'Drinks mate. Thats it. Ard told me to add this.'},
             );
         message.channel.send({ embeds: [embed] });
     },
