@@ -21,7 +21,7 @@ module.exports = (client, Discord, message) => {
 			message.react(`🇭`);
 		}else if((message.author.id === '702969424822665419') && Math.random()<0.1){
 			message.react('🦝');
-		}else if((message.author.id === '228837379165650946') && Math.random()<0.1){
+		}else if((message.author.id === '228837379165650946' || message.author.id === '715294709886746645' ) && Math.random()<0.1){
 			message.react('💯');
 		}
 		if(message.content.includes('hentai') || message.content.includes('porn')){
@@ -30,6 +30,12 @@ module.exports = (client, Discord, message) => {
 	}
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const cmd = args.shift().toLowerCase();
-	const command = client.commands.get(cmd);
-	if(command) command.execute(client, message, args, Discord);
+	const command = client.commands.get(cmd) || client.commands.find(a => a.aliases && a.aliases.includes(cmd));
+	//if(command) command.execute(client, message, args, Discord);
+	try {
+		command.execute(client, message, args, Discord, cmd);//message, args, cmd, client, Discord);
+	} catch (err) {
+		message.reply('There was an error trying to execute this command.');
+		console.log(err);
+	}
 	};
