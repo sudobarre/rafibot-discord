@@ -14,13 +14,8 @@ module.exports = {
                 return data[0]['q'] + ' -' + data[0]['a'];
             });
         }
-        //const sadWords=['sad', 'depressed', 'unhappy', 'angry'];
         //send it via DM to users
         getQuote().then(quote => message.reply(quote));
-        
-        //if(sadWords.some(word=>message.content.includes(word))){
-        //    getQuote().then(quote => message.reply(quote));
-        //}
     },
 
 };

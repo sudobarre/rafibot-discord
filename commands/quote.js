@@ -1,11 +1,11 @@
-const simaCatch = ['how can black be pink smh','thinks weirdass videos are funny','🥱', 'thinks kurdistan is not in iraq', 'obsessed with koreans', 'neither cute nor hot', 'yawn', 'DIE', 'die', 'ugh', 'booo👎', 'jump off a bridge', 'break your fingers', 'sabir', 'this mf', 'changes profile pic every 5 minutes'];
-const aysanCatch = ['cat slave','commits suicide at brawlbots', 'only wins at minesweeper from forfeits','doesnt know how to checkmate', ';;p la vie en rose emily watts', 'pat pat', 'aww', 'bush', 'm!p tamino habibi', 'hey guys i just invited this dude that i talked to just once he seems nice and totally not homophobe hihi', 'cooooool', 'today i will study', 'pija', 'your lips my lips apocalypse'];
-const ardCatch = ['good and you?', 'yo', 'sucks at chess', '3k wins on plato but still sucks', 'chooses pikachu over raccoon', 'game?', 'hello', 'hi', 'i just watched this new anime that totally looks like hentai but its not i swear', 'that fucking racoon', 'fucking winklit'];
+const simaCatch = ['le gusta la vaselina','how can black be pink smh','thinks weirdass videos are funny','🥱', 'thinks kurdistan is not in iraq', 'obsessed with koreans', 'neither cute nor hot', 'yawn', 'DIE', 'die', 'ugh', 'booo👎', 'jump off a bridge', 'break your fingers', 'sabir', 'this mf', 'changes profile pic every 5 minutes'];
+const aysanCatch = ['gets depressed when cat leaves for a day', 'cat slave','commits suicide at brawlbots', 'only wins at minesweeper from forfeits','doesnt know how to checkmate', ';;p la vie en rose emily watts', 'pat pat', 'aww', 'bush', 'm!p tamino habibi', 'hey guys i just invited this dude that i talked to just once he seems nice and totally not homophobe hihi', 'cooooool', 'today i will study', 'pija', 'your lips my lips apocalypse'];
+const ardCatch = ['talks to himself', 'good and you?', 'yo', 'sucks at chess', '3k wins on plato but still sucks', 'chooses pikachu over raccoon', 'game?', 'hello', 'hi', 'i just watched this new anime that totally looks like hentai but its not i swear', 'that fucking racoon', 'fucking winklit', 'kim jong un'];
 const mayerCatch = ['m!p computer blue', 'who the fuck is bb king', 'idk lmao he never talks'];
-const funCatch = ['thanks man', 'bankroll?','yo', 'ZzzZZzZzzZzZzz...', 'aahahAHaAAHhahaAHahAhaaHHAhaha'];
+const funCatch = ['thanks man', 'bankroll?','yo', 'ZzzZZzZzzZzZzz...'];
 const narratorCatch = ['gimme coins pls'];
 const ryanCatch = ['hi cute', '^^roulette wife for the day', 'interesting'];
-const rafiCatch= ['has been called the Albert Einstein of our generation','a sex symbol', '🧉','a literal god', 'omg he is sooooooo hot i cant', 'is he the Pokemon Legend?!?!', 'mate >>>>> coffee', 'legends say he hasnt lost a single match in plato'];
+const rafiCatch= ['has been called the Albert Einstein of our generation','a sex symbol', '🧉','a literal god', 'omg he is sooooooo hot i cant', 'is he the Pokemon Legend?!?!', 'mate >>>>> coffee', 'legends say he hasnt lost a single match in plato', 'if Geroge Clooney and Brad Pitt had a kid'];
 
 
 module.exports = {
@@ -60,7 +60,13 @@ module.exports = {
             case 'ice':
                 message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
                 return;
+            case 'sun':
+                message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
+                return;
             case 'icesun':
+                message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
+                return;
+            case 'bitch':
                 message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
                 return;
             case 'mayer':
@@ -71,6 +77,9 @@ module.exports = {
                 return;
             case 'sima':
                 message.reply(simaCatch[Math.floor(Math.random() * simaCatch.length)]);
+                return;
+            case 'alyen':
+                message.reply('fucking rafi');
                 return;
             default:
                 break;
