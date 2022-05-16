@@ -17,7 +17,7 @@ module.exports = (client, Discord, message) => {
 			} 
 			else if(message.author.id == '276060004262477825' || message.author.id == '159985870458322944' || message.author.id == '408785106942164992' || message.author.id == '172002275412279296'){ //if its a music bot then nah
 				message.reply('stfu bot');
-		} else if((message.author.id === '945299818438328350')){
+		} else if((message.author.id === '945299818438328350')){ //aysan
 			if(message.channel.id === '932389999003971594' && message.attachments.size > 0){ //if its a pic on irl pics
 				if(Math.random() < 0.5){
 					message.react('🫀');
@@ -41,8 +41,8 @@ module.exports = (client, Discord, message) => {
 					message.react(`🇹`);
 					message.react(`🇨`);
 					message.react(`🇭`);
-		}}}else if((message.author.id === '702969424822665419') && Math.random()<0.1){
-			if(Math.random < 0.4){
+		}}}else if((message.author.id === '702969424822665419') && Math.random()<0.1){ //ard
+			if(Math.random() < 0.4){
 				message.react('🇵');
 				message.react('🇮');
 				message.react('🇰');
@@ -53,7 +53,7 @@ module.exports = (client, Discord, message) => {
 			}else{
 			message.react('🦝');
 		}
-	}else if((message.author.id === '228837379165650946' || message.author.id === '715294709886746645' ) && Math.random()<0.1){
+	}else if((message.author.id === '228837379165650946' || message.author.id === '715294709886746645' ) && Math.random()<0.1){ //rafi
 			message.react('💯');
 		}
 		if(message.content.includes('hentai') || message.content.includes('porn')){
@@ -65,7 +65,7 @@ module.exports = (client, Discord, message) => {
 		if(message.content.includes('mate')){
 			message.react('🧉');
 		}
-		if(message.content.startsWith('whats') || message.content.startsWith('Whats') || message.content.startsWith('What is') || message.content.startsWith(`what's`)|| message.content.startsWith(`What's`)){
+		if(message.content.startsWith('whats') || message.content.startsWith('Whats') || message.content.startsWith('What is') || message.content.startsWith(`what's`)|| message.content.startsWith(`What's`) || message.content.startsWith(`what is`)){
 			message.reply('Nothing much sugar whats the matter with you');
 			message.channel.send('gottem');
 		}
