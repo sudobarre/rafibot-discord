@@ -1,8 +1,12 @@
 module.exports = {
 	name :'dice',
-	description: 'Rolls a six-sided dice',
+	description: 'Rolls an n-sided dice given by the argument passed',
 	once: true,
 	async execute(client, message, cmd, args) {
-     message.reply(`You rolled a ${Math.floor(Math.random() * 6) + 1}!`);
+	if(!args){
+		message.reply('You need to specify a number to roll the dice!');
+		return;
+	}
+     message.reply(`You rolled a ${Math.floor(Math.random() * args[0]) + 1}!`);
 	},
 };

@@ -1,5 +1,5 @@
 const inspire = require("../../commands/inspire");
-const sadWords=['sad', 'depressed', 'unhappy', 'angry'];
+const sadWords=['sad', 'depressed', 'unhappy', 'angry', 'crying'];
 module.exports = (client, Discord, message) => {
 	const prefix = '-rafi ';
 	//message.channel.send("try me bush");
@@ -10,23 +10,13 @@ module.exports = (client, Discord, message) => {
 	}
 	if(!message.content.startsWith(prefix)){ 
 		if((message.author.id === '389046536480227328' || message.author.id === '900735891448946698')){//if its sima
-			if(message.channel.id === '934083507502854165' && message.attachments.size > 0 && Math.random() < 0.7){message.reply('Stop sending weirdass videos');} //if videos channel 
+			if(message.channel.id === '934083507502854165' && message.attachments.size > 0 && Math.random() < 0.8){message.reply('Stop sending weirdass videos');} //if videos channel 
 			else if(Math.random() < 0.1){
-				if(Math.random() < 0.5){
-					message.react('🇼');
-					message.react('🇭');
-					message.react('🇴');
-					message.react('🇨');
-					message.react('🇦');
-					message.react('🇷');
-					message.react('🇪');
-					message.react('🇸');
-			} else {
 				message.reply('die');
 				}
-			}
-		}else if(message.author.id == '276060004262477825' || message.author.id == '159985870458322944' || message.author.id == '408785106942164992' || message.author.id == '172002275412279296'){ //if its a music bot then nah
-			message.reply('stfu bot');
+			} 
+			else if(message.author.id == '276060004262477825' || message.author.id == '159985870458322944' || message.author.id == '408785106942164992' || message.author.id == '172002275412279296'){ //if its a music bot then nah
+				message.reply('stfu bot');
 		} else if((message.author.id === '945299818438328350')){
 			if(message.channel.id === '932389999003971594' && message.attachments.size > 0){ //if its a pic on irl pics
 				if(Math.random() < 0.5){
@@ -74,6 +64,10 @@ module.exports = (client, Discord, message) => {
 		} 
 		if(message.content.includes('mate')){
 			message.react('🧉');
+		}
+		if(message.content.startsWith('whats') || message.content.startsWith('Whats') || message.content.startsWith('What is') || message.content.startsWith(`what's`)|| message.content.startsWith(`What's`)){
+			message.reply('Nothing much sugar whats the matter with you');
+			message.channel.send('gottem');
 		}
 	}else{
 	const args = message.content.slice(prefix.length).split(/ +/);
