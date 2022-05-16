@@ -3,7 +3,7 @@ module.exports = {
 	name :'drink',
 	description: 'drinks mate at a 5% chance to have something lethal happen to you! FYI this wasnt my idea',
 	once: true,
-	async execute(client, message, args) {
+	async execute(client, message, cmd, args) {
         const res = Math.random();
         if(res < 0.2){
             const randomIndex = Math.floor(Math.random() * drinkingAccidents.length);

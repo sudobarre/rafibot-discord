@@ -4,7 +4,7 @@ module.exports = {
     name : 'inspire',
     once: true,
     description : 'send a motivational quote',
-    async execute(client, message, args){
+    async execute(client, message, cmd, args){
         function getQuote(){
             return fetch('https://zenquotes.io/api/random')
             .then(res => {

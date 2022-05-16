@@ -2,7 +2,7 @@ module.exports = {
     name: 'vote',
     description: 'cast an anonymous vote!',
     once : true,
-    async execute(client, message, args, Discord){
+    async execute(client, message, cmd, args, Discord){
         const channel = '923664327427375164'; // 923664327427375164' for nothingham 
         const thumbsUp = '👍';
         const thumbsDown = '👎';
