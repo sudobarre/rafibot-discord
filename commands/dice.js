@@ -3,7 +3,7 @@ module.exports = {
 	description: 'Rolls an n-sided dice given by the argument passed',
 	once: true,
 	async execute(client, message, cmd, args) {
-	if(!args){
+	if(!args.length){
 		message.reply('You need to specify a number to roll the dice!');
 		return;
 	}
