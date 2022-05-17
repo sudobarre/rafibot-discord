@@ -1,5 +1,5 @@
 const inspire = require("../../commands/inspire");
-const sadWords=['sad', 'depressed', 'unhappy', 'angry', 'crying'];
+const sadWords=['sad', 'depressed', 'unhappy', 'angry', 'crying', 'annoyed'];
 module.exports = (client, Discord, message) => {
 	const prefix = '-rafi ';
 	//message.channel.send("try me bush");

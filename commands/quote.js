@@ -78,9 +78,6 @@ module.exports = {
             case 'sima':
                 message.reply(simaCatch[Math.floor(Math.random() * simaCatch.length)]);
                 return;
-            case 'alyen':
-                message.reply('fucking rafi');
-                return;
             default:
                 break;
         }
