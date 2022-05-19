@@ -72,8 +72,8 @@ module.exports = {
         }
         else if (cmd === 'skip'){skip_song(message, server_queue);}
         else if (cmd === 'stop'){stop_song(message, server_queue);}
-    },
-    
+    },    
+
 };
 
 const video_player = async (guild, song) => {
@@ -95,8 +95,8 @@ const video_player = async (guild, song) => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0]);
     });
-    await song_queue.text_channel.send(`Now Playing **${song.title}**`);
-    
+    await song_queue.text_channel.send(`Now Playing **${song.title}**`);    
+
 };
 
 const skip_song = (message, server_queue) => {
@@ -113,4 +113,3 @@ const skip_song = (message, server_queue) => {
    console.log(server_queue.connection.dispatcher);
    server_queue.connection.dispatcher.destroy();
 };
-

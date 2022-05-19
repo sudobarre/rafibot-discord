@@ -3,7 +3,8 @@
 //const fs = require('node:fs');
 const Discord = require('discord.js');
 const { Intents } = require('discord.js');
-const { token } = require('./config.json');
+require('dotenv').config();
+
 //const serverinfo = require('./commands/serverinfo');
 //const { ServerResponse } = require('node:http');
 //const { channel } = require('node:diagnostics_channel');
@@ -22,4 +23,4 @@ for(const handler of handlers){
     require(`./handlers/${handler}`)(client, Discord);
 }
 
-client.login(token);
+client.login(process.env.DISCORD_TOKEN);
