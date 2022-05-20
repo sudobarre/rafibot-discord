@@ -2,7 +2,7 @@ const welcomes = ['Welcome to the Server! Before you can start enjoying our marv
 module.exports = (client, Discord, guildMember) => {
    // const welcomeRole = guildMember.guild.roles.cache.find(role => role.name === 'citizens');
 	//guildMember.roles.add(welcomeRole);
-    const channel = guildMember.guild.channels.cache.get('915210119904657431'); //915210119904657431' for nothingham 
+    const channel = guildMember.guild.channels.cache.get(process.env.general); //915210119904657431' for nothingham 
     if (!channel) return;
     const randomIndex = Math.floor(Math.random() * welcomes.length);
     const item = welcomes[randomIndex];

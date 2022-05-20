@@ -11,7 +11,7 @@ require('dotenv').config();
 
 
 // Create a new client instance
-const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"], intents:[Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_VOICE_STATES] });
+const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"], intents:[Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_VOICE_STATES,Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
@@ -23,4 +23,4 @@ for(const handler of handlers){
     require(`./handlers/${handler}`)(client, Discord);
 }
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.TOKEN);

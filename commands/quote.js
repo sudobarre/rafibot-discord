@@ -1,3 +1,4 @@
+require('dotenv').config();
 const simaCatch = ['le gusta la vaselina','how can black be pink smh','thinks weirdass videos are funny','🥱', 'thinks kurdistan is not in iraq', 'obsessed with koreans', 'neither cute nor hot', 'yawn', 'DIE', 'die', 'ugh', 'booo👎', 'jump off a bridge', 'break your fingers', 'sabir', 'this mf', 'changes profile pic every 5 minutes'];
 const aysanCatch = ['gets depressed when cat leaves for a day', 'cat slave','commits suicide at brawlbots', 'only wins at minesweeper from forfeits','doesnt know how to checkmate', ';;p la vie en rose emily watts', 'pat pat', 'aww', 'bush', 'm!p tamino habibi', 'hey guys i just invited this dude that i talked to just once he seems nice and totally not homophobe hihi', 'cooooool', 'today i will study', 'pija', 'your lips my lips apocalypse'];
 const ardCatch = ['talks to himself', 'good and you?', 'yo', 'sucks at chess', '3k wins on plato but still sucks', 'chooses pikachu over raccoon', 'game?', 'hello', 'hi', 'i just watched this new anime that totally looks like hentai but its not i swear', 'that fucking racoon', 'fucking winklit', 'kim jong un'];
@@ -14,20 +15,20 @@ module.exports = {
     once: true,
     description : 'send a catchphrase from a guild member',
     async execute(client, message, cmd, args){
-        const guild = client.guilds.cache.get('915210119904657428'); //915210119904657428
+        const guild = client.guilds.cache.get(process.env.guildId);
         const catchphrases = new Map(); //map has (id, [catchphrases])
         guild.members.cache.forEach(member => catchphrases.set(member.user.id, ['who dat lol'])); 
         //set the corresponding catchphrases to each member id
-        catchphrases.set('945299818438328350', aysanCatch);
-        catchphrases.set('702969424822665419', ardCatch);
-        catchphrases.set('715294709886746645', rafiCatch);
-        catchphrases.set('228837379165650946', rafiCatch);
-        catchphrases.set('954396693846175805', funCatch);
-        catchphrases.set('911572634129555496', mayerCatch);
-        catchphrases.set('283123299817357312', narratorCatch);
-        catchphrases.set('751537919965265970', ryanCatch);
-        catchphrases.set('900735891448946698', simaCatch);
-        catchphrases.set('389046536480227328', simaCatch);
+        catchphrases.set(process.env.aysan, aysanCatch);
+        catchphrases.set(process.env.ard, ardCatch);
+        catchphrases.set(process.env.rafi, rafiCatch);
+        catchphrases.set(process.env.rafiAlt, rafiCatch);
+        catchphrases.set(process.env.fun, funCatch);
+        catchphrases.set(process.env.mayer, mayerCatch);
+        catchphrases.set(process.env.narrator, narratorCatch);
+        catchphrases.set(process.env.ryan, ryanCatch);
+        catchphrases.set(process.env.sima, simaCatch);
+        catchphrases.set(process.env.simaAlt, simaCatch);
         
         function getUserFromMention(mention) {
             if (!mention) return;

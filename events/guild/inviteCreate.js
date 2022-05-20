@@ -3,7 +3,7 @@ module.exports = (client, Discord, invite) => {
      console.log(creator);
      const dateOfInv = invite.createdAt;
      console.log(dateOfInv);
-     const generalChannel = client.channels.cache.get('915210119904657431');
+     const generalChannel = client.channels.cache.get(process.env.general);
      generalChannel.send(`${creator} created an invite at ${dateOfInv}.`);
  };
  

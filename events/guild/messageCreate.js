@@ -5,10 +5,31 @@ require('dotenv').config();
 module.exports = (client, Discord, message) => {
 	const prefix = process.env.PREFIX;
 	if (message.author.bot) return;
+	const msg = message.content.toLowerCase();
 	if(sadWords.some(word=>message.content.includes(word))){
 		inspire.execute(client, message);
 	}
-	if(!message.content.startsWith(prefix)){ 
+	if(!msg.startsWith(prefix)){
+		if(msg.includes('hentai') || msg.includes('porn')){
+			message.react('🍑');
+		}
+		if(msg.includes('dick') || msg.includes('pija')){
+			message.react('🍆');
+		} 
+		if(msg.includes('mate')){
+			message.react('🧉');
+		}
+		if(msg.includes('coffee')){
+			message.react('⬆️');
+			message.react('🤢');
+			message.react('➡️');
+			message.react('🧉');
+			message.react('💯');
+		}
+		if(msg.startsWith('whats') || msg.startsWith(`what is`)|| msg.startsWith(`what's`)){
+			message.reply('Nothing much sugar whats the matter with you');
+			message.channel.send('gottem');
+		}
 		switch(message.author.id){
 			case process.env.sima:
 				if(message.channel.id === process.env.videos && message.attachments.size > 0 && Math.random() < 0.8){message.channel.send('Stop sending weirdass videos');} 
@@ -63,19 +84,6 @@ module.exports = (client, Discord, message) => {
 				if(Math.random() < 0.05){message.react('💯');}
 				break;
 			default:
-				if(message.content.includes('hentai') || message.content.includes('porn')){
-					message.react('🍑');
-				}
-				if(message.content.includes('dick') || message.content.includes('pija')){
-					message.react('🍆');
-				} 
-				if(message.content.includes('mate')){
-					message.react('🧉');
-				}
-				if(message.content.toLowerCase().startsWith('whats') || message.content.toLowerCase().startsWith(`what is`)|| message.content.toLowerCase().startsWith(`what's`)){
-					message.reply('Nothing much sugar whats the matter with you');
-					message.channel.send('gottem');
-				}
 				break;
 			}
 	}else{
