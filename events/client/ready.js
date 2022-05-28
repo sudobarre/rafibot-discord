@@ -1,7 +1,8 @@
 //const { generateDependencyReport } = require('@discordjs/voice');
-module.exports = (client) =>{
+//module.exports = (client) =>{
 //	console.log(generateDependencyReport());
-	console.log(`Ready! Logged in as ${client.user.tag}`);
+module.exports = (client) =>{
+console.log(`Ready! Logged in as ${client.user.tag}`);
 };
 //<TextChannel>.lastMessage.content
 //  var ticketnumber = channel.lastmessage.id

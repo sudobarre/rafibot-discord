@@ -67,8 +67,11 @@ module.exports = {
             case 'icesun':
                 message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
                 return;
-            case 'bitch':
+            case 'angel':
                 message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
+                return;
+            case 'bitch':
+                message.reply(simaCatch[Math.floor(Math.random() * simaCatch.length)]);
                 return;
             case 'mayer':
                 message.reply(mayerCatch[Math.floor(Math.random() * mayerCatch.length)]);
