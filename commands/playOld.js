@@ -111,9 +111,9 @@ const video_player = async (guild, song, flagint) => {
     //console.log(player.state);
     player.on('idle', () => {
         song_queue.songs.shift();
-        video_player(guild, song_queue.songs[0]);
+        video_player(guild, song_queue.songs[0], 0);
     });
-    await song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`);    
+    await (!flagint) ? song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`) : console.log('PLaying the next song.');    
 
 };
 

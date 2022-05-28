@@ -12,7 +12,7 @@ module.exports = {
      */
     async execute(client, message, cmd, args, Discord){
         const command = client.commands.get('play');
-        const song = ['baby', 'shark'];
+        const song = ['silence'];
         command.execute(client, message, 'play', song , Discord, 0);
 /*
         const voice_channel = message.member.voice.channel;
@@ -49,7 +49,7 @@ module.exports = {
                 {
                     label: 'Daddy Chill',
                     description: 'For when you want to just chill.',
-                    value: 'Slay!',
+                    value: 'Enjoy!',
                     emoji: '4️⃣',
                 },
             ]),

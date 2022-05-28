@@ -1,7 +1,15 @@
 //const messageCreate = require("../guild/messageCreate");
-
+const mayerChill = [['john', 'mayer', 'sob', 'rock'], ['john', 'mayer', 'continuum'],['prince', 'album'], ['bb', 'king', 'album']];
+const aysanChill = [['https://www.youtube.com/watch?v=kMzlN9-Db1A'], ['https://www.youtube.com/watch?v=F2EmooQ1Iag'],['emily', 'watts', 'rose'], []]
+const sad = [['https://www.youtube.com/watch?v=Ic-3mudz8TA'], ['https://www.youtube.com/watch?v=BpwDFKFkpOY'], ['https://www.youtube.com/watch?v=iJzJ7d5CK4A']]
+const chill = [['https://www.youtube.com/watch?v=mFErBk9HtZE'],['https://www.youtube.com/watch?v=uR3aQOgzyDU'], ['https://www.youtube.com/watch?v=npgiuricgv4']]
+const sleepSongs = [['https://www.youtube.com/watch?v=cU0Wz1ez3J0']];
+const simaSleep = [[]];
+const sleep = [['https://www.youtube.com/watch?v=8AvUSCz_zj0'], ];
 module.exports = (client, Discord, interaction) => {
-  console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction: ${interaction}`);
+  console.log(
+    `${interaction.user.tag} in #${interaction.channel.name} triggered an interaction: ${interaction}`
+  );
   //console.log(interaction);
   //console.log(message);
 
@@ -14,7 +22,10 @@ module.exports = (client, Discord, interaction) => {
 
       try {
         await interaction.deferReply();
-        await slashcmd.run({ client, interaction });
+        await slashcmd.run({
+          client,
+          interaction,
+        });
       } catch (error) {
         console.error(error);
         await interaction.reply({
@@ -24,180 +35,106 @@ module.exports = (client, Discord, interaction) => {
       }
     } else if (interaction.isSelectMenu()) {
       if (interaction.customId === "choose-song") {
-        switch (interaction.user.id) {
-          case process.env.rafiAlt:
-            switch (interaction.values[0]) {
-              case "Sweet dreams!":
-                //sth
-                console.log(interaction.commandName);
-                //interaction.reply('i dont sleep lol');
-                //execute()
+        switch (interaction.values[0]) {
+          case "Sweet dreams!":
+            switch (interaction.user.id) {
+              case process.env.sima:
+                //rina sawayama or boring stories or lpda or my piano music
                 break;
-              case "Goodluck!":
-                {
-                  //add dark academia to queue
-                  //skip current song
+              case process.env.simaAlt:
+                //same thing lol
+                break;
+              case process.env.aysan:
+                //la vie en rose, or dark academia or my piano playlist or blue moon idk
+                break;
+              default:
+                //my songs, piano music could be idk
+                break;
+            }
+            //users i guess
+            break;
+          case "Good luck!":
+            switch (interaction.user.id) {
+              case process.env.rafiAlt:
+                //play pokemon or undertale or one of those lol
+                break;
+              case process.env.rafi:
+                //same thing lol
+                break;
+              default: //dark academia
+              {
+                //add dark academia to queue
+                //skip current song
                 try {
-                  const commandPlay = client.commands.get('play');
-                  const song = ['dark', 'academia'];
-                  commandPlay.execute(client, interaction, 'play', song , Discord, interaction).then(
-                    function(){
-                      commandPlay.execute(client, interaction, 'skip', [] , Discord, interaction);
-                    },
-                    function(){
-                      console.log('Error.');
-                    },
-                  );
-                  
-                    //await interaction.deferReply();
+                  const commandPlay = client.commands.get("play");
+                  const song = ["dark", "academia"];
+                  commandPlay
+                    .execute(
+                      client,
+                      interaction,
+                      "play",
+                      song,
+                      Discord,
+                      interaction
+                    )
+                    .then(
+                      function () {
+                        commandPlay.execute(
+                          client,
+                          interaction,
+                          "skip",
+                          [],
+                          Discord,
+                          interaction
+                        );
+                      },
+                      function () {
+                        console.log("Error.");
+                      }
+                    );
+
+                  //await interaction.deferReply();
                 } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
+                  console.error(error);
+                  await interaction.reply({
                     content: "There was an error while executing this command.",
                     ephemeral: true,
-                    });
+                  });
                 }
-                  //console.log(interaction);
-                  //const command = client.commands.get("play");
-                  //console.log("the command is:", command);
-                  //const args = ["dark", "academia"]; //link
-                  //console.log("interaction message is:", interaction.message);
-                  //command.execute(client, interaction, command, args, Discord, interaction);
-                }
-                break;
-              case "Hope you feel better :)":
-                //sth
-                interaction.reply("sad stuff");
-                break;
-              case "You have a great taste in music!":
-                //sth
-                interaction.reply("cool playlist");
-                break;
-              default:
-                //sth
-                break;
-            }
-            //sth
-            break;
-          case process.env.sima:
-            //sth here
-            switch (interaction.values[0]) {
-              case "Sleeping":
-                //console.log("sleeping music for sima");
-                break;
-              case "Studying":
-                //sth
-                console.log("she will never study lol");
-                break;
-
-              case "Sad":
-                //sth
-                console.log("that spoti playlist");
-                break;
-
-              case "rafi-special":
-                //sth
-                break;
-              default:
-                //sth
-                break;
+              }
             }
             break;
-          case process.env.simaAlt:
-            switch (interaction.values[0]) {
-              case "Sleeping":
-                //sth
+          case "Hope you feel better :)":
+            if (interaction.user.id === process.env.aysan) {
+              //la vie en rose, blue moon, leaving on a jetplane more stuff
+            } else {
+              //my sad stuff lol, cag, piano music etc etc
+            }
+            //users
+            break;
+          case "Enjoy!":
+            switch (interaction.user.id) {
+              case process.env.aysan:
+                //la vie en rose idk dude same stuff
                 break;
-              case "Studying":
-                //sth
+              case process.env.sima:
+                //rina sawayama, my stupid stuff
                 break;
-
-              case "Sad":
-                //sth
+              case process.env.simaAlt:
+                //same thing
                 break;
-
-              case "rafi-special":
-                //sth
+              case process.env.ard:
+                //ynw or that rapper idk, more rappers i guess slav music
+                break;
+              case process.env.mayer:
+                //continuum, sob rock, bb king cos he has to, srv, prince, computer blue
                 break;
               default:
-                //sth
+                //my chill music hehe
                 break;
             }
-            //sth here
-            break;
-          case process.env.aysan:
-            switch (interaction.values[0]) {
-              case "Sleeping":
-                //sth
-                break;
-              case "Studying":
-                //sth
-try {
-                  const commandPlay = client.commands.get('play');
-                  const song = ['dark', 'academia'];
-                  commandPlay.execute(client, interaction, 'play', song , Discord, interaction).then(
-                    function(){
-                      commandPlay.execute(client, interaction, 'skip', [] , Discord, interaction);
-                    },
-                    function(){
-                      console.log('Error.');
-                    },
-                  );
-                  
-                    //await interaction.deferReply();
-                } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                    content: "There was an error while executing this command.",
-                    ephemeral: true,
-                    });
-                }
-                  //console.log(interaction);
-                  //const command = client.commands.get("play");
-                  //console.log("the command is:", command);
-                  //const args = ["dark", "academia"]; //link
-                  //console.log("interaction message is:", interaction.message);
-                  //command.execute(client, interaction, command, args, Discord, interaction);
-                }
-                break;
-
-              case "Sad":
-                //sth
-                break;
-
-              case "Daddy Chill":
-                //sth
-                break;
-              default:
-                //sth
-                break;
-            }
-            //sth here
-            break;
-          case process.env.ard:
-            switch (interaction.values[0]) {
-              case "Sleeping":
-                //sth
-                break;
-              case "Studying":
-                //sth
-                break;
-
-              case "Sad":
-                //sth
-                break;
-
-              case "rafi-special":
-                //sth
-                break;
-              default:
-                //sth
-                break;
-            }
-            //yknw or sth
-            break;
-          default:
-            //rafi is here
+          default: //none left, just break.
+            //users
             break;
         }
       }
