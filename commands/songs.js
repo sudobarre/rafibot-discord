@@ -2,7 +2,7 @@ const { Client, Message, MessageEmbed } = require('discord.js');
 const { MessageActionRow, MessageSelectMenu } = require('discord.js');
 
 module.exports = {
-    name: 'nein',
+    name: 'songs',
     /**
      * @param {Client}
      * @param {message}

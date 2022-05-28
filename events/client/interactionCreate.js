@@ -147,28 +147,6 @@ module.exports = (client, Discord, interaction) => {
             }
             //sth here
             break;
-          case process.env.rafi:
-            switch (interaction.values[0]) {
-              case "Sleeping":
-                //sth
-                break;
-              case "Studying":
-                //sth
-                break;
-
-              case "Sad":
-                //sth
-                break;
-
-              case "rafi-special":
-                //sth
-                break;
-              default:
-                //sth
-                break;
-            }
-            //sth
-            break;
           case process.env.ard:
             switch (interaction.values[0]) {
               case "Sleeping":
@@ -191,30 +169,8 @@ module.exports = (client, Discord, interaction) => {
             }
             //yknw or sth
             break;
-          case process.env.fun:
-            switch (interaction.values[0]) {
-              case "Sleeping":
-                //sth
-                break;
-              case "Studying":
-                //sth
-                break;
-
-              case "Sad":
-                //sth
-                break;
-
-              case "Daddy chill":
-                //sth
-                break;
-              default:
-                //sth
-                break;
-            }
-            //oldies ig, i will survive, another one which i forgot
-            break;
           default:
-            //my shit
+            //rafi is here
             break;
         }
       }
