@@ -83,7 +83,7 @@ module.exports = (client, Discord, interaction) => {
             //sth here
             switch (interaction.values[0]) {
               case "Sleeping":
-                console.log("sleeping music for sima");
+                //console.log("sleeping music for sima");
                 break;
               case "Studying":
                 //sth
@@ -132,13 +132,40 @@ module.exports = (client, Discord, interaction) => {
                 break;
               case "Studying":
                 //sth
+try {
+                  const commandPlay = client.commands.get('play');
+                  const song = ['dark', 'academia'];
+                  commandPlay.execute(client, interaction, 'play', song , Discord, interaction).then(
+                    function(){
+                      commandPlay.execute(client, interaction, 'skip', [] , Discord, interaction);
+                    },
+                    function(){
+                      console.log('Error.');
+                    },
+                  );
+                  
+                    //await interaction.deferReply();
+                } catch (error) {
+                    console.error(error);
+                    await interaction.reply({
+                    content: "There was an error while executing this command.",
+                    ephemeral: true,
+                    });
+                }
+                  //console.log(interaction);
+                  //const command = client.commands.get("play");
+                  //console.log("the command is:", command);
+                  //const args = ["dark", "academia"]; //link
+                  //console.log("interaction message is:", interaction.message);
+                  //command.execute(client, interaction, command, args, Discord, interaction);
+                }
                 break;
 
               case "Sad":
                 //sth
                 break;
 
-              case "rafi-special":
+              case "Daddy Chill":
                 //sth
                 break;
               default:
