@@ -12,7 +12,7 @@ module.exports = {
      */
     async execute(client, message, cmd, args, Discord){
         const command = client.commands.get('play');
-        const song = ['silence'];
+        const song = ['https://www.youtube.com/watch?v=g4mHPeMGTJM'];
         command.execute(client, message, 'play', song , Discord, 0);
 /*
         const voice_channel = message.member.voice.channel;

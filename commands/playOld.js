@@ -113,7 +113,7 @@ const video_player = async (guild, song, flagint) => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0], 0);
     });
-    await (!flagint) ? song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`) : console.log('PLaying the next song.');    
+    await (flagint) ? song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`): console.log('playing music');    
 
 };
 
@@ -141,7 +141,7 @@ const skip_song = (message, server_queue, flagint) => {
    server_queue.songs = [];
    queue.delete(message.guild.id);
    connection.disconnect();
-   return;
+   return message.reply('Leaving voice channel...');
 };
 
 const print_queue = (message, server_queue) => {
