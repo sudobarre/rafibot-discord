@@ -33,7 +33,7 @@ module.exports = {
                 const song_info = await ytdl.getInfo(args[0]);
                 song = { title: song_info.videoDetails.title, url: song_info.videoDetails.video_url };
 
-            } else {//songs would enter here
+            } else {
 
                 //If the video is not a URL then use keywords to find that video.
                 const video_finder = async (query) =>{
@@ -102,7 +102,15 @@ const video_player = async (guild, song, flagint) => {
         queue.delete(guild.id);
         return;
     }
-    const stream = ytdl(song.url, { filter: 'audioonly' });
+    const stream = ytdl(song.url, {
+        filter: "audioonly",
+        fmt: "mp3",
+        highWaterMark: 1 << 62,
+        liveBuffer: 1 << 62,
+        dlChunkSize: 0, //disabling chunking is recommended in discord bot
+        bitrate: 128,
+        quality: "lowestaudio",
+   });
 
     const player = createAudioPlayer();
     const resource = createAudioResource(stream, {inputType:StreamType.Arbitrary});
@@ -113,7 +121,7 @@ const video_player = async (guild, song, flagint) => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0], 0);
     });
-    await (flagint) ? song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`): console.log('playing music');    
+    await (!flagint) ? song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`): console.log('playing music');    
 
 };
 

@@ -10,10 +10,11 @@ module.exports = {
      * @param {args}
      * @param {Discord}
      */
-    async execute(client, message, cmd, args, Discord){
+    async execute(client, message, cmd, args, Discord){ //play-dl as alternative
         const command = client.commands.get('play');
-        const song = ['https://www.youtube.com/watch?v=g4mHPeMGTJM'];
-        command.execute(client, message, 'play', song , Discord, 0);
+        const song = ['https://www.youtube.com/watch?v=r6-cbMQALcE']; //15 mins of silence lol
+        command.execute(client, message, 'play', song , Discord, 2);
+         if(!message.member.voice.channel) return;
 /*
         const voice_channel = message.member.voice.channel;
         if (!voice_channel) return message.channel.send('You need to be in a channel to execute this command');
@@ -54,7 +55,7 @@ module.exports = {
                 },
             ]),
         );
-        const embed = new MessageEmbed().setTitle('Hi! What type of music do you wanna listen to today?');
+        const embed = new MessageEmbed().setTitle('Hi! What type of music do you wanna listen to?');
 
         const filter = (interaction) => 
             interaction.isSelectMenu() && 
