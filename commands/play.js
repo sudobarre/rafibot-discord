@@ -14,7 +14,7 @@ module.exports = {
     aliases: ['p', 'skip', 'stop', 'queue', 'shuffle', 'songs'],
     description: 'music bot',
     async execute(client, message, cmd, args, Discord, flagint){
-        if(!flagint){
+        if(!(flagint%2)){
             var voice_channel = message.member.voice.channel;
             if (!voice_channel) return message.channel.send('You need to be in a channel to execute this command.');
             const permissions = voice_channel.permissionsFor(message.client.user);
