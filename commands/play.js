@@ -9,21 +9,27 @@ const { query } = require('express');
 let connection;
 const queue = new Map();
 // queue (message.guild.id, queue_constructor object { voice channel, text channel, connection, song[]});
+
+//for the interaction a shuffled array containing the songs should be passed through the args arr and all the songs should be queued up at once.
+//If there is an existing queue it should clear it up first.
+
 module.exports = {
     name: 'play',
     aliases: ['p', 'skip', 'stop', 'queue', 'shuffle', 'songs'],
     description: 'music bot',
     async execute(client, message, cmd, args, Discord, flagint){
-        if(!(flagint%2)){
+        if(!(flagint)){ //if its an odd number it will skip this. Used with interactions
             var voice_channel = message.member.voice.channel;
             if (!voice_channel) return message.channel.send('You need to be in a channel to execute this command.');
             const permissions = voice_channel.permissionsFor(message.client.user);
             if (!permissions.has('CONNECT')) return message.channel.send('You dont have permission to do that');
             if (!permissions.has('SPEAK')) return message.channel.send('You dont have permission to do that');
         }
-        //console.log('message queue is:', message.guild.id + '\n');
-        //console.log
+
         const server_queue = (!flagint) ? queue.get(message.guild.id) : queue.get(message.guildId); //AFTER INTERACTION
+
+        //if bot is already playing then the silence shouldnt queue up.
+
 
         if (cmd === 'play' || cmd === 'p') {
             if (!args.length) return message.reply('You need to send the title or a url as an argument!');
@@ -55,6 +61,7 @@ module.exports = {
                 }
             }
 
+
             if (!server_queue){ //i hope my interaction already has one
                 
                 const queue_constructor = {
@@ -80,7 +87,11 @@ module.exports = {
                     message.reply('There was an error connecting.');
                     throw err;
                 }
-            } else{ //songs would enter here
+            } else{ //there is a server queue, interaction would enter here.
+                if(args[0] === 'https://www.youtube.com/watch?v=r6-cbMQALcE') return; //if songs is invoked while there is music playing ignore the silence.
+
+                //should push all the songs in the array passed in args
+
                 server_queue.songs.push(song);
                 return (!flagint) ? message.reply(`**${song.title}** Added to queue!\n${song.url}`) : console.log('added to queue');
             }
@@ -121,7 +132,7 @@ const video_player = async (guild, song, flagint) => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0], 0);
     });
-    await (!flagint) ? song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`): console.log('playing music');    
+    await (flagint) ? song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`): console.log('playing music');    
 
 };
 
@@ -158,12 +169,11 @@ const print_queue = (message, server_queue) => {
     const embed = new Discord.MessageEmbed()
             .setColor('#75BB67')
             .setTitle('Songs');
-    for(let i = 0; i < server_queue.songs.length; i++){
-        if(!i){
-            embed.addFields({name: (`Current:`), value: (`${songs[i].title}`)});
-        }else{
-            embed.addFields({name: (`Position ${(i+1).toString()}:`), value: (`${songs[i].title}`)});
-        }
+
+    embed.addFields({name: (`Current:`), value: (`${songs[0].title}\n${songs[0].url}`)});
+
+    for(let i = 1; i < server_queue.songs.length; i++){
+        embed.addFields({name: (`Position ${(i+1).toString()}:`), value: (`${songs[i].title}\n${songs[i].url}`)});  
     }
     message.reply({ embeds: [embed] });
 };

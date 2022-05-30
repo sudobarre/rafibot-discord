@@ -6,7 +6,7 @@ const mayerCatch = ['m!p computer blue', 'who the fuck is bb king', 'idk lmao he
 const funCatch = ['thanks man', 'bankroll?','yo', 'ZzzZZzZzzZzZzz...'];
 const narratorCatch = ['gimme coins pls'];
 const ryanCatch = ['hi cute', '^^roulette wife for the day', 'interesting'];
-const rafiCatch= ['has been called the Albert Einstein of our generation','a sex symbol', '🧉','a literal god', 'omg he is sooooooo hot i cant', 'is he the Pokemon Legend?!?!', 'mate >>>>> coffee', 'legends say he hasnt lost a single match in plato', 'if Geroge Clooney and Brad Pitt had a kid'];
+const rafiCatch= ['has been called the Albert Einstein of our generation','a sex symbol', '🧉','a literal god', 'omg he is sooooooo hot i cant', 'is he the Pokemon Legend?!?!', 'mate >>>>> coffee', 'legends say he hasnt lost a single match in plato', 'if George Clooney and Brad Pitt had a kid'];
 
 
 module.exports = {

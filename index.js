@@ -56,7 +56,7 @@ for (const file of slashFiles){
 if (LOAD_SLASH) {
     const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
     console.log("Deploying slash commands");
-    rest.put(Routes.applicationGuildCommands(process.env.clientId, process.env.testId), {body: commands}) 
+    rest.put(Routes.applicationGuildCommands(process.env.clientId, process.env.guildId), {body: commands}) 
     .then(() => {
         console.log("Successfully loaded");
         process.exit(0);
@@ -68,20 +68,6 @@ if (LOAD_SLASH) {
         }
     });
 }
-
-   // client.on("interactionCreate", (interaction) => {
-  //      async function handleCommand() {
-
-//        if (!interaction.isCommand()) return;
-
-//        const slashcmd = client.slashcommands.get(interaction.commandName);
-//        if (!slashcmd) interaction.reply("Not a valid slash command");
-
-//        await interaction.deferReply();
-//        await slashcmd.run({ client, interaction });    
-//    }
-//    handleCommand();
-//});
 
 
 client.login(process.env.TOKEN);

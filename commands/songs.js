@@ -13,7 +13,7 @@ module.exports = {
     async execute(client, message, cmd, args, Discord){ //play-dl as alternative
         const command = client.commands.get('play');
         const song = ['https://www.youtube.com/watch?v=r6-cbMQALcE']; //15 mins of silence lol
-        command.execute(client, message, 'play', song , Discord, 2);
+        command.execute(client, message, 'play', song , Discord, 0);
          if(!message.member.voice.channel) return;
 /*
         const voice_channel = message.member.voice.channel;
@@ -33,25 +33,25 @@ module.exports = {
                     label: 'Sleeping',
                     description: 'Plays songs to sleep to.',
                     value: 'Sweet dreams!',
-                    emoji: '1️⃣',
+                    emoji: '🛌',
                 },
                 {
                     label: 'Studying',
                     description: 'Plays ambient music for studying.',
                     value: 'Goodluck!',
-                    emoji: '2️⃣',
+                    emoji: '📚',
                 },
                 {
                     label: 'Sad',
                     description: 'Songs for when you are in a sad mood.',
                     value: 'Hope you feel better :)',
-                    emoji: '3️⃣',
+                    emoji: '😢',
                 },
                 {
                     label: 'Daddy Chill',
-                    description: 'For when you want to just chill.',
+                    description: 'For when you just want to chill.',
                     value: 'Enjoy!',
-                    emoji: '4️⃣',
+                    emoji: '🧔‍♀️',
                 },
             ]),
         );
