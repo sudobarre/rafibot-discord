@@ -37,6 +37,7 @@ const hoenn = 'https://www.youtube.com/watch?v=I_S-yzGP36s&list=PL-NPTX2RY0yZasQ
 const dpp = 'https://www.youtube.com/watch?v=9pnhfRN9x4Q&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=8&t=15s';
 const hgss = 'https://www.youtube.com/watch?v=VToyayJ4u2k&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=10&t=152s';
 const bw = 'https://www.youtube.com/watch?v=2T9YM2sDmMA&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=11&t=21s';
+const undertale = 'https://www.youtube.com/watch?v=vV7A_bD8Kgo';
 
 const mayerSob = 'https://www.youtube.com/watch?v=CAAO6-sLvHE';
 const contiunuum = 'https://www.youtube.com/watch?v=d2bmuBV2XDI';
@@ -52,7 +53,7 @@ const sad = [[chetBaker], [cag], [memoriesLover], [moonBeautiful], [sleepRomance
 const chill = [[lamp], [tron], [longChill], [cagrhye], [adoy], [chetBaker], [lee1]];
 const simaSleep = [[rina], [boringstories], [moonBeautiful], [sleepRomance], [johnLee], [pokepiano], [lpda]];
 const sleep = [ [cag], [moonBeautiful], [sleepRomance], [interstellar], [astronaut]];
-const rafiStudy = [[interstellar], [astronaut], [osrs], [tes], [relPokemon], [unova], [hoenn], [dpp], [hgss], [bw]];
+const rafiStudy = [[interstellar], [astronaut], [osrs], [tes], [relPokemon], [unova], [hoenn], [dpp], [hgss], [bw], [undertale]];
 
 
 module.exports = (client, Discord, interaction) => {
@@ -91,9 +92,9 @@ module.exports = (client, Discord, interaction) => {
                   //skip current song
                   try {
                     const commandPlay = client.commands.get("play");
-                    const song = simaSleep[Math.floor(Math.random() * simaSleep.length)];
+                    //const song = simaSleep[Math.floor(Math.random() * simaSleep.length)];
                     commandPlay
-                      .execute(client, interaction, "play", song, Discord, 1)
+                      .execute(client, interaction, "play", simaSleep, Discord, 1)
                       .then(
                         function () {
                           commandPlay.execute(
@@ -119,10 +120,9 @@ module.exports = (client, Discord, interaction) => {
                 {
                   try {
                     const commandPlay = client.commands.get("play");
-                    //shuffle(simaSleep);
-                    const song = simaSleep[Math.floor(Math.random() * simaSleep.length)];
+                    //const song = simaSleep[Math.floor(Math.random() * simaSleep.length)];
                     commandPlay
-                      .execute(client, interaction, "play", song, Discord, 1)
+                      .execute(client, interaction, "play", simaSleep, Discord, 1)
                       .then(
                         function () {
                           commandPlay.execute(
@@ -147,9 +147,9 @@ module.exports = (client, Discord, interaction) => {
                 {
                   try {
                     const commandPlay = client.commands.get("play");
-                    const song = sleep[Math.floor(Math.random() * sleep.length)];
+                    //const song = sleep[Math.floor(Math.random() * sleep.length)];
                     commandPlay
-                      .execute(client, interaction, "play", song, Discord, 1)
+                      .execute(client, interaction, "play", sleep, Discord, 1)
                       .then(
                         function () {
                           commandPlay.execute(
@@ -180,9 +180,10 @@ module.exports = (client, Discord, interaction) => {
 
                   try {
                     const commandPlay = client.commands.get("play");
-                    const song = rafiStudy[Math.floor(Math.random() * rafiStudy.length)];
+                    //const song = rafiStudy[Math.floor(Math.random() * rafiStudy.length)];
+                    
                     commandPlay
-                      .execute(client, interaction, "play", song, Discord, 1)
+                      .execute(client, interaction, "play", rafiStudy, Discord, 1)
                       .then(
                         function () {
                           commandPlay.execute(
@@ -209,9 +210,9 @@ module.exports = (client, Discord, interaction) => {
 
                   try {
                     const commandPlay = client.commands.get("play");
-                    const song = rafiStudy[Math.floor(Math.random() * rafiStudy.length)];
+                    //const song = rafiStudy[Math.floor(Math.random() * rafiStudy.length)];
                     commandPlay
-                      .execute(client, interaction, "play", song, Discord, 1)
+                      .execute(client, interaction, "play", rafiStudy, Discord, 1)
                       .then(
                         function () {
                           commandPlay.execute(
@@ -266,9 +267,9 @@ module.exports = (client, Discord, interaction) => {
             {
               try {
                 const commandPlay = client.commands.get("play");
-                const song = sad[Math.floor(Math.random() * sad.length)];
+                //const song = sad[Math.floor(Math.random() * sad.length)];
                 commandPlay
-                  .execute(client, interaction, "play", song, Discord, 1)
+                  .execute(client, interaction, "play", sad, Discord, 1)
                   .then(
                     function () {
                       commandPlay.execute(
@@ -297,9 +298,9 @@ module.exports = (client, Discord, interaction) => {
                 {
                   try {
                     const commandPlay = client.commands.get("play");
-                    const song = aysanChill[Math.floor(Math.random() * aysanChill.length)];
+                    //const song = aysanChill[Math.floor(Math.random() * aysanChill.length)];
                     commandPlay
-                      .execute(client, interaction, "play", song, Discord, 1) //could be 3 and then do mod 2 to also obtain a 1
+                      .execute(client, interaction, "play", aysanChill, Discord, 1) //could be 3 and then do mod 2 to also obtain a 1
                       .then(
                         function () {
                           commandPlay.execute(
@@ -353,9 +354,9 @@ module.exports = (client, Discord, interaction) => {
                 {
                   try {
                     const commandPlay = client.commands.get("play");
-                    const song = mayerChill[Math.floor(Math.random() * mayerChill.length)];
+                    //const song = mayerChill[Math.floor(Math.random() * mayerChill.length)];
                     commandPlay
-                      .execute(client, interaction, "play", song, Discord, 1)
+                      .execute(client, interaction, "play", mayerChill, Discord, 1)
                       .then(
                         function () {
                           commandPlay.execute(
@@ -381,9 +382,9 @@ module.exports = (client, Discord, interaction) => {
                 {
                   try {
                     const commandPlay = client.commands.get("play");
-                    const song = chill[Math.floor(Math.random() * chill.length)];
+                    //const song = chill[Math.floor(Math.random() * chill.length)];
                     commandPlay
-                      .execute(client, interaction, "play", song, Discord, 1)
+                      .execute(client, interaction, "play", chill, Discord, 1)
                       .then(
                         function () {
                           commandPlay.execute(

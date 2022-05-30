@@ -8,6 +8,21 @@ const { query } = require('express');
 
 let connection;
 const queue = new Map();
+
+function shuffleArray(array) { //usage: arr = shuffleArray(arr); to use with flagint == 1
+    let curId = array.length;
+    // There remain elements to shuffle
+    while (curId!==0) {
+      // Pick a remaining element
+      const randId = Math.floor(Math.random() * curId);
+      curId -= 1;
+      // Swap it with the current element.
+      const tmp = array[curId];
+      array[curId] = array[randId];
+      array[randId] = tmp;
+    }
+    return array;
+  }
 // queue (message.guild.id, queue_constructor object { voice channel, text channel, connection, song[]});
 
 //for the interaction a shuffled array containing the songs should be passed through the args arr and all the songs should be queued up at once.
@@ -30,70 +45,94 @@ module.exports = {
 
         //if bot is already playing then the silence shouldnt queue up.
 
-
         if (cmd === 'play' || cmd === 'p') {
             if (!args.length) return message.reply('You need to send the title or a url as an argument!');
             let song = {};
 
-            if (ytdl.validateURL(args[0])){
-                const song_info = await ytdl.getInfo(args[0]);
-                song = { title: song_info.videoDetails.title, url: song_info.videoDetails.video_url };
+            if(flagint){ //used to treat the args as array of arrays including songs instead of a 1-D array. Need to clear up queue if called when it already has stuff playing or nah idk lol
+                shuffleArray(args);
+                for(let i = 0; i < args.length; i++){
+                    if (ytdl.validateURL(args[i][0])){ //if its a link then the arg[i] is just one element in size.
+                        const song_info = await ytdl.getInfo(args[i][0]);
+                        song = { title: song_info.videoDetails.title, url: song_info.videoDetails.video_url };
+                        server_queue.songs.push(song);
 
-            } else {
-
-                //If the video is not a URL then use keywords to find that video.
-                const video_finder = async (query) =>{
-                    const videoResult = await ytSearch(query);
-                    if(!flagint){
-                        return (videoResult.videos.length > 1) ? videoResult.videos[0] : null; //gets the first result in the search of that keyword
-                    } else { //flagint
+                    } else {
+                    //If the video is not a URL then use keywords to find that video.
+                    var video_finder = async (query) =>{ //query may be wrong here idk
+                        const videoResult = await ytSearch(query[i]);
+                        //could just return all the videos but i have to make sure to pass on the artist name instead of a song.
+                        console.log(query);
                         return (videoResult.videos.length > 1) ? videoResult.videos[Math.floor(Math.random() * videoResult.videos.length )] : null; //returns a random video from the searched keyword
+                        };
+                       
+                    
+                        //console.log(args[i].join(' '));
+                        const video = await video_finder(args[i].join(' '));
+                        console.log(video);
+                        if (video){
+                            song = { title: video.title, url: video.url };
+                        } else {
+                            message.reply('Error finding your video.');
+                            //return;
+                        }
                     }
-                   
-                };
+                }
+            }else{
 
-                const video = await video_finder(args.join(' '));
-                if (video){
-                    song = { title: video.title, url: video.url };
+                if (ytdl.validateURL(args[0])){
+                    const song_info = await ytdl.getInfo(args[0]);
+                    song = { title: song_info.videoDetails.title, url: song_info.videoDetails.video_url };
+
                 } else {
-                    message.reply('Error finding your video.');
-                    return;
+                    //If the video is not a URL then use keywords to find that video.
+                    const video_finder = async (query) =>{
+                        const videoResult = await ytSearch(query);
+                        return (videoResult.videos.length > 1) ? videoResult.videos[0] : null; //gets the first result in the search of that keyword
+
+                    };
+
+                    const video = await video_finder(args.join(' '));
+                    if (video){
+                        song = { title: video.title, url: video.url };
+                    } else {
+                        message.reply('Error finding your video.');
+                        return;
+                    }
                 }
-            }
 
 
-            if (!server_queue){ //i hope my interaction already has one
-                
-                const queue_constructor = {
-                    voice_channel: voice_channel,
-                    text_channel: message.channel,
-                    connection: null,
-                    songs: [],
-                };
-    
-                queue.set(message.guild.id, queue_constructor);
-                queue_constructor.songs.push(song);
-    
-                try {
-                        connection = await joinVoiceChannel({
-                        channelId: message.member.voice.channel.id,
-                        guildId: message.guild.id,
-                        adapterCreator: message.guild.voiceAdapterCreator,
-                    });
-                    queue_constructor.connection = connection;
-                    video_player(message.guild, queue_constructor.songs[0]);
-                } catch (err) {
-                    queue.delete(message.guild.id);
-                    message.reply('There was an error connecting.');
-                    throw err;
+                if (!server_queue){ // interaction already has one, goes to else
+                    
+                    const queue_constructor = {
+                        voice_channel: voice_channel,
+                        text_channel: message.channel,
+                        connection: null,
+                        songs: [],
+                    };
+        
+                    queue.set(message.guild.id, queue_constructor);
+                    queue_constructor.songs.push(song);
+        
+                    try {
+                            connection = await joinVoiceChannel({
+                            channelId: message.member.voice.channel.id,
+                            guildId: message.guild.id,
+                            adapterCreator: message.guild.voiceAdapterCreator,
+                        });
+                        queue_constructor.connection = connection;
+                        video_player(message.guild, queue_constructor.songs[0]);
+                    } catch (err) {
+                        queue.delete(message.guild.id);
+                        message.reply('There was an error connecting.');
+                        throw err;
+                    }
+                } else{ //there is a server queue, interaction would enter here.
+                    if(args[0] === 'https://www.youtube.com/watch?v=r6-cbMQALcE') return; //if songs is invoked while there is music playing ignore the silence.
+
+                    server_queue.songs.push(song);
+                    return (!flagint) ? message.reply(`**${song.title}** Added to queue!\n${song.url}`) : console.log('added to queue');
                 }
-            } else{ //there is a server queue, interaction would enter here.
-                if(args[0] === 'https://www.youtube.com/watch?v=r6-cbMQALcE') return; //if songs is invoked while there is music playing ignore the silence.
-
-                //should push all the songs in the array passed in args
-
-                server_queue.songs.push(song);
-                return (!flagint) ? message.reply(`**${song.title}** Added to queue!\n${song.url}`) : console.log('added to queue');
             }
         }
         else if (cmd === 'skip'){skip_song(message, server_queue, flagint);}
@@ -127,7 +166,6 @@ const video_player = async (guild, song, flagint) => {
     const resource = createAudioResource(stream, {inputType:StreamType.Arbitrary});
     song_queue.connection.subscribe(player);
     player.play(resource, { seek: 0, volume: 0.5 });
-    //console.log(player.state);
     player.on('idle', () => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0], 0);

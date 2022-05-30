@@ -41,7 +41,7 @@ module.exports = (client, Discord, message) => {
           message.attachments.size > 0 &&
           Math.random() < 0.5
         ) {
-          message.channel.send("Stop sending weirdass videos");
+          message.channel.send("Stop sending weirdass stuff");
         } else if (Math.random() < 0.01) {
           message.reply("die");
         }
