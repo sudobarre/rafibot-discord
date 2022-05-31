@@ -51,6 +51,7 @@ const johnLee ='https://www.youtube.com/watch?v=fiuA1hZrDtU&t=2902s';
 const pokepiano = 'https://www.youtube.com/watch?v=rd83jMTERqM&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=12&t=62s';
 const lpda = 'https://www.youtube.com/watch?v=6cOssODvLfk';
 const sleepkorean = 'https://www.youtube.com/watch?v=VefjGt26aZA';
+const jazzcafe = 'https://youtu.be/iIuuMNbSjDE';
 
 const osrs = 'https://www.youtube.com/watch?v=uOhv43F-F6M&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=2&t=2364s';
 const tes = 'https://www.youtube.com/watch?v=yQGtOrJ3j-I&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=4&t=1627s';
@@ -73,7 +74,7 @@ const mayerChill = [[mayerSob], [contiunuum],[prince], [bbking], [johnLee], [srv
 const aysanChill = [[howls], [promiseworld], [beegees], [habibi], [brunoM4], [honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], [jetplane], [oldSong1], [oldSong2], [oldSong3], [vie], [taiwanese], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi], [buttercup], [bluemoon]];
 const sad = [[chetBaker], [cag], [memoriesLover], [moonBeautiful], [sleepRomance], [taiwanese], [claire], [lee1], [oldSong2]];
 const chill = [[promiseworld], [bluemoon], [brunoM1], [brunoM2], [brunoM3], [brunoM4],[honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], ['stevie', 'ray', 'vaughan'], ['bb', 'king'], [lamp], [tron], [longChill], [cagrhye], [adoy], [chetBaker], [lee1], [rina], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi]];
-const simaSleep = [[sleepkorean], [honne1],[honne2], [honne3], [honne4], [honne5],['rina', 'sawayama'], [rina], [boringstories], [moonBeautiful], [sleepRomance], [johnLee], [pokepiano], [lpda], [claire], [memoriesLover]];
+const simaSleep = [[jazzcafe], [sleepkorean], [honne1],[honne2], [honne3], [honne4], [honne5],['rina', 'sawayama'], [rina], [boringstories], [moonBeautiful], [sleepRomance], [johnLee], [pokepiano], [lpda], [claire], [memoriesLover]];
 const sleep = [[sleepkorean], [makemecry], [wearyhead], [cag], [moonBeautiful], [sleepRomance], [interstellar], [astronaut], [claire], [memoriesLover]];
 const rafiStudy = [[interstellar], [astronaut], [osrs], [tes], [relPokemon], [unova], [dpp], [hgss], [bw], [undertale]];
 
