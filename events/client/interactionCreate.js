@@ -244,7 +244,7 @@ module.exports = (client, Discord, interaction) => {
                 //skip current song
                 try {
                   const commandPlay = client.commands.get("play");
-                  const song = ["dark", "academia"];
+                  const song = [["dark", "academia"]];
                   commandPlay
                     .execute(client, interaction, "play", song, Discord, 1)
                     .then(
