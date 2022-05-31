@@ -10,6 +10,8 @@ const buttercup = 'https://www.youtube.com/watch?v=PK8HQmHEvwM';
 const makemecry = 'https://www.youtube.com/watch?v=Ra77qWfXv1c';
 const wearyhead = 'https://www.youtube.com/watch?v=gQiFyZ2-6Js';
 const habibi = 'https://www.youtube.com/watch?v=Ne0KYyGEBFc';
+const beegees = 'https://www.youtube.com/watch?v=XpqqjU7u5Yc';
+const bluemoon = 'https://www.youtube.com/watch?v=RfAHBVMguDQ';
 
 const chetBaker = 'https://www.youtube.com/watch?v=Ic-3mudz8TA';
 const cag = 'https://www.youtube.com/watch?v=BpwDFKFkpOY';
@@ -65,9 +67,9 @@ const compBlue = 'https://www.youtube.com/watch?v=bt0XdyBgSnE';
 
 
 const mayerChill = [[mayerSob], [contiunuum],[prince], [bbking], [johnLee], [srv], [compBlue]];
-const aysanChill = [[habibi], [brunoM4], [honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], [jetplane], [oldSong1], [oldSong2], [oldSong3], [vie], [taiwanese], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi], [buttercup], ['blue', 'moon', 'dean', 'martin']];
+const aysanChill = [[beegees], [habibi], [brunoM4], [honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], [jetplane], [oldSong1], [oldSong2], [oldSong3], [vie], [taiwanese], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi], [buttercup], [bluemoon]];
 const sad = [[chetBaker], [cag], [memoriesLover], [moonBeautiful], [sleepRomance], [taiwanese], [claire], [lee1], [oldSong2]];
-const chill = [[brunoM1], [brunoM2], [brunoM3], [brunoM4],[honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], ['stevie', 'ray', 'vaughan'], ['bb', 'king'], [lamp], [tron], [longChill], [cagrhye], [adoy], [chetBaker], [lee1], [rina], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi]];
+const chill = [[bluemoon], [brunoM1], [brunoM2], [brunoM3], [brunoM4],[honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], ['stevie', 'ray', 'vaughan'], ['bb', 'king'], [lamp], [tron], [longChill], [cagrhye], [adoy], [chetBaker], [lee1], [rina], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi]];
 const simaSleep = [[honne1],[honne2], [honne3], [honne4], [honne5],['rina', 'sawayama'], [rina], [boringstories], [moonBeautiful], [sleepRomance], [johnLee], [pokepiano], [lpda], [claire], [memoriesLover]];
 const sleep = [ [makemecry], [wearyhead], [cag], [moonBeautiful], [sleepRomance], [interstellar], [astronaut], [claire], [memoriesLover]];
 const rafiStudy = [[interstellar], [astronaut], [osrs], [tes], [relPokemon], [unova], [dpp], [hgss], [bw], [undertale]];
@@ -105,8 +107,7 @@ module.exports = (client, Discord, interaction) => {
             switch (interaction.user.id) {
               case process.env.sima:
                 {
-                  //add dark academia to queue
-                  //skip current song
+
                   try {
                     const commandPlay = client.commands.get("play");
                     //const song = simaSleep[Math.floor(Math.random() * simaSleep.length)];
@@ -343,7 +344,7 @@ module.exports = (client, Discord, interaction) => {
                 {
                   try {
                     const commandPlay = client.commands.get("play");
-                    const song = [['ynw', 'melly']];
+                    const song = [['ynw', 'melly'], ['russian', 'doomer']];
                     commandPlay
                       .execute(client, interaction, "play", song, Discord, 1)
                       .then(
@@ -367,7 +368,6 @@ module.exports = (client, Discord, interaction) => {
                 }
                 break;
               case process.env.mayer:
-                //continuum, sob rock, bb king cos he has to, srv, prince, computer blue
                 {
                   try {
                     const commandPlay = client.commands.get("play");

@@ -174,9 +174,9 @@ const video_player = async (guild, song, flagint) => {
     player.play(resource, { seek: 0, volume: 0.5 });
     player.on('idle', () => {
         song_queue.songs.shift();
-        video_player(guild, song_queue.songs[0], 0);
+        video_player(guild, song_queue.songs[0], flagint); //is it flagint?
     });
-    if(song.url !== 'https://www.youtube.com/watch?v=r6-cbMQALcE'){
+    if(song.url !== 'https://www.youtube.com/watch?v=r6-cbMQALcE'){ //if its not silence
         await song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`);  
     }
 
@@ -185,7 +185,7 @@ const video_player = async (guild, song, flagint) => {
 const skip_song = (message, server_queue, flagint) => {
     if(flagint !== 0){ //if called by interaction then there is a song queued up already.
         server_queue.songs.shift();
-        return video_player(message.guildId, server_queue.songs[0], 1); //to not notify for the silence skip.
+        return video_player(message.guildId, server_queue.songs[0], 1);
     }else{
         if(!message.member.voice.channel) return message.reply('You need to be in a channel to execute this command.');
         //console.log(server_queue);
