@@ -30,7 +30,7 @@ function shuffleArray(array) { //usage: arr = shuffleArray(arr); to use with fla
 
 module.exports = {
     name: 'play',
-    aliases: ['p', 'skip', 'stop', 'queue', 'shuffle', 'songs'],
+    aliases: ['p', 'skip', 'stop', 'queue', 'shuffle'], //deleted songs
     description: 'music bot',
     async execute(client, message, cmd, args, Discord, flagint){
         if(!(flagint)){ //if its an odd number it will skip this. Used with interactions
@@ -60,18 +60,16 @@ module.exports = {
                     } else {
                     //If the video is not a URL then use keywords to find that video.
                     var video_finder = async (query) =>{ //query may be wrong here idk
-                        const videoResult = await ytSearch(query[i]);
+                        const videoResult = await ytSearch(query);
                         //could just return all the videos but i have to make sure to pass on the artist name instead of a song.
-                        console.log(query);
-                        return (videoResult.videos.length > 1) ? videoResult.videos[Math.floor(Math.random() * videoResult.videos.length )] : null; //returns a random video from the searched keyword
+                        return (videoResult.videos.length > 1) ? videoResult.videos[0] : null; //returns a random video from the searched keyword
                         };
                        
-                    
-                        //console.log(args[i].join(' '));
                         const video = await video_finder(args[i].join(' '));
-                        console.log(video);
+                        //console.log(video);
                         if (video){
                             song = { title: video.title, url: video.url };
+                            server_queue.songs.push(song);
                         } else {
                             message.reply('Error finding your video.');
                             //return;
@@ -170,14 +168,16 @@ const video_player = async (guild, song, flagint) => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0], 0);
     });
-    await (flagint) ? song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`): console.log('playing music');    
+    if(song.url !== 'https://www.youtube.com/watch?v=r6-cbMQALcE'){
+        await song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`);  
+    }
 
 };
 
 const skip_song = (message, server_queue, flagint) => {
     if(flagint !== 0){ //if called by interaction then there is a song queued up already.
         server_queue.songs.shift();
-        return video_player(message.guildId, server_queue.songs[0], 1);
+        return video_player(message.guildId, server_queue.songs[0], 1); //to not notify for the silence skip.
     }else{
         if(!message.member.voice.channel) return message.reply('You need to be in a channel to execute this command.');
         //console.log(server_queue);
@@ -198,7 +198,7 @@ const skip_song = (message, server_queue, flagint) => {
    server_queue.songs = [];
    queue.delete(message.guild.id);
    connection.disconnect();
-   return message.reply('Leaving voice channel...');
+   return message.reply('Player has been stopped and queue has been cleared. Leaving voice channel...');
 };
 
 const print_queue = (message, server_queue) => {
