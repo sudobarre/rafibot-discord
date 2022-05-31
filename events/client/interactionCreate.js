@@ -74,7 +74,7 @@ const mayerChill = [[mayerSob], [contiunuum],[prince], [bbking], [johnLee], [srv
 const aysanChill = [[howls], [promiseworld], [beegees], [habibi], [brunoM4], [honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], [jetplane], [oldSong1], [oldSong2], [oldSong3], [vie], [taiwanese], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi], [buttercup], [bluemoon]];
 const sad = [[chetBaker], [cag], [memoriesLover], [moonBeautiful], [sleepRomance], [taiwanese], [claire], [lee1], [oldSong2]];
 const chill = [[promiseworld], [bluemoon], [brunoM1], [brunoM2], [brunoM3], [brunoM4],[honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], ['stevie', 'ray', 'vaughan'], ['bb', 'king'], [lamp], [tron], [longChill], [cagrhye], [adoy], [chetBaker], [lee1], [rina], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi]];
-const simaSleep = [[jazzcafe], [sleepkorean], [honne1],[honne2], [honne3], [honne4], [honne5],['rina', 'sawayama'], [rina], [boringstories], [moonBeautiful], [sleepRomance], [johnLee], [pokepiano], [lpda], [claire], [memoriesLover]];
+const simaSleep = [[jazzcafe], [sleepkorean],[boringstories], [moonBeautiful], [sleepRomance], [johnLee], [lpda], [claire], [memoriesLover]];
 const sleep = [[sleepkorean], [makemecry], [wearyhead], [cag], [moonBeautiful], [sleepRomance], [interstellar], [astronaut], [claire], [memoriesLover]];
 const rafiStudy = [[interstellar], [astronaut], [osrs], [tes], [relPokemon], [unova], [dpp], [hgss], [bw], [undertale]];
 
