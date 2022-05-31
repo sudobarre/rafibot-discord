@@ -7,6 +7,9 @@ const vie= 'https://www.youtube.com/watch?v=9foKesji-Os';
 const jetplane = 'https://www.youtube.com/watch?v=rCmcgn793hs';
 const eyeslofi = 'https://www.youtube.com/watch?v=xOgdaVoSuWg';
 const buttercup = 'https://www.youtube.com/watch?v=PK8HQmHEvwM';
+const makemecry = 'https://www.youtube.com/watch?v=Ra77qWfXv1c';
+const wearyhead = 'https://www.youtube.com/watch?v=gQiFyZ2-6Js';
+const habibi = 'https://www.youtube.com/watch?v=Ne0KYyGEBFc';
 
 const chetBaker = 'https://www.youtube.com/watch?v=Ic-3mudz8TA';
 const cag = 'https://www.youtube.com/watch?v=BpwDFKFkpOY';
@@ -25,6 +28,15 @@ const lee1='https://www.youtube.com/watch?v=HIV3huSNmwo';
 const oldieslofi = 'https://www.youtube.com/watch?v=BrnDlRmW5hs&t=1s';
 const oldieslofi2 = 'https://www.youtube.com/watch?v=mcOYj2Jd6po';
 const oldieslofi3 = 'https://www.youtube.com/watch?v=yN_5jNxM0CU';
+const honne1 = 'https://www.youtube.com/watch?v=B1RMHumd1wg';
+const honne2 = 'https://www.youtube.com/watch?v=0ozLw9HXVUQ';
+const honne3 = 'https://www.youtube.com/watch?v=7TYmklycjk8';
+const honne4 = 'https://www.youtube.com/watch?v=hXMbGBK6yVQ';
+const honne5 = 'https://www.youtube.com/watch?v=crRTPOUWWr0';
+const brunoM1= 'https://www.youtube.com/watch?v=ucRVDoFkcxc';
+const brunoM2 = 'https://www.youtube.com/watch?v=1nml-_YE2OU';
+const brunoM3 = 'https://www.youtube.com/watch?v=HwgzNYCSivk';
+const brunoM4 = 'https://www.youtube.com/watch?v=sSvAFjpLaGA';
 
 const interstellar = 'https://www.youtube.com/watch?v=cU0Wz1ez3J0';
 const astronaut = 'https://www.youtube.com/watch?v=NRwoqT6JBRA';
@@ -53,11 +65,11 @@ const compBlue = 'https://www.youtube.com/watch?v=bt0XdyBgSnE';
 
 
 const mayerChill = [[mayerSob], [contiunuum],[prince], [bbking], [johnLee], [srv], [compBlue]];
-const aysanChill = [[jetplane], [oldSong1], [oldSong2], [oldSong3], [vie], [taiwanese], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi], [buttercup], ['blue', 'moon', 'dean', 'martin']];
+const aysanChill = [[habibi], [brunoM4], [honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], [jetplane], [oldSong1], [oldSong2], [oldSong3], [vie], [taiwanese], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi], [buttercup], ['blue', 'moon', 'dean', 'martin']];
 const sad = [[chetBaker], [cag], [memoriesLover], [moonBeautiful], [sleepRomance], [taiwanese], [claire], [lee1], [oldSong2]];
-const chill = [['stevie', 'ray', 'vaughan'], ['bb', 'king'], [lamp], [tron], [longChill], [cagrhye], [adoy], [chetBaker], [lee1], [rina], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi]];
-const simaSleep = [['rina', 'sawayama'], [rina], [boringstories], [moonBeautiful], [sleepRomance], [johnLee], [pokepiano], [lpda], [claire], [memoriesLover]];
-const sleep = [ [cag], [moonBeautiful], [sleepRomance], [interstellar], [astronaut], [claire], [memoriesLover]];
+const chill = [[brunoM1], [brunoM2], [brunoM3], [brunoM4],[honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], ['stevie', 'ray', 'vaughan'], ['bb', 'king'], [lamp], [tron], [longChill], [cagrhye], [adoy], [chetBaker], [lee1], [rina], [oldieslofi], [oldieslofi2], [oldieslofi3], [eyeslofi]];
+const simaSleep = [[honne1],[honne2], [honne3], [honne4], [honne5],['rina', 'sawayama'], [rina], [boringstories], [moonBeautiful], [sleepRomance], [johnLee], [pokepiano], [lpda], [claire], [memoriesLover]];
+const sleep = [ [makemecry], [wearyhead], [cag], [moonBeautiful], [sleepRomance], [interstellar], [astronaut], [claire], [memoriesLover]];
 const rafiStudy = [[interstellar], [astronaut], [osrs], [tes], [relPokemon], [unova], [dpp], [hgss], [bw], [undertale]];
 
 

@@ -51,6 +51,9 @@ module.exports = {
 
             if(flagint){ //used to treat the args as array of arrays including songs instead of a 1-D array. Need to clear up queue if called when it already has stuff playing or nah idk lol
                 shuffleArray(args);
+
+                //if there is already a queue with >1 songs then free up the queue and push the new selection.
+
                 for(let i = 0; i < args.length; i++){
                     if (ytdl.validateURL(args[i][0])){ //if its a link then the arg[i] is just one element in size.
                         const song_info = await ytdl.getInfo(args[i][0]);
@@ -59,10 +62,15 @@ module.exports = {
 
                     } else {
                     //If the video is not a URL then use keywords to find that video.
-                    var video_finder = async (query) =>{ //query may be wrong here idk
-                        const videoResult = await ytSearch(query);
-                        //could just return all the videos but i have to make sure to pass on the artist name instead of a song.
-                        return (videoResult.videos.length > 1) ? videoResult.videos[0] : null; //returns a random video from the searched keyword
+                    //if its a dark academia song then push a random video from the songs searched.
+                        var video_finder = async (query) =>{ //query may be wrong here idk
+                            const videoResult = await ytSearch(query);
+                            //could just return all the videos but i have to make sure to pass on the artist name instead of a song.
+                            if(query !== "dark academia"){
+                                return (videoResult.videos.length > 1) ? videoResult.videos[0] : null; //returns a random video from the searched keyword
+                            }else{
+                                return (videoResult.videos.length > 1) ? videoResult.videos[Math.floor(Math.random() * videoResult.videos.length)] : null;
+                            }
                         };
                        
                         const video = await video_finder(args[i].join(' '));
