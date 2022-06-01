@@ -26,7 +26,8 @@ function shuffleArray(array) { //usage: arr = shuffleArray(arr); to use with fla
 // queue (message.guild.id, queue_constructor object { voice channel, text channel, connection, song[]});
 
 //for the interaction a shuffled array containing the songs should be passed through the args arr and all the songs should be queued up at once.
-//If there is an existing queue it should clear it up first.
+//If there is an existing queue it should clear it up first; by deleting every song except the last one and start queuing up the playlist.
+//Afterwards the skip promise is executed so all gucci 
 
 module.exports = {
     name: 'play',
