@@ -8,6 +8,7 @@ const narratorCatch = ['gimme coins pls'];
 const ryanCatch = ['hi cute', '^^roulette wife for the day', 'interesting'];
 const rafiCatch= ['has been called the Albert Einstein of our generation','a sex symbol', '🧉','a literal god', 'omg he is sooooooo hot i cant', 'is he the Pokemon Legend?!?!', 'mate >>>>> coffee', 'legends say he hasnt lost a single match in plato', 'if George Clooney and Brad Pitt had a kid'];
 
+const jesCatch = ['theres alot of sea in the fish'];
 
 module.exports = {
     name: 'quote',
