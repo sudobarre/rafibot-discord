@@ -8,7 +8,7 @@ const narratorCatch = ['gimme coins pls'];
 const ryanCatch = ['hi cute', '^^roulette wife for the day', 'interesting'];
 const rafiCatch= ['has been called the Albert Einstein of our generation','a sex symbol', '🧉','a literal god', 'omg he is sooooooo hot i cant', 'is he the Pokemon Legend?!?!', 'mate >>>>> coffee', 'legends say he hasnt lost a single match in plato', 'if George Clooney and Brad Pitt had a kid'];
 
-const jesCatch = ['theres alot of sea in the fish'];
+const jesCatch = ['theres alot of sea in the fish', 'i think im gonna bribe the seller', 'whats the word (10 second pause) uhm.. yeahh', 'has to do makeup whenever she sees herself in the mirror'];
 
 module.exports = {
     name: 'quote',
@@ -16,7 +16,7 @@ module.exports = {
     once: true,
     description : 'send a catchphrase from a guild member',
     async execute(client, message, cmd, args){
-        const guild = client.guilds.cache.get(process.env.guildId);
+        const guild = message.guild;//client.guilds.cache.get(process.env.guildId);
         const catchphrases = new Map(); //map has (id, [catchphrases])
         guild.members.cache.forEach(member => catchphrases.set(member.user.id, ['who dat lol'])); 
         //set the corresponding catchphrases to each member id
@@ -30,6 +30,8 @@ module.exports = {
         catchphrases.set(process.env.ryan, ryanCatch);
         catchphrases.set(process.env.sima, simaCatch);
         catchphrases.set(process.env.simaAlt, simaCatch);
+
+        catchphrases.set(process.env.jessil, jesCatch);
         
         function getUserFromMention(mention) {
             if (!mention) return;
