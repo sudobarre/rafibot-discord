@@ -70,7 +70,7 @@ module.exports = {
                             if(query !== "dark academia"){
                                 return (videoResult.videos.length > 1) ? videoResult.videos[0] : null; //returns a random video from the searched keyword
                             }else{
-                                return (videoResult.videos.length > 1) ? videoResult.videos[Math.floor(Math.random() * videoResult.videos.length)] : null;
+                                return (videoResult.videos.length > 1) ? videoResult.videos[Math.floor(Math.random() * (videoResult.videos.length/2))] : null;
                             }
                         };
                        
