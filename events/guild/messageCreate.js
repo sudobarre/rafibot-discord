@@ -66,22 +66,14 @@ module.exports = (client, Discord, message) => {
           Math.random() < 0.5 ? message.react("🫀") : message.react("💯");
         }
         if (Math.random() < 0.01) {
-          if (Math.random() < 0.3) {
-            message.react("🇳");
-            message.react("🇮");
-            message.react("🇨");
-            message.react("🇪");
-            message.react("🇱");
-            message.react("🇦");
-            message.react("🇩");
-            message.react("🇾");
-          } else {
-            message.react(`🇧`);
-            message.react(`🇮`);
-            message.react(`🇹`);
-            message.react(`🇨`);
-            message.react(`🇭`);
-          }
+          message.react("🇳");
+          message.react("🇮");
+          message.react("🇨");
+          message.react("🇪");
+          message.react("🇱");
+          message.react("🇦");
+          message.react("🇩");
+          message.react("🇾");
         }
         break;
       case process.env.ard:
