@@ -1,5 +1,5 @@
 const inspire = require("../../commands/inspire");
-const sadWords = ["sad", "depressed", "unhappy", "angry", "crying", "annoyed"];
+const sadWords = ["depressed", "unhappy", "angry", "crying", "annoyed"];
 require("dotenv").config();
 
 module.exports = (client, Discord, message) => {
@@ -58,7 +58,6 @@ module.exports = (client, Discord, message) => {
         }
         break;
       case process.env.aysan:
-        //message.reply('bitc');
         if (
           message.channel.id === process.env.pics &&
           message.attachments.size > 0
@@ -87,9 +86,17 @@ module.exports = (client, Discord, message) => {
         }
         break;
       case process.env.rafiAlt:
-        //message.reply('Yea thanks for asking :)');
         if (Math.random() < 0.05) {
           message.react("💯");
+        }
+        break;
+      case process.env.moBitch:
+        if(Math.random() < 0.5){
+          message.react('🇧');
+          message.react('🇮');
+          message.react('🇹');
+          message.react('🇨');
+          message.react('🇭');
         }
         break;
       default:
