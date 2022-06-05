@@ -78,17 +78,7 @@ module.exports = (client, Discord, message) => {
         break;
       case process.env.ard:
         if (Math.random() < 0.01) {
-          if (Math.random() < 0.4) {
-            message.react("🇵");
-            message.react("🇮");
-            message.react("🇰");
-            message.react("🇦");
-            message.react("🇨");
-            message.react("🇭");
-            message.react("🇺");
-          } else {
-            message.react("🦝");
-          }
+          message.react("🦝");
         }
         break;
       case process.env.rafi:
