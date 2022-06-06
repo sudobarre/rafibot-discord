@@ -31,7 +31,7 @@ function shuffleArray(array) { //usage: arr = shuffleArray(arr); to use with fla
 
 module.exports = {
     name: 'play',
-    aliases: ['p', 'skip', 'stop', 'queue', 'shuffle'], //deleted songs
+    aliases: ['p', 'skip', 'stop', 'queue'], //add shuffle
     description: 'music bot',
     async execute(client, message, cmd, args, Discord, flagint){
         if(!(flagint)){ //if its an odd number it will skip this. Used with interactions
@@ -51,6 +51,10 @@ module.exports = {
             let song = {};
 
             if(flagint){ //used to treat the args as array of arrays including songs instead of a 1-D array. Need to clear up queue if called when it already has stuff playing or nah idk lol
+                const n = server_queue.songs.length;
+                for(let i = 0; i < n-1; i++){
+                    server_queue.songs.shift();
+                }
                 shuffleArray(args);
 
                 //if there is already a queue with >1 songs then free up the queue and push the new selection.

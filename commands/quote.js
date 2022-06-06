@@ -8,7 +8,7 @@ const narratorCatch = ['gimme coins pls'];
 const ryanCatch = ['hi cute', '^^roulette wife for the day', 'interesting'];
 const rafiCatch= ['has been called the Albert Einstein of our generation','a sex symbol', '🧉','a literal god', 'omg he is sooooooo hot i cant', 'is he the Pokemon Legend?!?!', 'mate >>>>> coffee', 'legends say he hasnt lost a single match in plato', 'if George Clooney and Brad Pitt had a kid'];
 
-const jesCatch = ['goes shopping and ends up spending 15k', 'you have blessed hands', 'theres alot of sea in the fish', 'i think im gonna bribe the seller', 'whats the word (10 second pause) uhm.. yeahh', 'has to do makeup whenever she sees herself in the mirror'];
+const jesCatch = ['fish game', 'octopus game', 'goes shopping and ends up spending 15k', 'you have blessed hands', 'theres alot of sea in the fish', 'i think im gonna bribe the seller', 'whats the word (10 second pause) uhm.. yeahh', 'has to do makeup whenever she sees herself in the mirror'];
 
 module.exports = {
     name: 'quote',
