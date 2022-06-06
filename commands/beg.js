@@ -4,7 +4,12 @@ module.exports = {
 	description: 'Begs for virtual currency',
 	once: true,
 	async execute(client, message, cmd, args) {
-        const quote = begPhrases[Math.floor(Math.random() * begPhrases.length)];
-		message.reply(`${quote}`);
+		const narrative = message.guild.members.fetch(member => member.id === process.env.narrator);
+		if(!narrative.presence){
+			message.reply(`It's pointless; narrator is offline.`);
+		} else {
+			const quote = begPhrases[Math.floor(Math.random() * begPhrases.length)];
+			message.reply(`${quote}`);
+		}
 	},
 };
