@@ -127,7 +127,8 @@ module.exports = (client, Discord, interaction) => {
                           console.log("Error.");
                         },
                       );
-                        return;
+                      await interaction.deleteReply();
+                      return;
                     //await interaction.deferReply();
                   } catch (error) {
                     console.error(error);
@@ -155,6 +156,7 @@ module.exports = (client, Discord, interaction) => {
                           console.log("Error.");
                         },
                       );
+                      await interaction.deleteReply();
                       return;
                     //await interaction.deferReply();
                   } catch (error) {
@@ -182,6 +184,7 @@ module.exports = (client, Discord, interaction) => {
                           console.log("Error.");
                         },
                       );
+                      await interaction.deleteReply();
                       return;
                     //await interaction.deferReply();
                   } catch (error) {
@@ -216,6 +219,7 @@ module.exports = (client, Discord, interaction) => {
                           console.log("Error.");
                         },
                       );
+                      await interaction.deleteReply();
                       return;
                     //await interaction.deferReply();
                   } catch (error) {
@@ -245,6 +249,7 @@ module.exports = (client, Discord, interaction) => {
                           console.log("Error.");
                         },
                       );
+                      await interaction.deleteReply();
                       return;
                     //await interaction.deferReply();
                   } catch (error) {
@@ -274,6 +279,7 @@ module.exports = (client, Discord, interaction) => {
                         console.log("Error.");
                       },
                     );
+                    await interaction.deleteReply();
                     return;
                   //await interaction.deferReply();
                 } catch (error) {
@@ -302,6 +308,7 @@ module.exports = (client, Discord, interaction) => {
                       console.log("Error.");
                     },
                   );
+                  await interaction.deleteReply();
                   return;
                 //await interaction.deferReply();
               } catch (error) {
@@ -333,6 +340,7 @@ module.exports = (client, Discord, interaction) => {
                           console.log("Error.");
                         },
                       );
+                      await interaction.deleteReply();
                       return;
                     //await interaction.deferReply();
                   } catch (error) {
@@ -361,6 +369,7 @@ module.exports = (client, Discord, interaction) => {
                           console.log("Error.");
                         },
                       );
+                      await interaction.deleteReply();
                       return;
                     //await interaction.deferReply();
                   } catch (error) {
@@ -388,6 +397,7 @@ module.exports = (client, Discord, interaction) => {
                           console.log("Error.");
                         },
                       );
+                      await interaction.deleteReply();
                       return;
                     //await interaction.deferReply();
                   } catch (error) {
@@ -416,6 +426,7 @@ module.exports = (client, Discord, interaction) => {
                           console.log("Error.");
                         },
                       );
+                      await interaction.deleteReply();
                       return;
                     //await interaction.deferReply();
                   } catch (error) {
