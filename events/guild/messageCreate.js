@@ -1,5 +1,5 @@
 const inspire = require("../../commands/inspire");
-const sadWords = ["depressed", "unhappy", "angry", "crying", "annoyed"];
+const sadWords = ["angry", "crying", "annoyed"];
 require("dotenv").config();
 
 module.exports = (client, Discord, message) => {
@@ -27,9 +27,9 @@ module.exports = (client, Discord, message) => {
       message.react("💯");
     }
     if (
-      msg.startsWith("whats") ||
-      msg.startsWith(`what is`) ||
-      msg.startsWith(`what's`)
+      msg.startsWith("whats a") //||
+      //msg.startsWith(`what is`) ||
+      //msg.startsWith(`what's`)
     ) {
       message.reply("Nothing much sugar whats the matter with you");
       message.channel.send("gottem");
@@ -81,12 +81,12 @@ module.exports = (client, Discord, message) => {
         }
         break;
       case process.env.rafi:
-        if (Math.random() < 0.05) {
+        if (Math.random() < 0.01) {
           message.react("💯");
         }
         break;
       case process.env.rafiAlt:
-        if (Math.random() < 0.05) {
+        if (Math.random() < 0.01) {
           message.react("💯");
         }
         break;
