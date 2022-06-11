@@ -36,7 +36,7 @@ module.exports = (client, Discord, message) => {
     }*/
     switch (message.author.id) {
       case process.env.devila:
-        message.reply('bitch');
+        message.reply('bimp');
         break;
       case process.env.sima:
         if (
