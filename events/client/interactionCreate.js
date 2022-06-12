@@ -70,6 +70,10 @@ const bbking = 'https://www.youtube.com/watch?v=ydzGfZBdqvo';
 const srv = 'https://www.youtube.com/watch?v=fAPo0EMfdLw';
 const compBlue = 'https://www.youtube.com/watch?v=bt0XdyBgSnE';
 
+const lofiGirl = 'https://www.youtube.com/watch?v=5qap5aO4i9A';
+const lofigirl2 = 'https://www.youtube.com/watch?v=n61ULEU7CO0&t=3s';
+const lofigirl3 = 'https://www.youtube.com/watch?v=lTRiuFIWV54';
+const lofigirl4 = 'https://www.youtube.com/watch?v=wAPCSnAhhC8';
 
 const mayerChill = [[mayerSob], [contiunuum],[prince], [bbking], [johnLee], [srv], [compBlue]];
 const aysanChill = [[howls], [promiseworld], [beegees], [habibi], [brunoM4], [honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], [jetplane], [oldSong1], [oldSong2], [oldSong3], [vie], [taiwanese], [oldieslofi], [oldieslofi3], [eyeslofi], [buttercup], [bluemoon]];
@@ -78,7 +82,7 @@ const chill = [[summerSalt], [macDemarco], [charlieBurgh],[promiseworld], [bluem
 const simaSleep = [[jazzcafe], [sleepkorean],[boringstories], [moonBeautiful], [sleepRomance], [johnLee], [lpda], [claire], [memoriesLover]];
 const sleep = [[sleepkorean], [makemecry], [wearyhead], [cag], [moonBeautiful], [sleepRomance], [interstellar], [astronaut], [claire], [memoriesLover]];
 const rafiStudy = [[interstellar], [astronaut], [osrs], [tes], [relPokemon], [unova], [dpp], [hgss], [bw], [undertale]];
-
+const moStudy = [[lofiGirl], [lofigirl2], [lofigirl3], [lofigirl4]];
 
 module.exports = (client, Discord, interaction) => {
   console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction: ${interaction}`);
@@ -201,6 +205,36 @@ module.exports = (client, Discord, interaction) => {
             break;
           case "Goodluck!":
             switch (interaction.user.id) {
+              case process.env.moBitch:
+                {
+
+                  try {
+                    const commandPlay = client.commands.get("play");
+                    //const song = rafiStudy[Math.floor(Math.random() * rafiStudy.length)];
+                    
+                    commandPlay
+                      .execute(client, interaction, "play", moStudy, Discord, 1)
+                      .then(
+                        function () {
+                          commandPlay.execute(
+                            client, interaction, "skip", [], Discord, 1);
+                        },
+                        function () {
+                          console.log("Error.");
+                        },
+                      );
+                      await interaction.deleteReply();
+                      return;
+                    //await interaction.deferReply();
+                  } catch (error) {
+                    console.error(error);
+                    await interaction.reply({
+                      content: "There was an error while executing this command.",
+                      ephemeral: true,
+                    });
+                  }
+                }
+              break;
               case process.env.rafiAlt:
                 {
 
