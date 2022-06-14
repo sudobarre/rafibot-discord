@@ -57,7 +57,6 @@ const jazzcafe = 'https://youtu.be/iIuuMNbSjDE';
 const osrs = 'https://www.youtube.com/watch?v=uOhv43F-F6M&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=2&t=2364s';
 const tes = 'https://www.youtube.com/watch?v=yQGtOrJ3j-I&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=4&t=1627s';
 const relPokemon = 'https://www.youtube.com/watch?v=-BKfhq_TtcE&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=5&t=2248s';
-const unova = 'https://www.youtube.com/watch?v=8TM-n90qKS8&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=7';
 const dpp = 'https://www.youtube.com/watch?v=9pnhfRN9x4Q&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=8&t=15s';
 const hgss = 'https://www.youtube.com/watch?v=VToyayJ4u2k&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=10&t=152s';
 const bw = 'https://www.youtube.com/watch?v=2T9YM2sDmMA&list=PL-NPTX2RY0yZasQnCif9f2l_vix-X-1KU&index=11&t=21s';
@@ -81,7 +80,7 @@ const sad = [[charlieBurgh], [chetBaker], [cag], [memoriesLover], [moonBeautiful
 const chill = [[summerSalt], [macDemarco], [charlieBurgh],[promiseworld], [bluemoon], [brunoM1], [brunoM2], [brunoM3], [brunoM4],[honne1],[honne2], [honne3], [honne4], [honne5],[makemecry], [wearyhead], [lamp], [tron], [longChill], [cagrhye], [adoy], [lee1], [rina], [oldieslofi], [oldieslofi3], [eyeslofi]];
 const simaSleep = [[jazzcafe], [sleepkorean],[boringstories], [moonBeautiful], [sleepRomance], [johnLee], [lpda], [claire], [memoriesLover]];
 const sleep = [[sleepkorean], [makemecry], [wearyhead], [cag], [moonBeautiful], [sleepRomance], [interstellar], [astronaut], [claire], [memoriesLover]];
-const rafiStudy = [[interstellar], [astronaut], [osrs], [tes], [relPokemon], [unova], [dpp], [hgss], [bw], [undertale]];
+const rafiStudy = [[astronaut], [osrs], [tes], [relPokemon], [dpp], [hgss], [bw], [undertale]];
 const moStudy = [[lofiGirl], [lofigirl2], [lofigirl3], [lofigirl4]];
 
 module.exports = (client, Discord, interaction) => {
