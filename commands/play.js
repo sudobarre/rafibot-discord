@@ -160,7 +160,7 @@ const video_player = async (guild, song, flagint) => {
         
     if(!song) {
         connection.disconnect();
-        queue.delete(guild.id);
+        (!flagint) ? queue.delete(guild.id) : queue.delete(guild); //if called by interaction then the guild id is in guild itself.
         return;
     }
     const stream = ytdl(song.url, {

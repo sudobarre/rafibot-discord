@@ -105,7 +105,7 @@ module.exports = (client, Discord, message) => {
       default:
         break;
     }
-  } else {
+  } else { 
     const args = message.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
     const command =
