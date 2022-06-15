@@ -31,7 +31,7 @@ function shuffleArray(array) { //usage: arr = shuffleArray(arr); to use with fla
 
 module.exports = {
     name: 'play',
-    aliases: ['p', 'skip', 'stop', 'queue', 'pause'], //add shuffle
+    aliases: ['p', 'skip', 'stop', 'queue'], //add shuffle
     description: 'music bot',
     async execute(client, message, cmd, args, Discord, flagint){
         if(!(flagint)){ //if its an odd number it will skip this. Used with interactions
@@ -149,7 +149,6 @@ module.exports = {
         else if (cmd === 'skip'){skip_song(message, server_queue, flagint);}
         else if (cmd === 'stop'){stop_song(message, server_queue);}
         else if (cmd === 'queue'){print_queue(message, server_queue);}
-        else if (cmd === 'pause'){pause_queue(message, server_queue);}
         //else if(cmd === 'shuffle'){server_queue.shuffle();}
 
     },    
@@ -228,10 +227,4 @@ const print_queue = (message, server_queue) => {
         embed.addFields({name: (`Position ${(i+1).toString()}:`), value: (`${songs[i].title}\n${songs[i].url}`)});  
     }
     message.reply({ embeds: [embed] });
-};
-
-const pause_queue = (message, server_queue) => {
-    //if(!server_queue) return message.reply('There are no songs remaining in the queue.');
-    server_queue.pause();
-    return message.reply('Song has been paused. You are fucked cos i cant resume it lol.');
 };
