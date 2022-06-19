@@ -60,7 +60,7 @@ if (LOAD_SLASH) {
     .then(() => {
         console.log("Successfully loaded");
         process.exit(0);
-    })
+    }) 
     .catch((err) => {
         if (err){
             console.log(err);
