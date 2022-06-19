@@ -86,14 +86,10 @@ const moStudy = [[lofiGirl], [lofigirl2], [lofigirl3], [lofigirl4]];
 
 module.exports = (client, Discord, interaction) => {
   console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction: ${interaction}`);
-  //console.log(interaction);
-  //console.log(message);
 
   async function handleCommand() {
     if (interaction.isCommand()) {
       const slashcmd = client.slashcommands.get(interaction.commandName);
-      //console.log(interaction);
-      //console.log(slashcmd);
       if (!slashcmd) return;
 
       try {
@@ -119,7 +115,6 @@ module.exports = (client, Discord, interaction) => {
 
                   try {
                     const commandPlay = client.commands.get("play");
-                    //const song = simaSleep[Math.floor(Math.random() * simaSleep.length)];
                     commandPlay
                       .execute(client, interaction, "play", simaSleep, Discord, 1)
                       .then(
@@ -148,7 +143,6 @@ module.exports = (client, Discord, interaction) => {
                 {
                   try {
                     const commandPlay = client.commands.get("play");
-                    //const song = simaSleep[Math.floor(Math.random() * simaSleep.length)];
                     commandPlay
                       .execute(client, interaction, "play", simaSleep, Discord, 1)
                       .then(
@@ -176,7 +170,6 @@ module.exports = (client, Discord, interaction) => {
                 {
                   try {
                     const commandPlay = client.commands.get("play");
-                    //const song = sleep[Math.floor(Math.random() * sleep.length)];
                     commandPlay
                       .execute(client, interaction, "play", sleep, Discord, 1)
                       .then(
@@ -210,8 +203,6 @@ module.exports = (client, Discord, interaction) => {
 
                   try {
                     const commandPlay = client.commands.get("play");
-                    //const song = rafiStudy[Math.floor(Math.random() * rafiStudy.length)];
-                    
                     commandPlay
                       .execute(client, interaction, "play", moStudy, Discord, 1)
                       .then(
@@ -239,9 +230,7 @@ module.exports = (client, Discord, interaction) => {
                 {
 
                   try {
-                    const commandPlay = client.commands.get("play");
-                    //const song = rafiStudy[Math.floor(Math.random() * rafiStudy.length)];
-                    
+                    const commandPlay = client.commands.get("play");                    
                     commandPlay
                       .execute(client, interaction, "play", rafiStudy, Discord, 1)
                       .then(
@@ -271,7 +260,6 @@ module.exports = (client, Discord, interaction) => {
 
                   try {
                     const commandPlay = client.commands.get("play");
-                    //const song = rafiStudy[Math.floor(Math.random() * rafiStudy.length)];
                     commandPlay
                       .execute(client, interaction, "play", rafiStudy, Discord, 1)
                       .then(
@@ -330,7 +318,6 @@ module.exports = (client, Discord, interaction) => {
             {
               try {
                 const commandPlay = client.commands.get("play");
-                //const song = sad[Math.floor(Math.random() * sad.length)];
                 commandPlay
                   .execute(client, interaction, "play", sad, Discord, 1)
                   .then(
@@ -357,7 +344,7 @@ module.exports = (client, Discord, interaction) => {
             break;
           case "Enjoy!":
             switch (interaction.user.id) {
-              case process.env.aysan: //process.env.rafiAlt for test
+              case process.env.aysan:
                 //la vie en rose idk dude same stuff
                 {
                   try {
@@ -448,7 +435,6 @@ module.exports = (client, Discord, interaction) => {
                 {
                   try {
                     const commandPlay = client.commands.get("play");
-                    //const song = chill[Math.floor(Math.random() * chill.length)];
                     commandPlay
                       .execute(client, interaction, "play", chill, Discord, 1)
                       .then(
