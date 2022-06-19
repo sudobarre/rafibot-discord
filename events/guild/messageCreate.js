@@ -16,6 +16,9 @@ module.exports = (client, Discord, message) => {
     if (msg.includes("dick") || msg.includes("pija")) {
       message.react("🍆");
     }
+    if (msg.includes("feet")) {
+      message.react("🍆");
+    }
     if (msg.includes("mate")) {
       message.react("🧉");
     }
