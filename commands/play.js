@@ -149,8 +149,6 @@ module.exports = {
         else if (cmd === 'skip'){skip_song(message, server_queue, flagint);}
         else if (cmd === 'stop'){stop_song(message, server_queue);}
         else if (cmd === 'queue'){print_queue(message, server_queue);}
-        //else if(cmd === 'shuffle'){server_queue.shuffle();}
-
     },    
 
 };
@@ -193,7 +191,6 @@ const skip_song = (message, server_queue, flagint) => {
         return video_player(message.guildId, server_queue.songs[0], 1);
     }else{
         if(!message.member.voice.channel) return message.reply('You need to be in a channel to execute this command.');
-        //console.log(server_queue);
         if(!server_queue || server_queue.songs.length === 1){
             message.reply('There are no songs left in queue. Leaving voice channel...');
             queue.delete(message.guild.id);
