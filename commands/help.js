@@ -22,6 +22,7 @@ module.exports = {
                 {name: 'skip', value: 'Skips the current song.'},
                 {name: 'queue', value: 'Displays the songs queue.'},
                 {name: 'songs', value: 'Offers a personalised selection of music depending on the category chosen. May take a bit to load the songs.'},
+                {name: 'akinator', value: "Starts an Akinator session!"},
                 {name: '/pause', value: 'Pauses the music'},
                 {name: '/info', value: "Displays info about the currently playing song"},
                 {name: '/play [yt_url | song_name]', value: "Loads a single song or a playlist of songs from a url or a provided keyword from yt."},

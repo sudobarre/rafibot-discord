@@ -1,6 +1,6 @@
 module.exports = {
 	name :'ping',
-	description: 'Replies with Pong!',
+	description: 'Checks if bot is running.',
 	once: true,
 	async execute(client, message, cmd, args) {
 		message.reply('Yes, I am alive.');
