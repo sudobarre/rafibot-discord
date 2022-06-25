@@ -17,7 +17,7 @@ module.exports = (client, Discord, message) => {
       message.react("🍆");
     }
     if (msg.includes("feet")) {
-      message.react("🍆");
+      message.react("🦶");
     }
     if (msg.includes("mate")) {
       message.react("🧉");
