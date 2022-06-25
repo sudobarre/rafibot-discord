@@ -42,7 +42,7 @@ module.exports = (client, Discord, message) => {
         message.reply('bitch');
         break; */
       case process.env.mayer:
-        message.reply('who cares lol');
+        message.reply('smd');
         break; 
       case process.env.sima:
         if (
