@@ -89,6 +89,8 @@ module.exports = (client, Discord, message) => {
       case process.env.rafi:
         if (Math.random() < 0.01) {
           message.react("💯");
+        } else if (Math.random() < 0.01) {
+          message.reply("slayyy");
         }
         break;
       case process.env.rafiAlt:
