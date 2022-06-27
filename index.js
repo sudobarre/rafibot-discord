@@ -7,7 +7,6 @@ const { Routes } = require("discord-api-types/v9");
 const fs = require("fs");
 const { Intents } = require('discord.js');
 const { Player } = require("discord-player");
-const Enmap = require('enmap');
 
 //node index.js load
 
@@ -69,6 +68,5 @@ if (LOAD_SLASH) {
         }
     });
 }
-
 
 client.login(process.env.TOKEN);
