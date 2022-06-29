@@ -105,6 +105,12 @@ module.exports = (client, Discord, message) => {
           message.react('🇭');
         }
         break;
+        case process.env.ryan: 
+            if(message.content.includes("cutie")){
+            message.reply("🥱");
+          break;
+          }
+          
       default:
         break;
     }
