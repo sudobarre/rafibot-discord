@@ -58,7 +58,7 @@ module.exports = (client, Discord, message) => {
           message.attachments.size > 0 &&
           Math.random() < 0.5
         ) {
-          message.channel.send("Stop sending weirdass videos");
+          message.channel.send("Stop sending weirdass stuff");
         } else if (Math.random() < 0.01) {
           message.reply("die");
         }
@@ -88,14 +88,8 @@ module.exports = (client, Discord, message) => {
         break;
       case process.env.rafi:
         if (Math.random() < 0.01) {
-
-          if(Math.random() < 0.5) {
           message.react("💯");
-        } else {
-            message.reply("slayyy");
         }
-        }
-        
         break;
       case process.env.rafiAlt:
         if (Math.random() < 0.01) {
@@ -124,7 +118,7 @@ module.exports = (client, Discord, message) => {
       const flagint = 0; //ugly way to work with interactions in some commands.
       command.execute(client, message, cmd, args, Discord, flagint);
     } catch (err) {
-      message.reply("There was an error trying to execute this command.");
+      message.reply("There was an error trying to execute this command. Make sure to type the command correctly!");
       console.log(err);
     }
   }
