@@ -70,7 +70,6 @@ const bbking = 'https://www.youtube.com/watch?v=ydzGfZBdqvo';
 const srv = 'https://www.youtube.com/watch?v=fAPo0EMfdLw';
 const compBlue = 'https://www.youtube.com/watch?v=bt0XdyBgSnE';
 
-const lofiGirl = 'https://www.youtube.com/watch?v=5qap5aO4i9A';
 const lofigirl2 = 'https://www.youtube.com/watch?v=n61ULEU7CO0&t=3s';
 const lofigirl3 = 'https://www.youtube.com/watch?v=lTRiuFIWV54';
 const lofigirl4 = 'https://www.youtube.com/watch?v=wAPCSnAhhC8';
@@ -82,7 +81,7 @@ const chill = [[summerSalt], [macDemarco], [charlieBurgh],[promiseworld], [bluem
 const simaSleep = [[jazzcafe], [sleepkorean],[boringstories], [moonBeautiful], [sleepRomance], [johnLee], [lpda], [claire], [memoriesLover]];
 const sleep = [[sleepkorean], [makemecry], [wearyhead], [cag], [moonBeautiful], [sleepRomance], [interstellar], [astronaut], [claire], [memoriesLover]];
 const rafiStudy = [[astronaut], [osrs], [tes], [relPokemon], [dpp], [hgss], [bw], [undertale]];
-const moStudy = [[lofiGirl], [lofigirl2], [lofigirl3], [lofigirl4]];
+const moStudy = [[lofigirl2], [lofigirl3], [lofigirl4]];
 
 module.exports = (client, Discord, interaction) => {
   console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction: ${interaction}`);
