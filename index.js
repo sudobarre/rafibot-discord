@@ -1,20 +1,18 @@
 // Require the necessary discord.js classes
 //const fetch = require('node-fetch');
 //const fs = require('node:fs');
+
+
 const Discord = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const fs = require("fs");
 const { Intents } = require('discord.js');
-const { Player } = require("discord-player");
+//const { Player } = require("discord-player");
 
 //node index.js load
 
 require('dotenv').config();
-
-//const serverinfo = require('./commands/serverinfo');
-//const { ServerResponse } = require('node:http');
-//const { channel } = require('node:diagnostics_channel');
 
 // Create a new client instance
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"], intents:[Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_VOICE_STATES,Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
@@ -28,8 +26,8 @@ const LOAD_SLASH = process.argv[2] == "load";
 const handlers = ['command_handler', 'event_handler'];
 
 for(const handler of handlers){
-try{
-    require(`./handlers/${handler}`)(client, Discord);
+    try{
+        require(`./handlers/${handler}`)(client, Discord);
     }catch(e){
         console.warn(e);
     }
@@ -37,12 +35,6 @@ try{
 
 
 client.slashcommands = new Discord.Collection();
-client.player = new Player(client, {
-    ytdlOptions: {
-        quality: "highestaudio",
-        highWaterMark: 1 << 25,
-    },
-});
 
 let commands = [];
 
@@ -54,7 +46,7 @@ for (const file of slashFiles){
 }
 
 if (LOAD_SLASH) {
-    const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
+    const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
     console.log("Deploying slash commands");
     rest.put(Routes.applicationGuildCommands(process.env.clientId, process.env.guildId), {body: commands}) 
     .then(() => {
@@ -69,4 +61,17 @@ if (LOAD_SLASH) {
     });
 }
 
+/*
+//make sure to check out play command to ignore the playing msg
+client.on("ready", async ()=>{
+    const guild = await client.guilds.cache.get("915210119904657428");
+    const channel = await guild.channels.cache.get("915210119904657431");
+    const msg = await channel.messages.fetch("1013988210680016916");
+    const song = [""];
+    const commandPlay = client.commands.get("play");
+    commandPlay.execute(client, msg, "play", song, Discord);
+
+});*/
+
 client.login(process.env.TOKEN);
+

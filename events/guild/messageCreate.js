@@ -108,8 +108,8 @@ module.exports = (client, Discord, message) => {
         case process.env.ryan: 
             if(message.content.includes("cutie")){
             message.reply("🥱");
-          break;
           }
+          break;
           
       default:
         break;

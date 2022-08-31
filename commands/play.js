@@ -2,9 +2,10 @@ const ytdl = require('ytdl-core');
 const ytSearch = require('yt-search');
 const Discord = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, StreamType, AudioPlayerStatus, NoSubscriberBehavior } = require('@discordjs/voice');
-const { Client, Message, MessageEmbed } = require('discord.js');
+const { Client, Message, MessageEmbed, GatewayIntentBits } = require('discord.js');
 const { MessageActionRow, MessageSelectMenu } = require('discord.js');
 const { query } = require('express');
+const { Player } = require('discord-player');
 
 let connection;
 const queue = new Map();
@@ -31,8 +32,8 @@ function shuffleArray(array) { //usage: arr = shuffleArray(arr); to use with fla
 
 module.exports = {
     name: 'play',
-    aliases: ['p', 'skip', 'stop', 'queue'], //add shuffle
-    description: 'music bot',
+    aliases: ['p', 'skip', 'stop', 'queue', 'pause', 'unpause'], //add shuffle
+    description: 'plays music',
     async execute(client, message, cmd, args, Discord, flagint){
         if(!(flagint)){ //if its an odd number it will skip this. Used with interactions
             var voice_channel = message.member.voice.channel;
@@ -148,12 +149,21 @@ module.exports = {
         }
         else if (cmd === 'skip'){skip_song(message, server_queue, flagint);}
         else if (cmd === 'stop'){stop_song(message, server_queue);}
+        else if (cmd === 'pause'){pause_song(message, server_queue);}
+        else if (cmd === 'unpause'){pause_song(message, server_queue);}
         else if (cmd === 'queue'){print_queue(message, server_queue);}
+
     },    
 
 };
 
-const video_player = async (guild, song, flagint) => {
+const pause_song = (message, server_queue) => {
+    if(!message.member.voice.channel) return message.reply('You need to be in a channel to execute this command.');
+    return video_player(message.guildId, server_queue.songs[0], 1, 1);
+   };
+
+
+const video_player = async (guild, song, flagint, paused) => {
     const song_queue = (!flagint) ? queue.get(guild.id) : queue.get(guild);
         
     if(!song) {
@@ -171,7 +181,12 @@ const video_player = async (guild, song, flagint) => {
         quality: "lowestaudio",
    });
 
+    
     const player = createAudioPlayer();
+    if(paused){
+       player.pause();
+       return await song_queue.text_channel.send('FUCKING PAUSE BRO');
+    } 
     const resource = createAudioResource(stream, {inputType:StreamType.Arbitrary});
     song_queue.connection.subscribe(player);
     player.play(resource, { seek: 0, volume: 0.5 });
@@ -179,9 +194,13 @@ const video_player = async (guild, song, flagint) => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0], flagint); //is it flagint?
     });
-    if(song.url !== 'https://www.youtube.com/watch?v=r6-cbMQALcE'){ //if its not silence
+    if(song.url !== 'https://www.youtube.com/watch?v=r6-cbMQALcE' && song.url !== 'https://www.youtube.com/watch?v=2ZIpFytCSVc'){ //if its not silence or sexy music
         await song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`);  
     }
+    player.on('disconnect', () => {
+        queue.delete(guild.id);
+        song_queue.text_channel.send(`A bitch disconnected me, cleared songs queue.`); 
+    });
 
 };
 
