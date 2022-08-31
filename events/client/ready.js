@@ -18,14 +18,17 @@ module.exports = (client) =>{
             });
         }
         //send it via DM to users
-		var checkminutes = 1440, checkthe_interval = checkminutes * 60 * 1000; //This checks every n minutes.
-        getQuote().then(quote => 
-			setInterval(function() {
+        getQuote().then(quote => {
 				client.users.send(process.env.rafi, quote);
+				client.users.send(process.env.rafi, "get inspired bitch");
 				client.users.send(process.env.rafiAlt, quote);
+				client.users.send(process.env.rafiAlt, "get inspired bitch");
 				client.users.send(process.env.aysan, quote);
+				client.users.send(process.env.aysan, "get inspired bitch");
 				client.users.send(process.env.jessil, quote);
-			}, checkthe_interval));
+				client.users.send(process.env.jessil, "get inspired bitch");
+
+			});
 	/*
 	const channel = client.channels.cache.get('917842350720561173');
 	function delay(n){
