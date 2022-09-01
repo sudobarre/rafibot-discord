@@ -19,14 +19,10 @@ module.exports = (client) =>{
         }
         //send it via DM to users
         getQuote().then(quote => {
-				client.users.send(process.env.rafi, quote);
-				client.users.send(process.env.rafi, "get inspired bitch");
-				client.users.send(process.env.rafiAlt, quote);
-				client.users.send(process.env.rafiAlt, "get inspired bitch");
-				client.users.send(process.env.aysan, quote);
-				client.users.send(process.env.aysan, "get inspired bitch");
+				const nothingham = await client.guilds.cache.get(process.env.guildId);
+				const inspiration = await nothingham.channels.cache.get(process.env.inspiration);
 				client.users.send(process.env.jessil, quote);
-				client.users.send(process.env.jessil, "get inspired bitch");
+				inspiration.send(quote);
 
 			});
 	/*
