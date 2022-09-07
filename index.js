@@ -65,13 +65,13 @@ if (LOAD_SLASH) {
 //make sure to check out play command to ignore the playing msg
 client.on("ready", async ()=>{
     const guild = await client.guilds.cache.get("915210119904657428");
-    const channel = await guild.channels.cache.get("915210119904657431");
-    const msg = await channel.messages.fetch("1013988210680016916");
-    const song = [""];
+    const channel = await guild.channels.cache.get("933423366822588487"); //the channel where the msg is
+    const msg = await channel.messages.fetch("1016448062744440893");
+    const song = ["https://www.youtube.com/watch?v=A3ytTKZf344"];
     const commandPlay = client.commands.get("play");
     commandPlay.execute(client, msg, "play", song, Discord);
 
-});*/
+}); */
 
 client.login(process.env.TOKEN);
 

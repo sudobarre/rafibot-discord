@@ -194,7 +194,7 @@ const video_player = async (guild, song, flagint, paused) => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0], flagint); //is it flagint?
     });
-    if(song.url !== 'https://www.youtube.com/watch?v=r6-cbMQALcE' && song.url !== 'https://www.youtube.com/watch?v=2ZIpFytCSVc'){ //if its not silence or sexy music
+    if(song.url !== 'https://www.youtube.com/watch?v=r6-cbMQALcE' && song.url !== 'https://www.youtube.com/watch?v=A3ytTKZf344'){ //if its not silence or sexy music
         await song_queue.text_channel.send(`Now Playing: **${song.title}\n**${song.url}`);  
     }
     player.on('disconnect', () => {
