@@ -10,7 +10,7 @@ module.exports = (client) =>{
 	//const nothingham = client.guilds.cache.get(process.env.guildId);
 	//const inspiration = nothingham.channels.cache.get('1014610979738370079');
 	//inspiration.send("bruh -Aysan, 2022");
-	/*
+	
         function getQuote(){
             return fetch('https://zenquotes.io/api/random')
             .then(res => {
@@ -27,7 +27,7 @@ module.exports = (client) =>{
 				client.users.send(process.env.jessil, quote);
 				inspiration.send(quote);
 
-			});*/
+			});
 	/*
 	const channel = client.channels.cache.get('917842350720561173');
 	function delay(n){
