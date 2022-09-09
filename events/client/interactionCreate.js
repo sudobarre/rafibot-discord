@@ -87,6 +87,33 @@ const sleep = [[sleepkorean], [makemecry], [wearyhead], [cag], [moonBeautiful], 
 const rafiStudy = [[astronaut], [osrs], [tes], [relPokemon], [dpp], [hgss], [bw], [undertale]];
 const moStudy = [[lofigirl2], [lofigirl3], [lofigirl4]];
 
+
+async function playSongs(songs, interaction, client, Discord){
+  try {
+    const commandPlay = client.commands.get("play");
+    commandPlay
+      .execute(client, interaction, "play", songs, Discord, 1)
+      .then(
+        () => {
+          return commandPlay.execute(
+            client, interaction, "skip", [], Discord, 1);
+        },
+        () => {
+          return console.log("Oopsie Woopsie, thewe was an ewwoww while queueing songs. So sowwy senpai!!! uwu");
+        },
+      );
+      await interaction.deleteReply();
+      return;
+    //await interaction.deferReply();
+  } catch (error) {
+    console.error(error);
+    await interaction.reply({
+      content: "There was an error while executing play.",
+      ephemeral: true,
+    });
+  }
+}
+
 module.exports = (client, Discord, interaction) => {
   console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction: ${interaction}`);
 
@@ -109,6 +136,8 @@ module.exports = (client, Discord, interaction) => {
         });
       }
     } else if (interaction.isSelectMenu()) {
+      //playSongs(songs, interaction, client, Discord)
+
       if (interaction.customId === "choose-song") {
         switch (interaction.values[0]) {
           case "Sweet dreams!":
@@ -116,84 +145,19 @@ module.exports = (client, Discord, interaction) => {
               case process.env.sima:
                 {
 
-                  try {
-                    const commandPlay = client.commands.get("play");
-                    commandPlay
-                      .execute(client, interaction, "play", simaSleep, Discord, 1)
-                      .then(
-                        function () {
-                          commandPlay.execute(
-                            client, interaction, "skip", [], Discord, 1);
-                        },
-                        function () {
-                          console.log("Error.");
-                        },
-                      );
-                      await interaction.deleteReply();
-                      return;
-                    //await interaction.deferReply();
-                  } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                      content: "There was an error while executing this command.",
-                      ephemeral: true,
-                    });
-                  }
+                  playSongs(simaSleep, interaction, client, Discord);
+
                 }
                 break;
               case process.env.simaAlt:
                 //same thing lol
                 {
-                  try {
-                    const commandPlay = client.commands.get("play");
-                    commandPlay
-                      .execute(client, interaction, "play", simaSleep, Discord, 1)
-                      .then(
-                        function () {
-                          commandPlay.execute(
-                            client, interaction, "skip", [], Discord, 1);
-                        },
-                        function () {
-                          console.log("Error.");
-                        },
-                      );
-                      await interaction.deleteReply();
-                      return;
-                    //await interaction.deferReply();
-                  } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                      content: "There was an error while executing this command.",
-                      ephemeral: true,
-                    });
-                  }
+                  playSongs(simaSleep, interaction, client, Discord);
                 }
                 break;
               default:
                 {
-                  try {
-                    const commandPlay = client.commands.get("play");
-                    commandPlay
-                      .execute(client, interaction, "play", sleep, Discord, 1)
-                      .then(
-                        function () {
-                          commandPlay.execute(
-                            client, interaction, "skip", [], Discord, 1);
-                        },
-                        function () {
-                          console.log("Error.");
-                        },
-                      );
-                      await interaction.deleteReply();
-                      return;
-                    //await interaction.deferReply();
-                  } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                      content: "There was an error while executing this command.",
-                      ephemeral: true,
-                    });
-                  }
+                  playSongs(sleep, interaction, client, Discord);
                 }
                 break;
             }
@@ -204,144 +168,35 @@ module.exports = (client, Discord, interaction) => {
               case process.env.moBitch:
                 {
 
-                  try {
-                    const commandPlay = client.commands.get("play");
-                    commandPlay
-                      .execute(client, interaction, "play", moStudy, Discord, 1)
-                      .then(
-                        function () {
-                          commandPlay.execute(
-                            client, interaction, "skip", [], Discord, 1);
-                        },
-                        function () {
-                          console.log("Error.");
-                        },
-                      );
-                      await interaction.deleteReply();
-                      return;
-                    //await interaction.deferReply();
-                  } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                      content: "There was an error while executing this command.",
-                      ephemeral: true,
-                    });
-                  }
+                  playSongs(moStudy, interaction, client, Discord);
                 }
               break;
               case process.env.rafiAlt:
                 {
 
-                  try {
-                    const commandPlay = client.commands.get("play");                    
-                    commandPlay
-                      .execute(client, interaction, "play", rafiStudy, Discord, 1)
-                      .then(
-                        function () {
-                          commandPlay.execute(
-                            client, interaction, "skip", [], Discord, 1);
-                        },
-                        function () {
-                          console.log("Error.");
-                        },
-                      );
-                      await interaction.deleteReply();
-                      return;
-                    //await interaction.deferReply();
-                  } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                      content: "There was an error while executing this command.",
-                      ephemeral: true,
-                    });
-                  }
+                  playSongs(rafiStudy, interaction, client, Discord);
                 }
               break;
               case process.env.rafi:
                 //same thing lol
                 {
 
-                  try {
-                    const commandPlay = client.commands.get("play");
-                    commandPlay
-                      .execute(client, interaction, "play", rafiStudy, Discord, 1)
-                      .then(
-                        function () {
-                          commandPlay.execute(
-                            client, interaction, "skip", [], Discord, 1);
-                        },
-                        function () {
-                          console.log("Error.");
-                        },
-                      );
-                      await interaction.deleteReply();
-                      return;
-                    //await interaction.deferReply();
-                  } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                      content: "There was an error while executing this command.",
-                      ephemeral: true,
-                    });
-                  }
+                  playSongs(rafiStudy, interaction, client, Discord);
+
                 }
                 break;
               default: //dark academia
               {
                 //add dark academia to queue
                 //skip current song
-                try {
-                  const commandPlay = client.commands.get("play");
-                  const song = [["dark", "academia"]];
-                  commandPlay
-                    .execute(client, interaction, "play", song, Discord, 1)
-                    .then(
-                      function () {
-                        commandPlay.execute(
-                          client, interaction, "skip", [], Discord, 1);
-                      },
-                      function () {
-                        console.log("Error.");
-                      },
-                    );
-                    await interaction.deleteReply();
-                    return;
-                  //await interaction.deferReply();
-                } catch (error) {
-                  console.error(error);
-                  await interaction.reply({
-                    content: "There was an error while executing this command.",
-                    ephemeral: true,
-                  });
-                }
+                const song = [["dark", "academia"]];
+                playSongs(song, interaction, client, Discord);
               }
             }
             break;
           case "Hope you feel better :)":
             {
-              try {
-                const commandPlay = client.commands.get("play");
-                commandPlay
-                  .execute(client, interaction, "play", sad, Discord, 1)
-                  .then(
-                    function () {
-                      commandPlay.execute(
-                        client, interaction, "skip", [], Discord, 1);
-                    },
-                    function () {
-                      console.log("Error.");
-                    },
-                  );
-                  await interaction.deleteReply();
-                  return;
-                //await interaction.deferReply();
-              } catch (error) {
-                console.error(error);
-                await interaction.reply({
-                  content: "There was an error while executing this command.",
-                  ephemeral: true,
-                });
-              }
+              playSongs(sad, interaction, client, Discord);
             }
             //users
             break;
@@ -350,115 +205,26 @@ module.exports = (client, Discord, interaction) => {
               case process.env.aysan:
                 //la vie en rose idk dude same stuff
                 {
-                  try {
-                    const commandPlay = client.commands.get("play");
-                    //const song = aysanChill[Math.floor(Math.random() * aysanChill.length)];
-                    commandPlay
-                      .execute(client, interaction, "play", aysanChill, Discord, 1) //could be 3 and then do mod 2 to also obtain a 1
-                      .then(
-                        function () {
-                          commandPlay.execute(
-                            client, interaction, "skip", [], Discord, 1);
-                        },
-                        function () {
-                          console.log("Error.");
-                        },
-                      );
-                      await interaction.deleteReply();
-                      return;
-                    //await interaction.deferReply();
-                  } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                      content: "There was an error while executing this command.",
-                      ephemeral: true,
-                    });
-                  }
+                  playSongs(aysanChill, interaction, client, Discord);
                 }
                 break;
               case process.env.ard:
                 //ynw or that rapper idk, more rappers i guess slav music
                 {
-                  try {
-                    const commandPlay = client.commands.get("play");
-                    const song = [['ynw', 'melly'], ['russian', 'doomer'], ['https://www.youtube.com/watch?v=vKPDErkU77A']];
-                    commandPlay
-                      .execute(client, interaction, "play", song, Discord, 1)
-                      .then(
-                        function () {
-                          commandPlay.execute(
-                            client, interaction, "skip", [], Discord, 1);
-                        },
-                        function () {
-                          console.log("Error.");
-                        },
-                      );
-                      await interaction.deleteReply();
-                      return;
-                    //await interaction.deferReply();
-                  } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                      content: "There was an error while executing this command.",
-                      ephemeral: true,
-                    });
-                  }
+                  const song = [['ynw', 'melly'], ['russian', 'doomer'], ['https://www.youtube.com/watch?v=vKPDErkU77A']];
+                  playSongs(song, interaction, client, Discord);
+
                 }
                 break;
               case process.env.mayer:
                 {
-                  try {
-                    const commandPlay = client.commands.get("play");
-                    //const song = mayerChill[Math.floor(Math.random() * mayerChill.length)];
-                    commandPlay
-                      .execute(client, interaction, "play", mayerChill, Discord, 1)
-                      .then(
-                        function () {
-                          commandPlay.execute(
-                            client, interaction, "skip", [], Discord, 1);
-                        },
-                        function () {
-                          console.log("Error.");
-                        },
-                      );
-                      await interaction.deleteReply();
-                      return;
-                    //await interaction.deferReply();
-                  } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                      content: "There was an error while executing this command.",
-                      ephemeral: true,
-                    });
-                  }
+                  playSongs(mayerChill, interaction, client, Discord);
                 }
                 break;
               default:
                 //my chill music hehe
                 {
-                  try {
-                    const commandPlay = client.commands.get("play");
-                    commandPlay
-                      .execute(client, interaction, "play", chill, Discord, 1)
-                      .then(
-                        function () {
-                          commandPlay.execute(
-                            client, interaction, "skip", [], Discord, 1);
-                        },
-                        function () {
-                          console.log("Error.");
-                        },
-                      );
-                      await interaction.deleteReply();
-                      return;
-                    //await interaction.deferReply();
-                  } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                      content: "There was an error while executing this command.",
-                      ephemeral: true,
-                    });
-                  }
+                  playSongs(chill, interaction, client, Discord);
                 }
                 break;
             }
