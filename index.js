@@ -16,7 +16,8 @@ require('dotenv').config();
 
 // Create a new client instance
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"], intents:[Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_VOICE_STATES,Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
-
+const mongoose = require('mongoose');
+//const { DisTubeStream } = require("distube");
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
@@ -46,9 +47,9 @@ for (const file of slashFiles){
 }
 
 if (LOAD_SLASH) {
-    const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
+    const rest = new REST({ version: "10" }).setToken(process.env.TOKENTEST);
     console.log("Deploying slash commands");
-    rest.put(Routes.applicationGuildCommands(process.env.clientId, process.env.guildId), {body: commands}) 
+    rest.put(Routes.applicationGuildCommands(process.env.clientId, process.env.testId), {body: commands}) 
     .then(() => {
         console.log("Successfully loaded");
         process.exit(0);
@@ -73,5 +74,12 @@ client.on("ready", async ()=>{
 
 }); */
 
-client.login(process.env.TOKEN);
-
+client.login(process.env.TOKENTEST);
+mongoose.connect(process.env.db, {
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+}).then(()=>{
+    console.log("Connected to database.");
+}).catch((err) => {
+    console.error(err);
+});

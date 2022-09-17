@@ -1,14 +1,9 @@
-const inspire = require("../../commands/inspire");
-const sadWords = ["angry", "crying", "annoyed"];
 require("dotenv").config();
 
 module.exports = (client, Discord, message) => {
   const prefix = process.env.PREFIX;
   if (message.author.bot) return;
   const msg = message.content.toLowerCase();
-  if (sadWords.some((word) => message.content.includes(word))) {
-    inspire.execute(client, message);
-  }
   if (!msg.startsWith(prefix)) {
     if (msg.includes("hentai") || msg.includes("porn")) {
       message.react("🍑");
@@ -38,9 +33,6 @@ module.exports = (client, Discord, message) => {
       message.channel.send("gottem");
     }*/
     switch (message.author.id) {
-      /*case process.env.devila:
-        message.reply('bitch');
-        break; */
       case process.env.sima:
         if (
           message.channel.id === process.env.videos &&
@@ -86,16 +78,6 @@ module.exports = (client, Discord, message) => {
           message.react("🦝");
         }
         break;
-      case process.env.rafi:
-        if (Math.random() < 0.01) {
-          message.react("💯");
-        }
-        break;
-      case process.env.rafiAlt:
-        if (Math.random() < 0.01) {
-          message.react("💯");
-        }
-        break;
       case process.env.moBitch:
         if(Math.random() < 0.01){
           message.react('🇧');
@@ -106,11 +88,10 @@ module.exports = (client, Discord, message) => {
         }
         break;
         case process.env.ryan: 
-            if(message.content.includes("cutie")){
+          if(message.content.includes("cutie")){
             message.reply("🥱");
           }
           break;
-          
       default:
         break;
     }

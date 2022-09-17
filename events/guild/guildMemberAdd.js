@@ -1,11 +1,28 @@
-const welcomes = ['Welcome to the Server! Before you can start enjoying our marvelous community you will have to answer just one question!\nWould you rather eat a baby goat or a matter baby?'];
+const userSchema = require("C:/Users/svgra/Documents/Coding/disc-bot/schema/userSchema.js");
+const snipeSchema = require("C:/Users/svgra/Documents/Coding/disc-bot/schema/userSchema.js");
+
+const welcome = 'Welcome to the Server! Before you can start enjoying our marvelous community you will have to answer just one question!\nWould you rather eat a baby goat or a matter baby?';
+
 module.exports = (client, Discord, guildMember) => {
+    createUser(guildMember.id);
     if(guildMember.guild.id != process.env.guildId) return;
     const welcomeRole = guildMember.guild.roles.cache.find(role => role.name === 'Citizen of Nothingham');
-	guildMember.roles.add(welcomeRole);
+	if(welcomeRole) guildMember.roles.add(welcomeRole);
     const channel = guildMember.guild.channels.cache.get(process.env.general);
     if (!channel) return;
-    const randomIndex = Math.floor(Math.random() * welcomes.length);
-    const item = welcomes[randomIndex];
-    channel.send(item);
+    channel.send(welcome);
 };
+
+
+
+async function createUser(guildMemberId){ //dont just update, do findOne or findById and then .save
+    try {
+        const user = await userSchema.create({
+            userId : guildMemberId,
+            //rest is an empty array by default.
+        });
+        return await user.save();
+    } catch (error) {
+        console.error(error);
+    }   
+}

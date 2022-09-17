@@ -3,28 +3,15 @@ const { MessageActionRow, MessageSelectMenu } = require('discord.js');
 
 module.exports = {
     name: 'songs',
-    /**
-     * @param {Client}
-     * @param {message}
-     * @param {cmd}
-     * @param {args}
-     * @param {Discord}
-     */
     async execute(client, message, cmd, args, Discord){ //play-dl as alternative
         const command = client.commands.get('play');
         const song = ['https://www.youtube.com/watch?v=r6-cbMQALcE']; //15 mins of silence lol
         command.execute(client, message, 'play', song , Discord, 0);
          if(!message.member.voice.channel) return;
-/*
-        const voice_channel = message.member.voice.channel;
-        if (!voice_channel) return message.channel.send('You need to be in a channel to execute this command');
-        const permissions = voice_channel.permissionsFor(message.client.user);
-        if (!permissions.has('CONNECT')) return message.channel.send('You dont have permission to do that');
-        if (!permissions.has('SPEAK')) return message.channel.send('You dont have permission to do that');
-*/
-        const row = new MessageActionRow()
+
+        const row = new MessageActionRow() //ActionRowBuilder()?
         .addComponents(
-            new MessageSelectMenu()
+            new MessageSelectMenu() //SelectMenuBuilder()?
             .setCustomId('choose-song')
             .setPlaceholder('Choose the type of music you wanna hear.')
 //            .setDisabled(true)
