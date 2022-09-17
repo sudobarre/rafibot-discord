@@ -1,5 +1,5 @@
 const {MessageEmbed} = require("discord.js");
-const snipeSchema = require("C:/Users/svgra/Documents/Coding/disc-bot/schema/snipeSchema.js");
+const snipeSchema = require("../schema/snipeSchema.js");
 
 
 module.exports = {

@@ -48,7 +48,7 @@ module.exports = {
             interaction.isSelectMenu() && 
             interaction.user.id === message.author.id;
 
-        const collector = message.channel.createMessageComponentCollector({ filter, max: 1});
+        const collector = message.channel.createMessageComponentCollector({ filter: ({user}) => user.id === message.author.id, max: 1});
 
         collector.on('collect', async(collected) =>{
             const value = collected.values[0];

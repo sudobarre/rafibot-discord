@@ -1,5 +1,5 @@
-const userSchema = require("C:/Users/svgra/Documents/Coding/disc-bot/schema/userSchema.js");
-const snipeSchema = require("C:/Users/svgra/Documents/Coding/disc-bot/schema/userSchema.js");
+const userSchema = require("../../schema/userSchema.js");
+const snipeSchema = require("../../schema/userSchema.js");
 
 const welcome = 'Welcome to the Server! Before you can start enjoying our marvelous community you will have to answer just one question!\nWould you rather eat a baby goat or a matter baby?';
 

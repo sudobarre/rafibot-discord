@@ -1,4 +1,4 @@
-const snipeSchema = require("C:/Users/svgra/Documents/Coding/disc-bot/schema/snipeSchema.js");
+const snipeSchema = require("../../schema/snipeSchema.js");
 
 async function snipe(message){
     let data = await snipeSchema.findOne({channelId: message.channel.id});
