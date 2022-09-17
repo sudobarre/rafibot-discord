@@ -6,25 +6,23 @@ module.exports = {
 	description: 'creates a playlist.',
 	once: true,
 	async execute(client, message, cmd, args) {
-        //format: -rafi createp (title) (description) (visibility) (song url)
-        //                         0          1             2           3  
+        //format: -rafi createp (title) (visibility) (song url)
+        //                         0          1           2          
+        if(args[1] !== 'public' || args[1] !== 'private') return message.reply("You need to specify the playlist visibility!\nFor more information, do '-rafi help'.");
         try {
             const id = message.author.id;
             const user = await userSchema.findOne({userId: id});
             const plists = user.playlists;
             for(let i = 0; i < plists.length; i++){
-                if(plist[i].title === args[0]){
+                if(plist[i].playlist.title === args[0]){
                     return message.reply("A playlist with that title already exists!");
                 }
             };
             const newPlaylist = {
                 type: [String],
-                songs: [args[3]],
-                description: {
-                    title: args[0],
-                    description: args[1],
-                    visibility: args[2],
-                }
+                songs: [args[2]],
+                title: args[0],
+                visibility: args[2],
             };
             console.log(newPlaylist);
             const plist = user.playlists.push(newPlaylist); //song url i guess

@@ -9,14 +9,11 @@ const userSchema = new Schema({
     playlists: [{
         playlist: {
             type: [String],
-            songs: [String],
+            songs: [[String]],
             required: false,
             default: [],
-            description:{
-                title: String,
-                description: String,
-                visibility: Boolean, //public or private.
-            },
+            title: String,
+            visibility: Boolean, //public or private.
         }, 
         required: false,
         default: [[]],

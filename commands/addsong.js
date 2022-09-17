@@ -11,13 +11,14 @@ module.exports = {
             const id = message.author.id;
             const user = await userSchema.findOne({userId: id});
             if(user.playlists.length === 0){
-                return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (title) (description) (songURL) (visibility)" to create a playlist!\nFor more information, do "-rafi help".`);
+                return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (title) (songURL) (public/private)" to create a playlist!\nFor more information, do "-rafi help".`);
             }
             const index = args[1];
             if((!index.isInteger) || index >= user.playlists.length || index < 0) return message.reply("Invalid index!\nTry '-rafi listp' to see all your available playlists!");
 
            
-            const plist = user.playlists[index].push(args[0]); //song url i guess
+            const plist = user.playlists[index];
+            plist.songs.push(args[1]);
             await userSchema.findOneAndUpdate({userId : id}, plist);
             user.save();
             //console.log(user);
