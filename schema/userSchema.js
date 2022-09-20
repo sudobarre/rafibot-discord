@@ -8,8 +8,8 @@ const userSchema = new Schema({
     },
     playlists: [{
         playlist: {
-            type: [String],
-            songs: [[String]],
+            type: [[String]],
+            songs: [[String]], //array of arrays of one song each, made to work with songs cmd.
             required: false,
             default: [],
             title: String,

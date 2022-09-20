@@ -38,13 +38,10 @@ module.exports = {
 
             const {author, channel} = message;
             //change it to array of playlist titles
-            const titles = () => {
-                let res = [];
-                for(let i = 0; i < plists.length; i++){
-                    res.push(plists[i].playlist.title);
-                }
-                return res;
-            };
+              let titles = [];
+              for(let i = 0; i < plists.length; i++){
+                  titles.push(plists[i].playlist.title);
+              }
             console.log(titles);
 
 
@@ -53,20 +50,20 @@ module.exports = {
             //* @returns {Promise<MessageEmbed>}
             
             const generateEmbed = async start => {
-                const current = () => {
-                    let res = [];
+                let current = [];
                     if(titles.length <= 10){
-                        res = titles;
-                        return res;
-                    }
-                    for(let i = 0; i < 10; i++){
+                        current = titles;
+                    } else {
+                      for(let i = 0; i < 10; i++){
                         if(i === titles.length-1){
-                            res.push(plists[i].playlist.title);
-                            return res;    
+                            current.push(plists[i].playlist.title);
+                            i = 10;
+                        } else {
+                          current.push(plists[i].playlist.title);
                         }
-                        res.push(plists[i].playlist.title);
+                      }
                     }
-                };
+                    
                 console.log(current);
             
                 // You can of course customise this embed however you want
