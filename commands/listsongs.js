@@ -21,6 +21,7 @@ module.exports = {
             index--;
             const plist = user.playlists[index].songs;
 
+            message.channel.send(`From playlist ${user.playlists[index].title}:`);
             return this.embedSender(client, message, plist); //return embed
         } catch (error) {
             console.error(error);
