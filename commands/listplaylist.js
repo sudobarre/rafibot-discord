@@ -1,5 +1,6 @@
 const User = require("../schema/userSchema");
 const {MessageActionRow, MessageButton, MessageEmbed} = require('discord.js');
+const { Playlist } = require("discord-player");
 
 
 module.exports = {
@@ -41,8 +42,6 @@ module.exports = {
               for(let i = 0; i < plists.length; i++){
                 titles.push(plists[i].title);
               }
-            console.log(titles);
-
 
             //* Creates an embed with guilds starting from an index.
             ///* @param {number} start The index to start from.
@@ -54,7 +53,7 @@ module.exports = {
                         current = titles;
                     } else {
                       for(let i = 0; i < 10; i++){
-                        if(i === titles.length-1){
+                        if(i === titles.length-1){ //shitty way in case its not multiple of ten, could use modulo later idk too braindead rn lol.
                             current.push(plists[i].title);
                             i = 10;
                         } else {
@@ -62,24 +61,22 @@ module.exports = {
                         }
                       }
                     }
-                    
                 console.log(current);
-            
+
                 // You can of course customise this embed however you want
-                return new MessageEmbed({
-                title: `Showing guilds ${start + 1}-${start + current.length} out of ${
-                    titles.length
-                }`,
+                return new MessageEmbed({   
+                title: `Showing playlists ${start + 1}-${start + current.length} out of ${
+                    titles.length}`,
                 fields: await Promise.all(
-                    current.map(async guild => ({
-                    name:"hi",
-                    value: `hi`
+                    current.map(async (playlist, index) => ({
+                    name:`${index+1}`,
+                    value: `${current[index]}`
                     }))
                 )
                 })
             }
             
-            // Send the embed with the first 10 guilds
+            // Send the embed with the first 10 playlist
             const canFitOnOnePage = titles.length <= 10
             const embedMessage = await channel.send({
                 embeds: [await generateEmbed(0)],
@@ -88,7 +85,7 @@ module.exports = {
                 : [new MessageActionRow({components: [forwardButton]})]
             })
             // Exit if there is only one page of guilds (no need for all of this)
-            if (canFitOnOnePage) return
+            if (canFitOnOnePage) return;
             
             // Collect button interactions (when a user clicks a button),
             // but only when the button as clicked by the original message author
@@ -96,6 +93,7 @@ module.exports = {
                 filter: ({user}) => user.id === author.id
             })
             
+            //doesnt show the next page
             let currentIndex = 0
             collector.on('collect', async interaction => {
                 // Increase/decrease index
@@ -109,7 +107,7 @@ module.exports = {
                         // back button if it isn't the start
                         ...(currentIndex ? [backButton] : []),
                         // forward button if it isn't the end
-                        ...(currentIndex + 10 < guilds.length ? [forwardButton] : [])
+                        ...(currentIndex + 10 < plists.length ? [forwardButton] : [])
                     ]
                     })
                 ]

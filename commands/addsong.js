@@ -1,4 +1,4 @@
-const userSchema = require("../schema/userSchema");
+const User = require("../schema/userSchema");
 
 module.exports = {
 	name :'addsong',
@@ -6,22 +6,22 @@ module.exports = {
 	description: 'adds a song to a playlist.',
 	once: true,
 	async execute(client, message, cmd, args) {
-        //format: -rafi addsong (url) (playlistIndex)
+        //format: -rafi addsong (playlistIndex) (url)
+        //                            0           1  
         try {
             const id = message.author.id;
-            const user = await userSchema.findOne({userId: id});
+            const user = await User.findOne({userId: id});
             if(user.playlists.length === 0){
                 return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (title) (songURL) (public/private)" to create a playlist!\nFor more information, do "-rafi help".`);
             }
-            const index = args[1];
-            if((!index.isInteger) || index >= user.playlists.length || index < 0) return message.reply("Invalid index!\nTry '-rafi listp' to see all your available playlists!");
-
-           
+            let index = parseInt(args[0]);
+            if((!Number.isInteger(index)) || index >= user.playlists.length || index < 0) return message.reply("Invalid index!\nTry '-rafi listp' to see all your available playlists!");
+            index++;
             const plist = user.playlists[index];
-            plist.songs.push(args[1]);
-            await userSchema.findOneAndUpdate({userId : id}, plist);
+            plist.songs.push([args[1]]);
+            user.playlists[index] = plist;
+            //await User.findOneAndUpdate({userId : id}, plist);
             user.save();
-            //console.log(user);
             return message.reply('Song added successfully!');
         } catch (error) {
             console.error(error);
