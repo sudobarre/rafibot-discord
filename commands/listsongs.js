@@ -1,23 +1,35 @@
 const User = require("../schema/userSchema");
 const {MessageActionRow, MessageButton, MessageEmbed} = require('discord.js');
 
-
 module.exports = {
-	name :'listplaylist',
-    aliases: ['listp'],
-	description: 'lists all the playlists available.',
+	name :'listsong',
+    aliases: ['lists'],
+	description: 'lists the songs of a given playlsit.',
 	once: true,
 	async execute(client, message, cmd, args) {
-        //format: -rafi list
+        //format: -rafi listsong (playlistIndex)
+        // could use ytdl to find the title of the video            
+
         try {
             const id = message.author.id;
             const user = await User.findOne({userId: id});
-            const plists = user.playlists;
-            if(plists.length === 0){
+            if(user.playlists.length === 0){
                 return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (title) (songURL) (public/private)" to create a playlist!\nFor more information, do "-rafi help".`);
             }
-            // Constants
+            let index = parseInt(args[0]);
+            if((!Number.isInteger(index)) || index >= user.playlists.length || index < 0) return message.reply("Invalid index!\nTry '-rafi listp' to see all your available playlists!");
+            index--;
+            const plist = user.playlists[index].songs;
 
+            return this.embedSender(client, message, plist); //return embed
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    async embedSender(client, message, plist, args) {
+        //plist: only the array of arrays of one song each.
+        try {
+   
             const backId = 'back'
             const forwardId = 'forward'
             const backButton = new MessageButton({
@@ -32,16 +44,13 @@ module.exports = {
             emoji: '➡️',
             customId: forwardId
             })
-
+    
             // Put the following code wherever you want to send the embed pages:
-
+    
             const {author, channel} = message;
             //change it to array of playlist titles
-              let titles = [];
-              for(let i = 0; i < plists.length; i++){
-                titles.push(plists[i].title);
-              }
-
+              let titles = plist;
+    
             //* Creates an embed with guilds starting from an index.
             ///* @param {number} start The index to start from.
             //* @returns {Promise<MessageEmbed>}
@@ -53,18 +62,18 @@ module.exports = {
                     } else {
                       for(let i = 0; i < 10; i++){
                         if(i === titles.length-1){ //shitty way in case its not multiple of ten, could use modulo later idk too braindead rn lol.
-                            current.push(plists[i].title);
+                            current.push(plist[i]);
                             i = 10;
                         } else {
-                          current.push(plists[i].title);
+                          current.push(plist[i]);
                         }
                       }
                     }
                 console.log(current);
-
+    
                 // You can of course customise this embed however you want
                 return new MessageEmbed({   
-                title: `Showing playlists ${start + 1}-${start + current.length} out of ${
+                title: `Showing songs ${start + 1}-${start + current.length} out of ${
                     titles.length}`,
                 fields: await Promise.all(
                     current.map(async (playlist, index) => ({
@@ -106,7 +115,7 @@ module.exports = {
                         // back button if it isn't the start
                         ...(currentIndex ? [backButton] : []),
                         // forward button if it isn't the end
-                        ...(currentIndex + 10 < plists.length ? [forwardButton] : [])
+                        ...(currentIndex + 10 < plist.length ? [forwardButton] : [])
                     ]
                     })
                 ]
@@ -117,4 +126,5 @@ module.exports = {
         }
     },
 };
-    
+
+
