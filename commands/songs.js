@@ -6,7 +6,7 @@ module.exports = {
     async execute(client, message, cmd, args, Discord){ //play-dl as alternative
         const command = client.commands.get('play');
         const song = ['https://www.youtube.com/watch?v=r6-cbMQALcE']; //15 mins of silence lol
-        command.execute(client, message, 'play', song , Discord, 0);
+        command.execute(client, message, 'play', song , Discord);
          if(!message.member.voice.channel) return;
 
         const row = new MessageActionRow() //ActionRowBuilder()?

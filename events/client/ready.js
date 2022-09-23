@@ -11,9 +11,21 @@ const { Schema } = require("mongoose");
 module.exports = (client) =>{
 	console.log(`Ready! Logged in as ${client.user.tag}`);
 	//removeUser(client);
-	//addUser(client);
+	//addPlaylists(client);
 	
 };
+/*
+async function addPlaylists(client){
+		try {
+			const user = await User.findOne({userId: process.env.rafiAlt});
+			user.playlists[1].songs = chill;
+			await user.save();
+			return console.log("canciones agregadas!");
+			
+		} catch (err) {
+		  console.log(err);
+		} 
+		}; 
 /*
 const rafiCatch =  [
     'has been called the Albert Einstein of our generation',
@@ -56,7 +68,7 @@ const rafiCatch =  [
 	}; */
 
 /*
-	async function removeUser(client){
+	async function removePlaylists(client){
 		try {
 			const user = await User.findOne({userId: process.env.rafiAlt});
 			user.playlists = [];

@@ -4,7 +4,7 @@ const ytdl = require('ytdl-core');
 
 module.exports = {
 	name :'createplaylist',
-    aliases: ['createp'],
+    aliases: ['createp', 'addp'],
 	description: 'creates a playlist.',
 	once: true,
 	async execute(client, message, cmd, args) {
@@ -13,7 +13,7 @@ module.exports = {
         //function to validate regex, yt validate from ytdl
 
         if(!(args[1] === 'public' || args[1] === 'private')) return message.reply("You need to specify the playlist visibility!\nFor more information, do '-rafi help'.");
-        if(!ytdl.validateURL(args[2])) return message.reply('Invalid song! Song needs to be a YouTube URL.')
+        if(!ytdl.validateURL(args[2])) return message.reply('Invalid song! Song needs to be a YouTube URL.');
         try {
             const id = message.author.id;
             function visib(arg){
@@ -23,6 +23,7 @@ module.exports = {
             const plistTitle = args[0];
             const v = visib(args[1]);
             const user = await User.findOne({userId:id});
+            if(user.playlists.length >= 10) return message.reply("Limit of 10 playlists reached! Please delete a playlist, or add songs to an existing one.\nFor more information, do -rafi help.");
             for(let i = 0; i < user.playlists.length; i++){
                 if(user.playlists[i].title === plistTitle) return message.reply("A playlist with that title already exists!");
             }

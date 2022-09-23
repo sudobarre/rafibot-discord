@@ -18,11 +18,11 @@ module.exports = {
                 return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (title) (songURL) (public/private)" to create a playlist!\nFor more information, do "-rafi help".`);
             }
             let index = parseInt(args[0]);
-            if((!Number.isInteger(index)) || index >= user.playlists.length || index < 0) return message.reply("Invalid index!\nTry '-rafi listp' to see all your available playlists!");
+            if((!Number.isInteger(index)) || index > user.playlists.length || index <= 0) return message.reply("Invalid index!\nTry '-rafi listp' to see all your available playlists!");
             index--;
             const plist = user.playlists[index].songs;
 
-            message.channel.send(`From playlist ${user.playlists[index].title}:`);
+            message.channel.send(`From playlist "${user.playlists[index].title}":`);
             return this.embedSender(client, message, plist); //return embed
         } catch (error) {
             console.error(error);
@@ -72,7 +72,6 @@ module.exports = {
                       }
                     }
                 console.log(current);
-                    var hi;
                 // You can of course customise this embed however you want
                 //current = array of plist of 10 elements max, cycles with forward/back buttons.
 
