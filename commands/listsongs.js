@@ -1,5 +1,6 @@
 const User = require("../schema/userSchema");
 const {MessageActionRow, MessageButton, MessageEmbed} = require('discord.js');
+const ytdl = require('ytdl-core');
 
 module.exports = {
 	name :'listsong',
@@ -71,15 +72,18 @@ module.exports = {
                       }
                     }
                 console.log(current);
-    
+                    var hi;
                 // You can of course customise this embed however you want
+                //current = array of plist of 10 elements max, cycles with forward/back buttons.
+
+                
                 return new MessageEmbed({   
                 title: `Showing songs ${start + 1}-${start + current.length} out of ${
                     titles.length}`,
                 fields: await Promise.all(
                     current.map(async (playlist, index) => ({
                     name:`${index+1}`,
-                    value: `${current[index]}`
+                    value: `${await this.details(current, index)}\n ${current[index]}`,
                     }))
                 )
                 })
@@ -126,6 +130,11 @@ module.exports = {
             console.error(error);
         }
     },
+    async details(current, i){
+        let temp = await ytdl.getInfo(current[i].toString());
+        return temp.videoDetails.title;
+    } 
 };
+
 
 

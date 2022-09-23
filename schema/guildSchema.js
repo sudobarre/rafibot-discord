@@ -9,4 +9,4 @@ const guildSchema = new Schema({
     },
 });
 
-module.exports = model("guildSchema", guildSchema);
+module.exports = model("Guild", guildSchema);

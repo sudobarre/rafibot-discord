@@ -4,7 +4,7 @@ const {MessageActionRow, MessageButton, MessageEmbed} = require('discord.js');
 
 module.exports = {
 	name :'listplaylist',
-    aliases: ['listp'],
+    aliases: ['listp', 'listplaylists'],
 	description: 'lists all the playlists available.',
 	once: true,
 	async execute(client, message, cmd, args) {

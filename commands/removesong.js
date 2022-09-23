@@ -2,7 +2,7 @@ const User = require("../schema/userSchema");
 
 module.exports = {
 	name :'removesong',
-    aliases: ['remsong'],
+    aliases: ['removesongs'],
 	description: 'removes a song from a playlist.',
 	once: true,
 	async execute(client, message, cmd, args) {

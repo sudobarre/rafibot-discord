@@ -1,5 +1,6 @@
 const User = require("../schema/userSchema");
 const Playlist = require("../schema/playlistSchema");
+const ytdl = require('ytdl-core');
 
 module.exports = {
 	name :'createplaylist',
@@ -12,6 +13,7 @@ module.exports = {
         //function to validate regex, yt validate from ytdl
 
         if(!(args[1] === 'public' || args[1] === 'private')) return message.reply("You need to specify the playlist visibility!\nFor more information, do '-rafi help'.");
+        if(!ytdl.validateURL(args[2])) return message.reply('Invalid song! Song needs to be a YouTube URL.')
         try {
             const id = message.author.id;
             function visib(arg){
@@ -32,7 +34,7 @@ module.exports = {
             newPlaylist.save();         
             user.playlists.push(newPlaylist);
             user.save();
-            return message.reply('Playlist created successfully!');
+            return message.channel.send('Playlist created successfully!');
         } catch (error) {
             console.error(error);
         }
