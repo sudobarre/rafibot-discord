@@ -1,4 +1,4 @@
-const userSchema = require("../schema/userSchema");
+const User = require("../schema/userSchema");
 require('dotenv').config();
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
             if(!mention){
                 message.reply("Could not find the user you specified. Make sure to tag them!");
             }
-            const user = await userSchema.findOne({userId: mention.id});
+            const user = await User.findOne({userId: mention.id});
             const quotesArr = user.quotes;
             if(quotesArr.length === 0){
                 return message.channel.send("Member has no quotes yet! Do -rafi addquote (memberTag) (quote) to start adding quotes!");

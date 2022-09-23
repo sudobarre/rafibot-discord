@@ -1,4 +1,5 @@
-const userSchema = require("../schema/userSchema");
+const User = require("../schema/userSchema");
+const Playlist = require("../schema/playlistSchema");
 
 module.exports = {
 	name :'createplaylist',
@@ -13,39 +14,74 @@ module.exports = {
         if(!(args[1] === 'public' || args[1] === 'private')) return message.reply("You need to specify the playlist visibility!\nFor more information, do '-rafi help'.");
         try {
             const id = message.author.id;
-            const user = await userSchema.findOne({userId: id});
-            const playlists = user.playlists;
-            console.log("playlists: " + playlists);
-
-            const newP = {
-                type: [[String]],
-                songs: [args[2]],
-                title: args[0],
-                visibility: args[1],
+            function visib(arg){
+                return  arg === "public" ? true : false;
             };
-            let newPlaylist = newP;
-            console.log("new plist: " + newPlaylist.songs);
+            const newSongs = args[2];
+            const plistTitle = args[0];
+            const v = visib(args[1]);
+            const user = await User.findOne({userId:id});
+            for(let i = 0; i < user.playlists.length; i++){
+                if(user.playlists[i].title === plistTitle) return message.reply("A playlist with that title already exists!");
+            }
+            console.log(user);
+            const newPlaylist = new Playlist({
+                songs: [[newSongs]],
+                title: plistTitle,
+                visibility: v
+            });
+            newPlaylist.save();         
+            user.playlists.push(newPlaylist);
+            console.log(user.playlists);
+            user.save();
 
-            if(playlists.length === 0){
-                const playlists = playlists.push(newPlaylist); //song url i guess
-                await userSchema.findOneAndUpdate({userId : id}, playlists);
-                user.save();
-                console.log("esta yendo al primer coso " + user);
-                return message.reply('Playlist created successfully!');
-            } else {
+
+            //console.log(newUser);
+            //for(let i = 0; i < newUser.playlists.length; i++){
+            //   console.log(newUser.playlists.songs);
+            //}
+            return message.reply('Playlist created successfully!');
+
+           /* 
+            if(playlists.length != 0){
                 for(let i = 0; i < playlists.length; i++){
-                    if(playlists[i].playlist.title === args[0]){
+                    console.log(playlists[i].title);
+                    if(playlists[i].title === args[0]){
                         return message.reply("A playlist with that title already exists!");
                     }
                 };
-                playlists.push(newPlaylist); //song url i guess
-                console.log("las nuevas playlists son:\n");
-                console.log(playlists);
-                await userSchema.findOneAndUpdate({userId : id}, playlists);
-                user.save();
-                //console.log(user);
-                return message.reply('Playlist created successfully!');
-            }
+            } 
+               
+            const user = await userSchema.findOne({userId : id});
+            var playlistModel = new playlistSchema();
+            playlistModel.songs = [[newSongs]];
+            playlistModel.title = plistTitle;
+            playlistModel.visibility = v;
+            let newPlaylists = user.playlists;
+            newPlaylists.push(playlistModel); //el playlistModel es un objeto vacio aunque sus partes no lo son
+            await userSchema.findOneAndUpdate({userId : id}, {playlists:newPlaylists});
+
+
+
+            user.save(function (err) {
+                if (err) return handleError(err);
+
+                const plist = new playlistSchema({
+                    songs: [[newSongs]],
+                    title: plistTitle,
+                    visibility: v
+                });
+
+                playlistSchema.save(function (err) {
+                    if (err) return handleError(err);
+                    // that's it!
+                });
+            });
+            
+*/
+
+            
+
         } catch (error) {
             console.error(error);
         }

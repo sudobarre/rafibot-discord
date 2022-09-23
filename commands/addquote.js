@@ -1,4 +1,5 @@
-const userSchema = require("../schema/userSchema");
+const User = require("../schema/userSchema");
+
 
 module.exports = {
 	name :'addquote',
@@ -6,6 +7,7 @@ module.exports = {
     aliases: ['addq'],
 	once: true,
 	async execute(client, message, cmd, args) {
+        //tag - quote
         function getUserFromMention(mention) {
             if (!mention) return;
         
@@ -25,13 +27,11 @@ module.exports = {
         quoteArr.shift();
         const quote = quoteArr.join(' ');
         try {
-            const user = await userSchema.findOne({userId: mention.id});
+            const user = await User.findOne({userId: mention.id});
             const newQuotesArr = user.quotes;
             newQuotesArr.push(quote);
             const newQuotes = {quotes:newQuotesArr};
-            await userSchema.findOneAndUpdate({userId:mention.id}, newQuotes);
-            user.save();
-            //console.log(user);
+            await User.findOneAndUpdate({userId:mention.id}, newQuotes);
             return message.reply('Quote added successfully!');
         } catch (error) {
             console.error(error);

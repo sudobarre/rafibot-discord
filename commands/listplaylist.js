@@ -1,4 +1,4 @@
-const userSchema = require("../schema/userSchema");
+const User = require("../schema/userSchema");
 const {MessageActionRow, MessageButton, MessageEmbed} = require('discord.js');
 
 
@@ -11,12 +11,11 @@ module.exports = {
         //format: -rafi list
         try {
             const id = message.author.id;
-            const user = await userSchema.findOne({userId: id});
+            const user = await User.findOne({userId: id});
             const plists = user.playlists;
             if(plists.length === 0){
                 return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (title) (songURL) (public/private)" to create a playlist!\nFor more information, do "-rafi help".`);
             }
-            //do the cool paginated embed here, may have to work with interactions so idk.
             // Constants
 
             const backId = 'back'
@@ -40,7 +39,7 @@ module.exports = {
             //change it to array of playlist titles
               let titles = [];
               for(let i = 0; i < plists.length; i++){
-                  titles.push(plists[i].playlist.title);
+                titles.push(plists[i].title);
               }
             console.log(titles);
 
@@ -56,10 +55,10 @@ module.exports = {
                     } else {
                       for(let i = 0; i < 10; i++){
                         if(i === titles.length-1){
-                            current.push(plists[i].playlist.title);
+                            current.push(plists[i].title);
                             i = 10;
                         } else {
-                          current.push(plists[i].playlist.title);
+                          current.push(plists[i].title);
                         }
                       }
                     }
