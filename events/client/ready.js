@@ -19,12 +19,12 @@ module.exports = (client) =>{
 async function addUser(client){
     try {
 		const rafi = new User({
-			userId: process.env.sima,
+			userId: process.env.rafi,
 			quotes: []
 		});
 		await rafi.save();
 		console.log("added rafiAlt");
-		const user = await User.findOne({userId: process.env.sima});
+		const user = await User.findOne({userId: process.env.rafi});
 		return console.log(user);
 		
     } catch (err) {

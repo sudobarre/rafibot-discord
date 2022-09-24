@@ -10,7 +10,14 @@ module.exports = {
 	async execute(client, message, cmd, args) {
         //format: -rafi list (optional tag), check args length, if it is more than 1 then it means theres a tag.
         try {
-            const id = message.author.id;
+            let id;
+            if(args.length != 0){ //check if a tag was passed to play someone else's songs.
+                id = getUserFromMention(args[0]);
+                if(!id) return message.reply('Invalid mention! Make sure the member you tagged is in the server!');
+                id = id.id; //dont try this at home.
+            }else{
+                id = message.author.id;
+            }
             const user = await User.findOne({userId: id});
             const plists = user.playlists;
             if(plists.length === 0){
@@ -67,6 +74,20 @@ module.exports = {
            
         } catch (error) {
             console.error(error);
+        }
+        function getUserFromMention(mention) {
+            if (!mention) return;
+        
+            if (mention.startsWith('<@') && mention.endsWith('>')) {
+                mention = mention.slice(2, -1);
+        
+                if (mention.startsWith('!')) {
+                    mention = mention.slice(1);
+                }
+        
+                return client.users.cache.get(mention);
+            }
+            return 0;
         }
     },
 };

@@ -36,13 +36,13 @@ module.exports = {
             const forwardId = 'forward'
             const backButton = new MessageButton({
             style: 'SECONDARY',
-            label: 'Previous',
+            label: 'Back',
             emoji: '⬅️',
             customId: backId
             })
             const forwardButton = new MessageButton({
             style: 'SECONDARY',
-            label: 'Next',
+            label: 'Forward',
             emoji: '➡️',
             customId: forwardId
             })

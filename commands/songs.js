@@ -6,9 +6,8 @@ const User = require("../schema/userSchema");
 module.exports = {
     name: 'songs',
     async execute(client, message, cmd, args, Discord){ //play-dl as alternative
-        //optional: if args isnt empty then check for tag.
         let id;
-        if(args.length != 0){
+        if(args.length != 0){ //check if a tag was passed to play someone else's songs.
             id = getUserFromMention(args[0]);
             if(!id) return message.reply('Invalid mention! Make sure the member you tagged is in the server!');
             id = id.id; //dont try this at home.
@@ -27,12 +26,11 @@ module.exports = {
         let current = user.playlists;
         //current would be my playlists
 
-            const row = new MessageActionRow() //ActionRowBuilder()?
+            const row = new MessageActionRow()
             .addComponents(
-                new MessageSelectMenu() //SelectMenuBuilder()?
+                new MessageSelectMenu() 
                 .setCustomId('choose-song')
                 .setPlaceholder('Choose a playlist to hear from.')
-    //            .setDisabled(true)
                 .addOptions([await Promise.all(current.map(async (playlist, index) => ({
                     label:`${current[index].title}`,
                     value: `${[index, id]}`,
