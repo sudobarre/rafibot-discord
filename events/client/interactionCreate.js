@@ -1,4 +1,6 @@
-//const messageCreate = require("../guild/messageCreate");
+const User = require("../../schema/userSchema");
+
+
 const oldSong1 = 'https://www.youtube.com/watch?v=kMzlN9-Db1A';
 const oldSong2 = 'https://www.youtube.com/watch?v=F2EmooQ1Iag';
 const oldSong3 = 'https://www.youtube.com/watch?v=hUwCSXMC-4s';
@@ -108,7 +110,7 @@ async function playSongs(songs, interaction, client, Discord){
   } catch (error) {
     console.error(error);
     await interaction.reply({
-      content: "There was an error while executing play.",
+      content: "There was an error while executing play on interactionCreate.",
       ephemeral: true,
     });
   }
@@ -138,6 +140,12 @@ module.exports = (client, Discord, interaction) => {
       //playSongs(songs, interaction, client, Discord)
 
       if (interaction.customId === "choose-song") {
+        const user = await User.findOne({userId:interaction.user.id});
+        const idx = parseInt(interaction.values[0]);
+        const plist = user.playlists[idx];
+        playSongs(plist.songs, interaction, client, Discord);
+
+/*
         switch (interaction.values[0]) {
           case "Sweet dreams!":
             switch (interaction.user.id) {
@@ -231,7 +239,7 @@ module.exports = (client, Discord, interaction) => {
           default: //none left, just break.
             //users
             break;
-        }
+        } */
       }
     }
   }

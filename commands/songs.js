@@ -26,10 +26,10 @@ module.exports = {
                 .setCustomId('choose-song')
                 .setPlaceholder('Choose a playlist to hear from.')
     //            .setDisabled(true)
-                .addOptions([current.map(async (playlist, index) => ({
+                .addOptions([await Promise.all(current.map(async (playlist, index) => ({
                     label:`${current[index].title.toString()}`,
                     value: `${index}`,
-                    }))]),         
+                    })))]),         
             );
             const embed = new MessageEmbed().setTitle('Hi! What type of music do you wanna listen to?');
 
@@ -46,7 +46,7 @@ module.exports = {
             collected.deferUpdate();
 
             collected.channel.send({
-                content: value,
+                content: "Enjoy!",
                 ephemeral: true,
             });
             
