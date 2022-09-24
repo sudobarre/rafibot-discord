@@ -23,7 +23,7 @@ module.exports = {
             const plist = user.playlists[index].songs;
 
             message.channel.send(`From playlist "${user.playlists[index].title}":`);
-            return this.embedSender(client, message, plist); //return embed
+            return await this.embedSender(client, message, plist); //return embed
         } catch (error) {
             console.error(error);
         }
@@ -51,7 +51,7 @@ module.exports = {
     
             const {author, channel} = message;
             //change it to array of playlist titles
-              let titles = plist;
+            let titles = plist;
     
             //* Creates an embed with guilds starting from an index.
             ///* @param {number} start The index to start from.
@@ -59,21 +59,16 @@ module.exports = {
             
             const generateEmbed = async start => {
                 let current = [];
-                    if(titles.length <= 10){
-                        current = titles;
-                    } else {
-                      for(let i = 0; i < 10; i++){
+                      for(let i = start; i < start+5; i++){
                         if(i === titles.length-1){ //shitty way in case its not multiple of ten, could use modulo later idk too braindead rn lol.
                             current.push(plist[i]);
-                            i = 10;
+                            i = start + 5;
                         } else {
                           current.push(plist[i]);
                         }
                       }
-                    }
-                console.log(current);
                 // You can of course customise this embed however you want
-                //current = array of plist of 10 elements max, cycles with forward/back buttons.
+                //current = array of plist of 5 elements max, cycles with forward/back buttons.
 
                 
                 return new MessageEmbed({   
@@ -81,7 +76,7 @@ module.exports = {
                     titles.length}`,
                 fields: await Promise.all(
                     current.map(async (playlist, index) => ({
-                    name:`${index+1}`,
+                    name:`${index+1+start}`,
                     value: `${await this.details(current, index)}\n ${current[index]}`,
                     }))
                 )
@@ -89,7 +84,7 @@ module.exports = {
             }
             
             // Send the embed with the first 10 playlist
-            const canFitOnOnePage = titles.length <= 10
+            const canFitOnOnePage = titles.length <= 5
             const embedMessage = await channel.send({
                 embeds: [await generateEmbed(0)],
                 components: canFitOnOnePage
@@ -109,7 +104,7 @@ module.exports = {
             let currentIndex = 0
             collector.on('collect', async interaction => {
                 // Increase/decrease index
-                interaction.customId === backId ? (currentIndex -= 10) : (currentIndex += 10)
+                interaction.customId === backId ? (currentIndex -= 5) : (currentIndex += 5)
                 // Respond to interaction by updating message with new embed
                 await interaction.update({
                 embeds: [await generateEmbed(currentIndex)],
@@ -119,7 +114,7 @@ module.exports = {
                         // back button if it isn't the start
                         ...(currentIndex ? [backButton] : []),
                         // forward button if it isn't the end
-                        ...(currentIndex + 10 < plist.length ? [forwardButton] : [])
+                        ...(currentIndex + 5 < plist.length ? [forwardButton] : [])
                     ]
                     })
                 ]
