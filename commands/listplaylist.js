@@ -8,7 +8,7 @@ module.exports = {
 	description: 'lists all the playlists available.',
 	once: true,
 	async execute(client, message, cmd, args) {
-        //format: -rafi list
+        //format: -rafi list (optional tag), check args length, if it is more than 1 then it means theres a tag.
         try {
             const id = message.author.id;
             const user = await User.findOne({userId: id});

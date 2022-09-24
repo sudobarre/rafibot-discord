@@ -23,7 +23,7 @@ module.exports = {
             const plist = user.playlists[index].songs;
 
             message.channel.send(`From playlist "${user.playlists[index].title}":`);
-            return await this.embedSender(client, message, plist); //return embed
+            return this.embedSender(client, message, plist); //return embed
         } catch (error) {
             console.error(error);
         }
@@ -60,14 +60,13 @@ module.exports = {
             const generateEmbed = async start => {
                 let current = [];
                       for(let i = start; i < start+5; i++){
-                        if(i === titles.length-1){ //shitty way in case its not multiple of ten, could use modulo later idk too braindead rn lol.
+                        if(i === titles.length-1){ 
                             current.push(plist[i]);
-                            i = start + 5;
+                            i = start + 5; //shitty way in case its not multiple of ten, could use modulo later idk too braindead rn lol.
                         } else {
                           current.push(plist[i]);
                         }
                       }
-                // You can of course customise this embed however you want
                 //current = array of plist of 5 elements max, cycles with forward/back buttons.
 
                 

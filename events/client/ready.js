@@ -12,8 +12,25 @@ module.exports = (client) =>{
 	console.log(`Ready! Logged in as ${client.user.tag}`);
 	//removeUser(client);
 	//addPlaylists(client);
+	//addUser(client);
 	
 };
+/*
+async function addUser(client){
+    try {
+		const rafi = new User({
+			userId: process.env.sima,
+			quotes: []
+		});
+		await rafi.save();
+		console.log("added rafiAlt");
+		const user = await User.findOne({userId: process.env.sima});
+		return console.log(user);
+		
+    } catch (err) {
+      console.log(err);
+    } 
+	};
 /*
 async function addPlaylists(client){
 		try {
