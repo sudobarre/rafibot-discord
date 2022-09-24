@@ -24,14 +24,6 @@ module.exports = (client, Discord, message) => {
       message.react("🧉");
       message.react("💯");
     }
-    /*if (
-      msg.startsWith("whats a") ||
-      msg.startsWith(`what is`) ||
-      msg.startsWith(`what's`)
-    ) {
-      message.reply("Nothing much sugar whats the matter with you");
-      message.channel.send("gottem");
-    }*/
     switch (message.author.id) {
       case process.env.sima:
         if (

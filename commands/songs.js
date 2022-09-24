@@ -6,8 +6,15 @@ const User = require("../schema/userSchema");
 module.exports = {
     name: 'songs',
     async execute(client, message, cmd, args, Discord){ //play-dl as alternative
-
-        const id = message.author.id;
+        //optional: if args isnt empty then check for tag.
+        let id;
+        if(args.length != 0){
+            id = getUserFromMention(args[0]);
+            if(!id) return message.reply('Invalid mention! Make sure the member you tagged is in the server!');
+            id = id.id; //dont try this at home.
+        }else{
+            id = message.author.id;
+        }
         const user = await User.findOne({userId: id});
         if(user.playlists.length === 0){
             return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (title) (songURL) (public/private)" to create a playlist!\nFor more information, do "-rafi help".`);
@@ -27,8 +34,8 @@ module.exports = {
                 .setPlaceholder('Choose a playlist to hear from.')
     //            .setDisabled(true)
                 .addOptions([await Promise.all(current.map(async (playlist, index) => ({
-                    label:`${current[index].title.toString()}`,
-                    value: `${index}`,
+                    label:`${current[index].title}`,
+                    value: `${[index, id]}`,
                     })))]),         
             );
             const embed = new MessageEmbed().setTitle('Hi! What type of music do you wanna listen to?');
@@ -41,10 +48,7 @@ module.exports = {
 
         collector.on('collect', async(collected) =>{
             const value = collected.values[0];
-
-           
             collected.deferUpdate();
-
             collected.channel.send({
                 content: "Enjoy!",
                 ephemeral: true,
@@ -52,6 +56,21 @@ module.exports = {
             
         });
        message.channel.send({embeds: [embed], components: [row]});
+
+       function getUserFromMention(mention) {
+        if (!mention) return;
+    
+        if (mention.startsWith('<@') && mention.endsWith('>')) {
+            mention = mention.slice(2, -1);
+    
+            if (mention.startsWith('!')) {
+                mention = mention.slice(1);
+            }
+    
+            return client.users.cache.get(mention);
+        }
+        return 0;
+    }
     },
 }; 
             /*

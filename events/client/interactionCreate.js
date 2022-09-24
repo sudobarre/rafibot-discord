@@ -138,11 +138,13 @@ module.exports = (client, Discord, interaction) => {
       }
     } else if (interaction.isSelectMenu()) {
       //playSongs(songs, interaction, client, Discord)
-
       if (interaction.customId === "choose-song") {
-        const user = await User.findOne({userId:interaction.user.id});
+        //interaction.values is an arr of 1 element consisting of [index, id].
+        const id = parseInt(interaction.values[0].substring(2));
+        const user = await User.findOne({userId:id});
         const idx = parseInt(interaction.values[0]);
         const plist = user.playlists[idx];
+        //check for visibility here.
         playSongs(plist.songs, interaction, client, Discord);
 
 /*
