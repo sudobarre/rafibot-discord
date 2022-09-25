@@ -1,2 +1,2 @@
-# discord-Bot
-A utility/music discord bot using discord.js api. 
+# RafiBot
+A utility/music discord bot using discord.js. 
