@@ -39,49 +39,6 @@ module.exports = {
             }
             return 0;
         }
-        /*
- 
-        switch(args[0]){
-            case 'fun':
-                message.reply(funCatch[Math.floor(Math.random() * funCatch.length)]);
-                return;
-            case 'rafi':
-                message.reply(rafiCatch[Math.floor(Math.random() * rafiCatch.length)]);
-                return;
-            case 'ryan':
-                message.reply(ryanCatch[Math.floor(Math.random() * ryanCatch.length)]);
-                return;
-            case 'aysan':
-                message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
-                return;
-            case 'ice':
-                message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
-                return;
-            case 'sun':
-                message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
-                return;
-            case 'icesun':
-                message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
-                return;
-            case 'angel':
-                message.reply(aysanCatch[Math.floor(Math.random() * aysanCatch.length)]);
-                return;
-            case 'bitch':
-                message.reply(simaCatch[Math.floor(Math.random() * simaCatch.length)]);
-                return;
-            case 'mayer':
-                message.reply(mayerCatch[Math.floor(Math.random() * mayerCatch.length)]);
-                return;
-            case 'ard':
-                message.reply(ardCatch[Math.floor(Math.random() * ardCatch.length)]);
-                return;
-            case 'sima':
-                message.reply(simaCatch[Math.floor(Math.random() * simaCatch.length)]);
-                return;
-            default:
-                break;
-        }
-  
-        */
+       
     },
 };
