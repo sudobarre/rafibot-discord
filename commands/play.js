@@ -32,12 +32,12 @@ function shuffleArray(array) { //usage: arr = shuffleArray(arr); to use with fla
 
 module.exports = {
     name: 'play',
-    aliases: ['p', 'skip', 'stop', 'queue', 'pause', 'unpause'], //add shuffle, play alias for interaction play
+    aliases: ['p', 'skip', 'stop', 'queue', 'pause', 'unpause'], //add shuffle
     description: 'plays music',
     async execute(client, message, cmd, args, Discord, flagint){
         if(!(flagint)){ //if its an odd number it will skip this. Used with interactions
             var voice_channel = message.member.voice.channel;
-            if (!voice_channel) return message.channel.send('You need to be in a voice channel to execute this command.');
+            if (!voice_channel) return message.channel.send('You need to be in a channel to execute this command.');
             const permissions = voice_channel.permissionsFor(message.client.user);
             if (!permissions.has('CONNECT')) return message.channel.send('You dont have permission to do that');
             if (!permissions.has('SPEAK')) return message.channel.send('You dont have permission to do that');
