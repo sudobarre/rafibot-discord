@@ -168,10 +168,10 @@ module.exports = (client, Discord, interaction) => {
           idx = parseInt(interaction.values[0]); //index
           const plist = user.playlists[idx];
           //check for visibility here
-          if(id != interaction.user.id && !plist.visibility ){
-            return interaction.reply("This playlist is set to private.");
-          } else {
+          if(!(id != interaction.user.id && !plist.visibility)){
             playSongs(plist.songs, interaction, client, Discord);
+          } else {
+            interaction.deleteReply();
           }
           break;
         default:

@@ -11,10 +11,23 @@ const { Schema } = require("mongoose");
 module.exports = (client) =>{
 	console.log(`Ready! Logged in as ${client.user.tag}`);
 	//removeUser(client);
+	//removePlaylists(client);
 	//addPlaylists(client);
 	//addUser(client);
 	
 };
+/*
+async function removePlaylists(client){
+	try {
+		const user = await User.findOne({userId: process.env.rafi});
+		user.playlists = [];
+		await user.save();
+		return console.log("deleted all playlists.");
+		
+	} catch (err) {
+	  console.log(err);
+	} 
+	};
 /*
 async function addUser(client){
     try {

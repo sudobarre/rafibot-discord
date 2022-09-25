@@ -4,15 +4,22 @@ const ytdl = require('ytdl-core');
 
 module.exports = {
 	name :'listsong',
-    aliases: ['lists'],
+    aliases: ['lists', 'listsongs'],
 	description: 'lists the songs of a given playlsit.',
 	once: true,
 	async execute(client, message, cmd, args) {
-        //format: -rafi listsong (playlistIndex)
+        //format: -rafi listsong (playlistIndex) (optional tag)
         // could use ytdl to find the title of the video            
 
         try {
-            const id = message.author.id;
+            let id;
+            if(args.length > 1){
+                id = getUserFromMention(args[1]);
+                if(!id) return message.reply('Invalid mention! Make sure the member you tagged is in the server!');
+                id = id.id; //dont try this at home.
+            }else{
+                id = message.author.id;
+            }           
             const user = await User.findOne({userId: id});
             if(user.playlists.length === 0){
                 return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (title) (songURL) (public/private)" to create a playlist!\nFor more information, do "-rafi help".`);
@@ -20,12 +27,28 @@ module.exports = {
             let index = parseInt(args[0]);
             if((!Number.isInteger(index)) || index > user.playlists.length || index <= 0) return message.reply("Invalid index!\nTry '-rafi listp' to see all your available playlists!");
             index--;
+            if(id != message.author.id && !user.playlists[index].visibility) return message.reply("The playlist you are trying to see is set to private.");
             const plist = user.playlists[index].songs;
 
-            message.channel.send(`From playlist "${user.playlists[index].title}":`);
+            const embed = new MessageEmbed().setTitle(`From playlist "${user.playlists[index].title}":`);
+            message.channel.send({embeds: [embed]});
             return this.embedSender(client, message, plist); //return embed
         } catch (error) {
             console.error(error);
+        }
+        function getUserFromMention(mention) {
+            if (!mention) return;
+        
+            if (mention.startsWith('<@') && mention.endsWith('>')) {
+                mention = mention.slice(2, -1);
+        
+                if (mention.startsWith('!')) {
+                    mention = mention.slice(1);
+                }
+        
+                return client.users.cache.get(mention);
+            }
+            return 0;
         }
     },
     async embedSender(client, message, plist, args) {

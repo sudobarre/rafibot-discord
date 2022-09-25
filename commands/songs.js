@@ -16,7 +16,7 @@ module.exports = {
         }
         const user = await User.findOne({userId: id});
         if(user.playlists.length === 0){
-            return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (title) (songURL) (public/private)" to create a playlist!\nFor more information, do "-rafi help".`);
+            return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (public/private) (title) (songURL)" to create a playlist!\nFor more information, do "-rafi help".`);
         }
         const command = client.commands.get('play');
         const song = ['https://www.youtube.com/watch?v=r6-cbMQALcE']; //15 mins of silence lol
@@ -46,11 +46,24 @@ module.exports = {
 
         collector.on('collect', async(collected) =>{
             const value = collected.values[0];
-            collected.deferUpdate();
-            collected.channel.send({
-                content: "Enjoy!",
-                ephemeral: true,
-            });
+            id = parseInt(collected.values[0].substring(2)); //id
+            idx = parseInt(collected.values[0]); //index
+            const plist = user.playlists[idx];
+            //check for visibility here
+            if(id != message.author.id && !plist.visibility ){
+                collected.deferUpdate();
+                collected.channel.send({
+                    content: "This playlist is set to private.",
+                    ephemeral: true,
+                });
+            } else {
+                collected.deferUpdate();
+                collected.channel.send({
+                    content: "Enjoy!",
+                    ephemeral: true,
+                });
+            }
+            
             
         });
        message.channel.send({embeds: [embed], components: [row]});

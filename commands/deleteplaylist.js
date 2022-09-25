@@ -8,7 +8,7 @@ module.exports = {
 	description: 'deletes a playlist.',
 	once: true,
 	async execute(client, message, cmd, args) {
-        //format: -rafi removeplaylist (playlistIndex) 
+        //format: -rafi removeplaylist
         const id = message.author.id;
         const user = await User.findOne({userId: id});
         if(user.playlists.length === 0){
