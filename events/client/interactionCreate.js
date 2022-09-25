@@ -1,4 +1,6 @@
-//const messageCreate = require("../guild/messageCreate");
+const User = require("../../schema/userSchema");
+
+
 const oldSong1 = 'https://www.youtube.com/watch?v=kMzlN9-Db1A';
 const oldSong2 = 'https://www.youtube.com/watch?v=F2EmooQ1Iag';
 const oldSong3 = 'https://www.youtube.com/watch?v=hUwCSXMC-4s';
@@ -88,6 +90,17 @@ const rafiStudy = [[astronaut], [osrs], [tes], [relPokemon], [dpp], [hgss], [bw]
 const moStudy = [[lofigirl2], [lofigirl3], [lofigirl4]];
 
 
+
+
+
+
+
+
+
+
+
+
+
 async function playSongs(songs, interaction, client, Discord){
   try {
     const commandPlay = client.commands.get("play");
@@ -96,7 +109,7 @@ async function playSongs(songs, interaction, client, Discord){
       .then(
         () => {
           return commandPlay.execute(
-            client, interaction, "skip", [], Discord, 1);
+            client, interaction, "skip", [], Discord);
         },
         () => {
           return console.log("Oopsie Woopsie, thewe was an ewwoww while queueing songs. So sowwy senpai!!! uwu");
@@ -108,15 +121,14 @@ async function playSongs(songs, interaction, client, Discord){
   } catch (error) {
     console.error(error);
     await interaction.reply({
-      content: "There was an error while executing play.",
+      content: "There was an error while executing play on interactionCreate.",
       ephemeral: true,
     });
   }
 }
 
-module.exports = (client, Discord, interaction) => {
-  console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction: ${interaction}`);
 
+module.exports = (client, Discord, interaction) => {
   async function handleCommand() {
     if (interaction.isCommand()) {
       const slashcmd = client.slashcommands.get(interaction.commandName);
@@ -135,105 +147,39 @@ module.exports = (client, Discord, interaction) => {
           ephemeral: true,
         });
       }
-    } else if (interaction.isSelectMenu()) {
-      //playSongs(songs, interaction, client, Discord)
-
-      if (interaction.customId === "choose-song") {
-        switch (interaction.values[0]) {
-          case "Sweet dreams!":
-            switch (interaction.user.id) {
-              case process.env.sima:
-                {
-
-                  playSongs(simaSleep, interaction, client, Discord);
-
-                }
-                break;
-              case process.env.simaAlt:
-                //same thing lol
-                {
-                  playSongs(simaSleep, interaction, client, Discord);
-                }
-                break;
-              default:
-                {
-                  playSongs(sleep, interaction, client, Discord);
-                }
-                break;
-            }
-            //users i guess
-            break;
-          case "Goodluck!":
-            switch (interaction.user.id) {
-              case process.env.moBitch:
-                {
-
-                  playSongs(moStudy, interaction, client, Discord);
-                }
-              break;
-              case process.env.rafiAlt:
-                {
-
-                  playSongs(rafiStudy, interaction, client, Discord);
-                }
-              break;
-              case process.env.rafi:
-                //same thing lol
-                {
-
-                  playSongs(rafiStudy, interaction, client, Discord);
-
-                }
-                break;
-              default: //dark academia
-              {
-                //add dark academia to queue
-                //skip current song
-                const song = [["dark", "academia"]];
-                playSongs(song, interaction, client, Discord);
-              }
-            }
-            break;
-          case "Hope you feel better :)":
-            {
-              playSongs(sad, interaction, client, Discord);
-            }
-            //users
-            break;
-          case "Enjoy!":
-            switch (interaction.user.id) {
-              case process.env.aysan:
-                //la vie en rose idk dude same stuff
-                {
-                  playSongs(aysanChill, interaction, client, Discord);
-                }
-                break;
-              case process.env.ard:
-                //ynw or that rapper idk, more rappers i guess slav music
-                {
-                  const song = [['ynw', 'melly'], ['russian', 'doomer'], ['https://www.youtube.com/watch?v=vKPDErkU77A']];
-                  playSongs(song, interaction, client, Discord);
-
-                }
-                break;
-              case process.env.mayer:
-                {
-                  playSongs(mayerChill, interaction, client, Discord);
-                }
-                break;
-              default:
-                //my chill music hehe
-                {
-                  playSongs(chill, interaction, client, Discord);
-                }
-                break;
-            }
-            break;
-          default: //none left, just break.
-            //users
-            break;
-        }
+    } else if (interaction.isSelectMenu()){
+        let user;
+        let idx;
+        let id;
+      switch (interaction.customId){
+        case "delete-playlist": //interaction.values is an arr of 1 elem for the index to delete
+          id = interaction.user.id;
+          user = await User.findOne({userId:id});
+          idx = parseInt(interaction.values[0]);
+          const plists = user.playlists;
+          //remove the song from the plist
+          plists.splice(idx, 1);
+          user.playlists = plists;
+          user.save();
+        break;
+        case "choose-song": //interaction.values is an arr of 1 element consisting of [index, id]. Ugly af.
+          id = parseInt(interaction.values[0].substring(2)); //id
+          user = await User.findOne({userId:id});
+          idx = parseInt(interaction.values[0]); //index
+          const plist = user.playlists[idx];
+          //check for visibility here
+          if(!(id != interaction.user.id && !plist.visibility)){
+            playSongs(plist.songs, interaction, client, Discord);
+          } else {
+            interaction.deleteReply();
+          }
+          break;
+        default:
+          break;
       }
+      
+      //playSongs(songs, interaction, client, Discord)
+      
     }
   }
   handleCommand();
