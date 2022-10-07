@@ -74,7 +74,7 @@ client.on("ready", async ()=>{
 
 }); */
 
-client.login(process.env.TOKENTEST);
+client.login(process.env.TOKEN);
 mongoose.connect(process.env.db, {
     useNewUrlParser:true,
     useUnifiedTopology:true

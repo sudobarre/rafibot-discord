@@ -20,13 +20,6 @@ module.exports = User;
 
 /*
 https://mongoosejs.com/docs/populate.html
-
-
-
 playlists: arr[playlist] //max of like 10 playlists
 playlist:arr[String] //max of 100 songs per playlist idk
-
-
-
-
 */

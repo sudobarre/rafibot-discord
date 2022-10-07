@@ -8,6 +8,7 @@ module.exports = {
 	once: true,
 	async execute(client, message, cmd, args) {
         //tag - quote
+        if(args.length <= 1) return message.reply("Please send the tag and a quote to add!");
         function getUserFromMention(mention) {
             if (!mention) return;
         
@@ -22,16 +23,16 @@ module.exports = {
         }
 
         const mention = getUserFromMention(args[0]);
-
-        const quoteArr = args;
+        if(!mention) return message.reply("Invalid tag! Make sure the member is in the server.");
+        let quoteArr = args;
         quoteArr.shift();
         const quote = quoteArr.join(' ');
         try {
             const user = await User.findOne({userId: mention.id});
-            const newQuotesArr = user.quotes;
-            newQuotesArr.push(quote);
-            const newQuotes = {quotes:newQuotesArr};
-            await User.findOneAndUpdate({userId:mention.id}, newQuotes);
+            let newQuotesArr = user.quotes;
+            newQuotesArr.unshift(quote); 
+//            const newQuotes = {quotes:newQuotesArr};
+            await user.update({userId:mention.id}, newQuotes);
             return message.reply('Quote added successfully!');
         } catch (error) {
             console.error(error);

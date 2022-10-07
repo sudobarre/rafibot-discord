@@ -1,38 +1,34 @@
 const User = require("../schema/userSchema");
 const {MessageActionRow, MessageButton, MessageEmbed} = require('discord.js');
-const ytdl = require('ytdl-core');
 
 module.exports = {
-	name :'listsong',
-    aliases: ['lists', 'listsongs'],
-	description: 'lists the songs of a given playlsit.',
+	name :'listquote',
+    aliases: ['listq', 'listquotes'],
+	description: 'lists the quotes of a given user.',
 	once: true,
 	async execute(client, message, cmd, args) {
-        //format: -rafi listsong (playlistIndex) (optional tag)
-        // could use ytdl to find the title of the video            
+        //format: -rafi listq (tag)
 
         try {
             let id;
-            if(args.length > 1){
-                id = getUserFromMention(args[1]);
+            if(args.length > 0){
+                id = getUserFromMention(args[0]);
                 if(!id) return message.reply('Invalid mention! Make sure the member you tagged is in the server!');
                 id = id.id; //dont try this at home.
             }else{
                 id = message.author.id;
             }           
-            const user = await User.findOne({userId: id});
-            if(user.playlists.length === 0){
-                return message.reply(`You don't have any playlist saved yet!\nTry "-rafi createp (title) (songURL) (public/private)" to create a playlist!\nFor more information, do "-rafi help".`);
+            let user = await User.findOne({userId: id});
+            if(!user){
+                return message.reply("User doesn't have any quotes yet! Start adding some by sending 'rafi addq [tag] [quote]'!");
             }
-            let index = parseInt(args[0]);
-            if((!Number.isInteger(index)) || index > user.playlists.length || index <= 0) return message.reply("Invalid index!\nTry '-rafi listp' to see all your available playlists!");
-            index--;
-            if(id != message.author.id && !user.playlists[index].visibility) return message.reply("The playlist you are trying to see is set to private.");
-            const plist = user.playlists[index].songs;
 
-            const embed = new MessageEmbed().setTitle(`From playlist "${user.playlists[index].title}":`);
+            const quotes = user.quotes;
+
+            const embed = new MessageEmbed()
+            .setTitle(`From ${id}:`);
             message.channel.send({embeds: [embed]});
-            return this.embedSender(client, message, plist); //return embed
+            return this.embedSender(client, message, quotes); //return embed
         } catch (error) {
             console.error(error);
         }
@@ -51,7 +47,7 @@ module.exports = {
             return 0;
         }
     },
-    async embedSender(client, message, plist, args) {
+    async embedSender(client, message, quotes, args) {
         //plist: only the array of arrays of one song each.
         try {
    
@@ -74,7 +70,7 @@ module.exports = {
     
             const {author, channel} = message;
             //change it to array of playlist titles
-            let titles = plist;
+            let titles = quotes;
     
             //* Creates an embed with guilds starting from an index.
             ///* @param {number} start The index to start from.
@@ -84,22 +80,22 @@ module.exports = {
                 let current = [];
                       for(let i = start; i < start+5; i++){
                         if(i === titles.length-1){ 
-                            current.push(plist[i]);
+                            current.push(quotes[i]);
                             i = start + 5; //shitty way in case its not multiple of ten, could use modulo later idk too braindead rn lol.
                         } else {
-                          current.push(plist[i]);
+                          current.push(quotes[i]);
                         }
                       }
                 //current = array of plist of 5 elements max, cycles with forward/back buttons.
 
                 
                 return new MessageEmbed({   
-                title: `Showing songs ${start + 1}-${start + current.length} out of ${
+                title: `Showing quotes ${start + 1}-${start + current.length} out of ${
                     titles.length}`,
                 fields: await Promise.all(
-                    current.map(async (playlist, index) => ({
-                    name:`${index+1+start}`,
-                    value: `${await this.details(current, index)}\n ${current[index]}`,
+                    current.map(async (quotes, index) => ({
+                    name:`**${index+1+start}**:`,
+                    value: `${current[index]}`,
                     }))
                 )
                 })
@@ -119,7 +115,8 @@ module.exports = {
             // Collect button interactions (when a user clicks a button),
             // but only when the button as clicked by the original message author
             const collector = embedMessage.createMessageComponentCollector({
-                filter: ({user}) => user.id === author.id
+                filter: ({user}) => user.id === author.id,
+                time: 500000,
             })
             
             //doesnt show the next page
@@ -136,7 +133,7 @@ module.exports = {
                         // back button if it isn't the start
                         ...(currentIndex ? [backButton] : []),
                         // forward button if it isn't the end
-                        ...(currentIndex + 5 < plist.length ? [forwardButton] : [])
+                        ...(currentIndex + 5 < quotes.length ? [forwardButton] : [])
                     ]
                     })
                 ]
@@ -146,11 +143,4 @@ module.exports = {
             console.error(error);
         }
     },
-    async details(current, i){
-        let temp = await ytdl.getInfo(current[i].toString());
-        return temp.videoDetails.title;
-    } 
 };
-
-
-

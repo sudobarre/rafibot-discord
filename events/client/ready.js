@@ -2,14 +2,29 @@
 //module.exports = (client) =>{
 //	console.log(generateDependencyReport());
 const User = require("../../schema/userSchema");
-
-
 const fetch = require('node-fetch');
-const { Schema } = require("mongoose");
 
 //const { joinVoiceChannel } = require('@discordjs/voice');
 module.exports = (client) =>{
 	console.log(`Ready! Logged in as ${client.user.tag}`);
+	/*
+	function getQuote(){
+		return fetch('https://zenquotes.io/api/random')
+		.then(res => {
+			return res.json();
+		})
+		.then(data => {
+			return data[0]['q'] + ' -' + data[0]['a'];
+		});
+	}
+	//send it via DM to users
+	getQuote().then(quote => {
+			const nothingham = client.guilds.cache.get(process.env.guildId);
+			const inspiration = nothingham.channels.cache.get(process.env.inspiration);
+			client.users.send(process.env.jessil, quote);
+			inspiration.send(quote);
+
+		});*/
 	//removeUser(client);
 	//removePlaylists(client);
 	//addPlaylists(client);
@@ -205,14 +220,3 @@ async function createUser(guildMemberId){ //dont just update, do findOne or find
 
 
 
-//<TextChannel>.lastMessage.content
-//  var ticketnumber = channel.lastmessage.id
-//message.createdTimestamp
-//message.channel.messages.fetch({limit: x})
-//const user = <client>.users.cache.get('<id>');
-//user.send('<content>');
-
-//const job = nodeCron.schedule("* * * * * *", function jobYouNeedToExecute() {
-	// Do whatever you want in here. Send email, Make  database backup or download data.
-//	console.log(new Date().toLocaleString());
-//  });

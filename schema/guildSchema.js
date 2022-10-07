@@ -1,7 +1,10 @@
-
 const { Schema, model } = require("mongoose");
 
 const guildSchema = new Schema({
+    guildId: {
+        type: Number,
+        required: true
+    },
     movies:{
         type: [String],
         required: false,
@@ -9,4 +12,6 @@ const guildSchema = new Schema({
     },
 });
 
-module.exports = model("Guild", guildSchema);
+
+const Guild = model("Guild", guildSchema);
+module.exports = Guild;
