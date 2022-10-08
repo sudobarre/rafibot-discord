@@ -1,19 +1,15 @@
 //const { generateDependencyReport } = require('@discordjs/voice');
 //module.exports = (client) =>{
 //	console.log(generateDependencyReport());
-<<<<<<< HEAD
 const User = require("../../schema/userSchema");
 const fetch = require('node-fetch');
 const Guild  = require("../../schema/guildSchema");
-=======
 const fetch = require('node-fetch');
 
->>>>>>> main
 
 //const { joinVoiceChannel } = require('@discordjs/voice');
 module.exports = (client) =>{
 	console.log(`Ready! Logged in as ${client.user.tag}`);
-<<<<<<< HEAD
 	
 	function getQuote(){
 		return fetch('https://zenquotes.io/api/random')
@@ -120,6 +116,6 @@ const jesCatch = ['fish game', 'octopus game', 'goes shopping and ends up spendi
 	scare();
 >>>>>>> main
 	*/
-};
+
 
 
