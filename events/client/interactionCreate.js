@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 //const messageCreate = require("../guild/messageCreate");
 const oldSong1 = 'https://www.youtube.com/watch?v=kMzlN9-Db1A';
 const oldSong2 = 'https://www.youtube.com/watch?v=F2EmooQ1Iag';
@@ -113,6 +115,7 @@ async function playSongs(songs, interaction, client, Discord){
     });
   }
 }
+>>>>>>> main
 
 module.exports = (client, Discord, interaction) => {
   console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction: ${interaction}`);
@@ -135,6 +138,9 @@ module.exports = (client, Discord, interaction) => {
           ephemeral: true,
         });
       }
+<<<<<<< HEAD
+    } 
+=======
     } else if (interaction.isSelectMenu()) {
       //playSongs(songs, interaction, client, Discord)
 
@@ -235,6 +241,7 @@ module.exports = (client, Discord, interaction) => {
         }
       }
     }
+>>>>>>> main
   }
   handleCommand();
   return;

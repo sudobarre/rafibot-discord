@@ -74,4 +74,15 @@ client.on("ready", async ()=>{
 }); */
 
 client.login(process.env.TOKEN);
+<<<<<<< HEAD
+mongoose.connect(process.env.db, {
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+}).then(()=>{
+    console.log("Connected to database.");
+}).catch((err) => {
+    console.error(err);
+});
+=======
 
+>>>>>>> main
