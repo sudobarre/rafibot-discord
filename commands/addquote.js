@@ -28,7 +28,13 @@ module.exports = {
         quoteArr.shift();
         const quote = quoteArr.join(' ');
         try {
-            const user = await User.findOne({userId: mention.id});
+            let user = await User.findOne({userId: mention.id});
+            if(!user){
+                user = new User({
+                    userId: mention,
+                    quotes: [],
+                });
+            }
             let newQuotesArr = user.quotes;
             newQuotesArr.unshift(quote); 
             user.quotes = newQuotesArr;

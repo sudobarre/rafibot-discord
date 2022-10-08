@@ -29,6 +29,7 @@ module.exports = {
         index--;
         try {
             const user = await User.findOne({userId: mention.id});
+            if(!user) return message.channel.send("Member has no quotes yet! Do -rafi addquote [memberTag] [quote] to start adding quotes!");
             let quotesArr = user.quotes;
             if((!Number.isInteger(index))||index >= quotesArr.length || index < 0) return message.reply('Invalid index!\nDo "-rafi listquotes [member_tag]" to see all available quotes!');
             quotesArr.splice(index, 1);

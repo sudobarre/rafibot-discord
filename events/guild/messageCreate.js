@@ -38,9 +38,6 @@ module.exports = (client, Discord, message) => {
       message.channel.send("gottem");
     }*/
     switch (message.author.id) {
-      /*case process.env.devila:
-        message.reply('bitch');
-        break; */
       case process.env.sima:
         if (
           message.channel.id === process.env.videos &&

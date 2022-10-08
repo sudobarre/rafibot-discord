@@ -3,7 +3,6 @@ module.exports = {
 	description: 'yawns!',
 	once: true,
 	async execute(client, message, cmd, args) {
-        
         message.channel.send(`🥱`);
     },
 };

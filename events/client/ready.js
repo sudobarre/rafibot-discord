@@ -4,7 +4,6 @@
 const User = require("../../schema/userSchema");
 const fetch = require('node-fetch');
 const Guild  = require("../../schema/guildSchema");
-const fetch = require('node-fetch');
 
 
 //const { joinVoiceChannel } = require('@discordjs/voice');

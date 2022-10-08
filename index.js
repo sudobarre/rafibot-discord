@@ -1,8 +1,4 @@
-// Require the necessary discord.js classes
-//const fetch = require('node-fetch');
-//const fs = require('node:fs');
-
-
+const mongoose = require('mongoose');
 const Discord = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
@@ -74,7 +70,6 @@ client.on("ready", async ()=>{
 }); */
 
 client.login(process.env.TOKEN);
-<<<<<<< HEAD
 mongoose.connect(process.env.db, {
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -83,6 +78,4 @@ mongoose.connect(process.env.db, {
 }).catch((err) => {
     console.error(err);
 });
-=======
 
->>>>>>> main
