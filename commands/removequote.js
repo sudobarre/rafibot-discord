@@ -32,7 +32,8 @@ module.exports = {
             let quotesArr = user.quotes;
             if((!Number.isInteger(index))||index >= quotesArr.length || index < 0) return message.reply('Invalid index!\nDo "-rafi listquotes [member_tag]" to see all available quotes!');
             quotesArr.splice(index, 1);
-            await user.update({userId:mention.id}, quotesArr);
+            user.quotes = quotesArr;
+            await user.save();
             return message.reply('Quote removed successfully.');
         } catch (error) {
             console.error(error);

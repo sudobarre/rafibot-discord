@@ -19,14 +19,14 @@ module.exports = {
                 id = message.author.id;
             }           
             let user = await User.findOne({userId: id});
-            if(!user){
+            if(!user || (user.quotes.length === 0)){
                 return message.reply("User doesn't have any quotes yet! Start adding some by sending 'rafi addq [tag] [quote]'!");
             }
 
             const quotes = user.quotes;
 
             const embed = new MessageEmbed()
-            .setTitle(`From ${id}:`);
+            .setTitle(`From ${client.users.cache.get(id).username}:`);
             message.channel.send({embeds: [embed]});
             return this.embedSender(client, message, quotes); //return embed
         } catch (error) {

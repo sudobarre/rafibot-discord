@@ -10,7 +10,7 @@ module.exports = {
         //index
         if(args.length != 1) return message.reply("Please send the index of the movie to remove!");
 
-        const index = parseInt(args[0]);
+        let index = parseInt(args[0]);
         index--;
         const id = message.guild.id;
         try {
@@ -18,7 +18,8 @@ module.exports = {
             let movies = guild.movies;
             if((!Number.isInteger(index))||index >= movies.length || index < 0) return message.reply('Invalid index!\nDo "-rafi listmovies" to see all movies!');
             movies.splice(index, 1);
-            await guild.update({guildId:id}, movies);
+            guild.movies = movies;
+            await guild.save();
             return message.reply('Movie removed successfully.');
         } catch (error) {
             console.error(error);

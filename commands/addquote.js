@@ -31,8 +31,8 @@ module.exports = {
             const user = await User.findOne({userId: mention.id});
             let newQuotesArr = user.quotes;
             newQuotesArr.unshift(quote); 
-//            const newQuotes = {quotes:newQuotesArr};
-            await user.update({userId:mention.id}, newQuotes);
+            user.quotes = newQuotesArr;
+            await user.save();
             return message.reply('Quote added successfully!');
         } catch (error) {
             console.error(error);

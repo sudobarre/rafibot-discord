@@ -13,11 +13,18 @@ module.exports = {
         let movieArr = args;
         const movie = movieArr.join(' ');
         try {
-            const guild = await Guild.findOne({guildId: id});
+            let guild = await Guild.findOne({guildId: id});
+            if(!guild){
+                guild = new Guild({
+                    guildId: id,
+                    movies: [],
+                });
+            }
             let newMovies = guild.movies;
             newMovies.unshift(movie); 
-//            const newQuotes = {quotes:newQuotesArr};
-            await guild.update({guildId: id}, newMovies);
+//           const newQuotes = {quotes:newQuotesArr};
+            guild.movies = newMovies;
+            await guild.save();
             return message.reply('Movie added successfully!');
         } catch (error) {
             console.error(error);

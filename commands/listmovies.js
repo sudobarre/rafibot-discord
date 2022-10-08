@@ -12,23 +12,19 @@ module.exports = {
         try {
             const id = message.guild.id;
             let guild = await Guild.findOne({guildId: id});
+            if(!guild) return message.reply("There are no movies saved up yet! Start adding some by sending '-rafi addmovie [movie_title]'!");
             const movies = guild.movies;
             if(movies.length === 0){
                 return message.reply("There are no movies saved up yet! Start adding some by sending '-rafi addmovie [movie_title]'!");
             }
 
-            
-
-            const embed = new MessageEmbed()
-            .setTitle(`From ${message.guild.name}:`);
-            message.channel.send({embeds: [embed]});
             return this.embedSender(client, message, movies); //return embed
         } catch (error) {
             console.error(error);
         }
         
     },
-    async embedSender(client, message, plist, args) {
+    async embedSender(client, message, movies, args) {
         //plist: only the array of arrays of one song each.
         try {
    
@@ -75,8 +71,8 @@ module.exports = {
                     titles.length}`,
                 fields: await Promise.all(
                     current.map(async (movies, index) => ({
-                    name:`**${index+1+start}**: ${current[index]}`,
-//                    value: `${current[index]}`,
+                    name:`**${index+1+start}**:`,
+                    value: `${current[index]}`,
                     }))
                 )
                 })
